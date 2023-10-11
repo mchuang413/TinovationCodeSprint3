@@ -7,30 +7,24 @@ const openai = new OpenAI({
     apiKey: "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",
 });
 
-
 const app = express();
 const port = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
+//create post req to gpt
 app.post("/", async (req, res) => {
-    
-    const personaPrompt = "The following is a message by a weak human. \n Please respond in an anrgy, complex, and mad way. Also make sure to throw in an insult to test the waters. Please make it short and witty too. Human: ";
-
     const { message } = req.body;
     console.log(message);
-
-    
     const chatCompletion = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
-            {role: 'user', content: personaPrompt + message}],
+            {role: 'user', content: message}],
     });
-
     const response = chatCompletion.choices[0].message.content;
-
     res.json({
+        //returns message as json
         message: response
     });
 });
