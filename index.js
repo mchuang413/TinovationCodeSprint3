@@ -2,7 +2,9 @@ import OpenAI from "openai";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -25,7 +27,7 @@ app.post("/", async (req, res) => {
     });
     const response = chatCompletion.choices[0].message.content;
     res.json({
-        //returns message as json
+        //returns message as
         message: response
     });
 });
