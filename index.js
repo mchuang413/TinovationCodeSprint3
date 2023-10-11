@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import dotenv from "dotenv";
+
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
