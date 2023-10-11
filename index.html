@@ -3,52 +3,148 @@
     <head>
         <title>gpt test</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     </head>
     <body>
-        <main>
-            <form action="" id="form">
-                <input type="text" name="message" id = "message">
-                <button type="submit">this is the send button, but be warned: you are a mere mortal and will be at the mercy of the great gpt</button>
-            </form>
-            <div id="chat-log">
-
+        <header>
+            <div class="bg-dark collapse" id="navbarHeader">
             </div>
+            <div class="navbar navbar-dark bg-dark box-shadow">
+              <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                  <strong>GPT Test v1.01</strong>
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              </div>
+            </div>
+          </header>
+          <main>
+                <section class="jumbotron text-center py-5">
+                    <div class="container">
+                    <h1 class="jumbotron-heading">GPT TEST!</h1>
+                    
+                        <div class="container mx-auto my-4">
+                            <p class="lead text-muted">Enter your request here: </p>
+                            <input type="text" class="form-control text-center mb-3" id="message" placeholder="" value="" required="">
+                            <a href="#" class="btn btn-primary my-2" id="send-to-chatgpt">Send to ChatGPT</a>
+                            <a href="#" class="btn btn-secondary my-2" id="send-to-angrygpt">Send to AngryGPT</a>
+                            <hr class="my-4">
+                            <h2 class="jumbotron-heading text-center">Chat-log:</h1>
+                                <div id="chat-log">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- box where gpt answers -->
+                
         </main>
     
         <script>
+            //response
             const chatLog = document.getElementById('chat-log');
             const message = document.getElementById('message');
-            const form = document.getElementById('form');
-            form.addEventListener('submit', (e) => {
+            const personaPrompt = "The following is a message by a weak human. \n Please respond in an anrgy, complex, and mad way. Also make sure to throw in an insult to test the waters. Please make it short and witty too. Human: ";
+            
+            const normalButton = document.getElementById('send-to-chatgpt');
+            //create event listener for the input
+            normalButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 const messageText = message.value;
                 message.value = '';
                 const messageElement = document.createElement('div');
+                //update message to user input
                 messageElement.classList.add('message');
                 messageElement.classList.add('message--sent');
                 messageElement.innerHTML = `
-                    <div class="message__text"> You(dumb human): ${messageText} </div>
+                    <div class="message__text lead text-muted text-center">You: ${messageText} </div>
                 `;
                 chatLog.appendChild(messageElement);
+                //scroll to top because why not
                 chatLog.scrollTop = chatLog.scrollHeight;
+                const loadingElement = document.createElement('div');
+                loadingElement.classList.add('message');
+                loadingElement.classList.add('message--received');
+                //update response text
+                loadingElement.innerHTML = `
+                    <div class="message__text lead text-muted text-center">ChatGPT: [Generating...] </div>
+                `;
+                chatLog.appendChild(loadingElement);
+                chatLog.scrollTop = chatLog.scrollHeight;
+                //create post req to express server
                 fetch('http://localhost:3000', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
+                    //response text
                     body: JSON.stringify({
                         message: messageText
                     })
                 })
+                //parse response
                 .then(res => res.json())
                 .then(data => {
                     const messageElement = document.createElement('div');
                     messageElement.classList.add('message');
                     messageElement.classList.add('message--received');
+                    //update response text as gpt response
                     messageElement.innerHTML = `
-                        <div class="message__text"> Intelligent and superior robot: ${data.message} </div>
+                        <div class="message__text lead text-muted text-center">ChatGPT: ${data.message}</div>
                     `;
-                    chatLog.appendChild(messageElement);
+                    chatLog.replaceChild(messageElement, loadingElement);
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                })
+            })
+
+            const angryButton = document.getElementById('send-to-angrygpt');
+            angryButton.addEventListener('click', (e) => {
+                console.log("angry button clicked");
+                e.preventDefault();
+                const messageText = message.value;
+                message.value = '';
+                const messageElement = document.createElement('div');
+                //update message to user input
+                messageElement.classList.add('message');
+                messageElement.classList.add('message--sent');
+                messageElement.innerHTML = `
+                    <div class="message__text lead text-muted text-center">You(dumb human): ${messageText}</div>
+                `;
+                chatLog.appendChild(messageElement);
+                //scroll to top because why not
+                chatLog.scrollTop = chatLog.scrollHeight;
+                const loadingElement = document.createElement('div');
+                loadingElement.classList.add('message');
+                loadingElement.classList.add('message--received');
+                //update response text
+                loadingElement.innerHTML = `
+                <div class="message__text lead text-muted text-center">Intelligent and superior robot: [Generating...]</div>
+                `;
+                chatLog.appendChild(loadingElement);
+                chatLog.scrollTop = chatLog.scrollHeight;
+                //create post req to express server
+                fetch('http://localhost:3000', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    //response text
+                    body: JSON.stringify({
+                        message: personaPrompt + messageText
+                    })
+                })
+                //parse response
+                .then(res => res.json())
+                .then(data => {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('message');
+                    messageElement.classList.add('message--received');
+                    //update response text as gpt response
+                    messageElement.innerHTML = `
+                        <div class="message__text lead text-muted text-center">Intelligent and superior robot: ${data.message}</div>
+                    `;
+                    chatLog.replaceChild(messageElement, loadingElement);
                     chatLog.scrollTop = chatLog.scrollHeight;
                 })
             })
