@@ -27,7 +27,7 @@
                 messageElement.classList.add('message');
                 messageElement.classList.add('message--sent');
                 messageElement.innerHTML = `
-                    <div class="message__text"> ${messageText} </div>
+                    <div class="message__text"> You(dumb human): ${messageText} </div>
                 `;
                 chatLog.appendChild(messageElement);
                 chatLog.scrollTop = chatLog.scrollHeight;
@@ -46,7 +46,7 @@
                     messageElement.classList.add('message');
                     messageElement.classList.add('message--received');
                     messageElement.innerHTML = `
-                        <div class="message__text"> ${data.message} </div>
+                        <div class="message__text"> Intelligent and superior robot: ${data.message} </div>
                     `;
                     chatLog.appendChild(messageElement);
                     chatLog.scrollTop = chatLog.scrollHeight;
