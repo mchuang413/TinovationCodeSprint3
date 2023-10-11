@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: "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",
 });
 
 
