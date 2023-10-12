@@ -10,16 +10,17 @@
   }
   
   h1 {
-    font-size: 23px;
+    font-size: 40px;
+    margin-bottom: 20px;
   }
   
   .form {
     width: 300px;
-    padding: 64px 15px 24px;
+    padding: 60px 15px 24px;
     margin: 0 auto;
   }
   .form .control {
-    margin: 0 0 24px;
+    margin: 0 0 20px;
   }
   .form .control input {
     width: 100%;
