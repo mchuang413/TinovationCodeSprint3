@@ -1,14 +1,9 @@
-import OpenAI from "openai";
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import dotenv from "dotenv";
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
-dotenv.config();
-
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+import chatRoutes from './routes/chatRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 const port = 4000;
@@ -16,21 +11,9 @@ const port = 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
-//create post req to gpt
-app.post("/", async (req, res) => {
-    const { message } = req.body;
-    console.log(message);
-    const chatCompletion = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        messages: [
-            {role: 'user', content: message}],
-    });
-    const response = chatCompletion.choices[0].message.content;
-    res.json({
-        //returns message as
-        message: response
-    });
-});
+// Use the routes from chatRoutes.js
+app.use('/', chatRoutes);
+app.use('/auth', authRoutes);
 
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`);
