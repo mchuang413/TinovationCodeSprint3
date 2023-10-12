@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import bcrypt from 'bcrypt';
 
 const uri = 'mongodb+srv://tinovation2:tinovation2023@tinovation2.eliouiv.mongodb.net/?retryWrites=true&w=majority';
 
@@ -12,6 +13,11 @@ client.connect(err => {
     }
 });
 
+const hashPassword = (password) => {
+    const saltRounds = 10;
+    return bcrypt.hashSync(password, saltRounds);
+};
+
 const login = async (req, res) => {
     const { username, password } = req.body;
     const db = client.db('database2');
@@ -19,7 +25,7 @@ const login = async (req, res) => {
 
     try {
         const user = await usersCollection.findOne({ username });
-        if (user && password === user.password) {
+        if (user && bcrypt.compareSync(password, user.password)) {
             console.log(`User logged in: ${username}`);
             res.status(200).json({ username });
         } else {
@@ -36,6 +42,7 @@ const register = async (req, res) => {
     const { username, password } = req.body;
     const db = client.db('database2');
     const usersCollection = db.collection('users');
+    const hashedPassword = hashPassword(password);
 
     try {
         const existingUser = await usersCollection.findOne({ username });
@@ -43,7 +50,7 @@ const register = async (req, res) => {
             console.log('Username already exists');
             return res.status(400).json({ error: 'Username already exists' });
         }
-        const result = await usersCollection.insertOne({ username, password });
+        const result = await usersCollection.insertOne({ username, password: hashedPassword });
         if (result.acknowledged) {
             res.json({ username: username });
             console.log(`User registered: ${username}`);
@@ -61,5 +68,3 @@ export default {
     login,
     register,
 };
-
-
