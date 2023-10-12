@@ -29,7 +29,7 @@
                             <p class="lead text-muted">Enter your request here: </p>
                             <input type="text" class="form-control text-center mb-3" id="message" placeholder="" value="" required="">
                             <a href="#" class="btn btn-primary my-2" id="send-to-chatgpt">Send to ChatGPT</a>
-                            <a href="#" class="btn btn-secondary my-2" id="send-to-angrygpt">Send to AngryGPT</a>
+                            <a href="#" class="btn btn-danger" id="send-to-angrygpt">Send to AngryGPT</a>
                             <hr class="my-4">
                             <h2 class="jumbotron-heading text-center">Chat-log:</h1>
                                 <div id="chat-log">
@@ -45,7 +45,7 @@
             //response
             const chatLog = document.getElementById('chat-log');
             const message = document.getElementById('message');
-            const personaPrompt = "The following is a message by a weak human. \n Please respond in an anrgy, complex, and mad way. Also make sure to throw in an insult to test the waters. Please make it short and witty too. Human: ";
+            const personaPrompt = "The following is a message by a weak human. \n Please respond in an angry, complex, and mad way. Also make sure to throw in an insult and to test the waters. Please make it short(at most 2 sentences and 20 words) and super witty too. Human: ";
             
             const normalButton = document.getElementById('send-to-chatgpt');
             //create event listener for the input

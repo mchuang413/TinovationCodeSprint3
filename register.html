@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="register()">Register</button>
+
+    <div id="result"></div>
+
+    <script>
+        function register() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            console.log(username, password);
+
+            // Make an HTTP request to your Express server
+            fetch('http://localhost:4000/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else if (response.status === 400) {
+                    
+                    throw new Error('Username is already taken');
+                    console.log(taken);
+                } else {
+                    throw new Error('Registration failed');
+                }
+            })
+            .then(data => {
+                document.getElementById('result').innerText = `Registered as: ${data.username}`;
+                document.getElementById('result').style.color = 'green';
+            })
+            .catch(error => {
+                console.error('Error during registration:', error.message);
+                console.log(error.message);
+                if (error.message === 'Username is already taken') {
+                    document.getElementById('result').innerText = 'Username is already taken';
+                } else {
+                    document.getElementById('result').innerText = 'Registration failed';
+                }
+                document.getElementById('result').style.color = 'red';
+            });
+        }
+    </script>
+</body>
+</html>
