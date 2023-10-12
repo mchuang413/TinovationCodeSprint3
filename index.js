@@ -16,5 +16,5 @@ app.use('/', chatRoutes);
 app.use('/auth', authRoutes);
 
 app.listen(port, () => {
-    console.log(`listening at http://localhost:${port}`);
+    console.log(`listening a http://localhost:${port}`);
 });
