@@ -25,13 +25,10 @@ const login = async (req, res) => {
 
     try {
         const user = await usersCollection.findOne({ username });
-
         if (user && bcrypt.compareSync(password, user.password)) {
-            // User found, and password is correct
             console.log(`User logged in: ${username}`);
             res.status(200).json({ username });
         } else {
-            // No matching user or incorrect password
             console.log('Invalid username or password');
             res.status(401).json({ error: 'Invalid username or password' });
         }
@@ -48,17 +45,12 @@ const register = async (req, res) => {
     const hashedPassword = hashPassword(password);
 
     try {
-        // Check if the username already exists
         const existingUser = await usersCollection.findOne({ username });
         if (existingUser) {
             console.log('Username already exists');
             return res.status(400).json({ error: 'Username already exists' });
         }
-
-        // Insert the new user
         const result = await usersCollection.insertOne({ username, password: hashedPassword });
-
-        // Check if the document was successfully inserted
         if (result.acknowledged) {
             res.json({ username: username });
             console.log(`User registered: ${username}`);
