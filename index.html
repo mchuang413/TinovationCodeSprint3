@@ -6,46 +6,42 @@
         <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     </head>
     <body>
-        <header>
-            <div class="bg-dark collapse" id="navbarHeader">
-            </div>
-            <div class="navbar navbar-dark bg-dark box-shadow">
-              <div class="container d-flex justify-content-between">
+        <header class="bg-dark">
+        <nav class="navbar navbar-dark">
+            <div class="container d-flex justify-content-between">
                 <a href="#" class="navbar-brand d-flex align-items-center">
                   <strong>GPT Test v1.01</strong>
                 </a>
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-              </div>
             </div>
-          </header>
-          <main>
-                <section class="jumbotron text-center py-5">
-                    <div class="container">
-                    <h1 class="jumbotron-heading">GPT TEST!</h1>
-                    
-                        <div class="container mx-auto my-4">
-                            <p class="lead text-muted">Enter your request here: </p>
-                            <input type="text" class="form-control text-center mb-3" id="message" placeholder="" value="" required="">
-                            <a href="#" class="btn btn-primary my-2" id="send-to-chatgpt">Send to ChatGPT</a>
-                            <a href="#" class="btn btn-danger" id="send-to-angrygpt">Send to AngryGPT</a>
-                            <hr class="my-4">
-                            <h2 class="jumbotron-heading text-center">Chat-log:</h1>
-                                <div id="chat-log">
-                            </div>
-                        </div>
+        </nav>
+    </header>
+    <main>
+        <section class="notification">
+            <script src="js/app.js"></script>
+        </section>
+        <section class="jumbotron text-center py-5">
+            <div class="container">
+                <h1 class="jumbotron-heading">GPT TEST!</h1>
+                <div class="container mx-auto my-4">
+                    <p class="lead text-muted">Enter your request here:</p>
+                    <input type="text" class="form-control text-center mb-3" id="message" placeholder="" value="" required>
+                    <a href="#" class="btn btn-primary my-2" id="send-to-chatgpt">Send to ChatGPT</a>
+                    <hr class="my-4">
+                    <h2 class="jumbotron-heading text-center pixelated">Chat-log:</h2> <!-- Pixelated font class -->
+                    <div id="chat-log">
                     </div>
-                </section>
-                <!-- box where gpt answers -->
-                
-        </main>
-    
+                </div>
+            </div>
+        </section>
+    </main>
         <script>
             //response
             const chatLog = document.getElementById('chat-log');
             const message = document.getElementById('message');
-            const personaPrompt = "The following is a message by a weak human. \n Please respond in an angry, complex, and mad way. Also make sure to throw in an insult and to test the waters. Please make it short(at most 2 sentences and 20 words) and super witty too. Human: ";
+            const personaPrompt = "The following is a message human who wants to complete a mission. The following message describes a goal the user wants to accomplish. \n Please respond like a counselor, inspiring, and concise manner. Please list out a few steps for the person to achieve their goal. Human: ";
             
             const normalButton = document.getElementById('send-to-chatgpt');
             //create event listener for the input
@@ -149,6 +145,49 @@
                 })
             })
         </script>
-        
+        <script>
+            (async () => {
+            // create and show the notification
+            const showNotification = () => {
+                // create a new notification
+                const notification = new Notification('JavaScript Notification API', {
+                    body: 'This is a JavaScript Notification API demo',
+                    icon: './img/js.png'
+                });
+
+                // close the notification after 10 seconds
+                setTimeout(() => {
+                    notification.close();
+                }, 10 * 1000);
+
+                // navigate to a URL when clicked
+                notification.addEventListener('click', () => {
+
+                    window.open('https://www.javascripttutorial.net/web-apis/javascript-notification/', '_blank');
+                });
+            }
+
+            // show an error message
+            const showError = () => {
+                const error = document.querySelector('.error');
+                error.style.display = 'block';
+                error.textContent = 'You blocked the notifications';
+            }
+
+            // check notification permission
+            let granted = false;
+
+            if (Notification.permission === 'granted') {
+                granted = true;
+            } else if (Notification.permission !== 'denied') {
+                let permission = await Notification.requestPermission();
+                granted = permission === 'granted' ? true : false;
+            }
+
+            // show notification or error
+            granted ? showNotification() : showError();
+
+        })();
+        </script>
     </body>
 </html>
