@@ -3,12 +3,61 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="login.css">
         <title>Login</title>
     </head>
     <body>
         <h1>login</h1>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
+        <form autocomplete='off' class='form'>
+            <div class='control'>
+              <h1>
+                Log In
+              </h1>
+            </div>
+            <div class='control block-cube block-input'>
+              <input name='username' id='username' placeholder='Username' type='text'>
+              <div class='bg-top'>
+                <div class='bg-inner'></div>
+              </div>
+              <div class='bg-right'>
+                <div class='bg-inner'></div>
+              </div>
+              <div class='bg'>
+                <div class='bg-inner'></div>
+              </div>
+            </div>
+            <div class='control block-cube block-input'>
+              <input name='password' id='password' placeholder='Password' type='password'>
+              <div class='bg-top'>
+                <div class='bg-inner'></div>
+              </div>
+              <div class='bg-right'>
+                <div class='bg-inner'></div>
+              </div>
+              <div class='bg'>
+                <div class='bg-inner'></div>
+              </div>
+            </div>
+            <button class='btn block-cube block-cube-hover' type='button'>
+              <div class='bg-top'>
+                <div class='bg-inner'></div>
+              </div>
+              <div class='bg-right'>
+                <div class='bg-inner'></div>
+              </div>
+              <div class='bg'>
+                <div class='bg-inner'></div>
+              </div>
+              <div class='text'>
+                Log In
+              </div>
+            </button>
+            <div class='credits'>
+              <a href='https://codepen.io/marko-zub/' target='_blank'>
+                My other codepens
+              </a>
+            </div>
+        </form>
         <button onclick="performLogin()">Login</button>
         <div id="result"></div>
         <script>
