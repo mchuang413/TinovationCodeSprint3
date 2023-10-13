@@ -11,10 +11,16 @@ const port = 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Use the routes from chatRoutes.js
-app.use('/', chatRoutes);
+app.use(logger);
+app.use('/dashboard', chatRoutes);
 app.use('/auth', authRoutes);
 
+
+function logger(req, res, next) {
+    console.log(`${req.method} request received at ${req.originalUrl}`);
+    next();
+}
+
 app.listen(port, () => {
-    console.log(`listening a http://localhost:${port}`);
+    console.log(`listening at http://127.0.0.1:${port}`);
 });

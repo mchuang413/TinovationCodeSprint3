@@ -81,32 +81,40 @@
         <div id="result"></div>
         <script>
             async function performLogin() {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
+              const username = document.getElementById('username').value;
+              const password = document.getElementById('password').value;
 
-                try {
-                    const response = await fetch('http://localhost:4000/auth/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            username: username,
-                            password: password,
-                        }),
-                    });
+              try {
+                  const response = await fetch('http://127.0.0.1:4000/auth/login', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                          username: username,
+                          password: password,
+                      }),
+                  });
 
-                    if (response.ok) {
-                        const data = await response.json();
-                        document.getElementById('result').innerText = `Successfully logged in as ${data.username}.`;
-                    } else {
-                        throw new Error('Login failed');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    document.getElementById('result').innerText = 'Incorrect username and password.';
-                }
-            }
+                  if (response.ok) {
+                      const data = await response.json();
+                      document.getElementById('result').innerText = `logged in as ${data.username}. redirecting...`;
+                      document.getElementById('result').style.color = 'green';
+                      // Redirect to dashboard.html after a short delay (for user to see the message)
+                      setTimeout(() => {
+                          window.location.href = data.redirect;
+                      }, 1000); // 2000 milliseconds (2 seconds) delay before redirection
+                  } else {
+                      throw new Error('Login failed');
+                  }
+              } catch (error) {
+                  console.error('Error:', error);
+                  document.getElementById('result').innerText = 'Incorrect username and password.';
+                  document.getElementById('result').style.color = 'red';
+              }
+          }
+
+            
         </script>
     </body>
 </html>
