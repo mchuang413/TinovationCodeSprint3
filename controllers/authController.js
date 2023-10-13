@@ -1,68 +1,80 @@
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 const uri = 'mongodb+srv://tinovation2:tinovation2023@tinovation2.eliouiv.mongodb.net/?retryWrites=true&w=majority';
 
-const client = new MongoClient(uri);
+mongoose.connect(uri);
 
-client.connect(err => {
-    if (err) {
-        console.error('Error connecting to MongoDB:', err);
-    } else {
-        console.log('Connected to MongoDB');
-    }
+const userSchema = new mongoose.Schema({
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    points: {
+      type: Number,
+      default: 0,
+    },
 });
 
-const hashPassword = (password) => {
-    const saltRounds = 10;
-    return bcrypt.hashSync(password, saltRounds);
-};
+userSchema.pre('save', function (next) {
+    const user = this;
+    if (!user.isModified('password')) return next();
+  
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) return next(err);
+      bcrypt.hash(user.password, salt, (err, hash) => {
+        if (err) return next(err);
+        user.password = hash;
+        next();
+      });
+    });
+  });
 
-const login = async (req, res) => {
+  const User = mongoose.model('User', userSchema);
+
+
+  const login = async (req, res) => {
     const { username, password } = req.body;
-    const db = client.db('database2');
-    const usersCollection = db.collection('users');
-
+  
     try {
-        const user = await usersCollection.findOne({ username });
-        if (user && bcrypt.compareSync(password, user.password)) {
-            console.log(`User logged in: ${username}`);
-            res.status(200).json({ username });
-        } else {
-            console.log('Invalid username or password');
-            res.status(401).json({ error: 'Invalid username or password' });
-        }
+      const user = await User.findOne({ username });
+      if (user && bcrypt.compareSync(password, user.password)) {
+        console.log(`User logged in: ${username}`);
+        res.status(200).json({ username, redirect: '/dashboard.html' });
+      } else {
+        console.log('Invalid username or password');
+        res.status(401).json({ error: 'Invalid username or password' });
+      }
     } catch (err) {
-        console.error('Error during login:', err);
-        res.status(500).json({ error: 'Login failed' });
+      console.error('Error during login:', err);
+      res.status(500).json({ error: 'Login failed' });
     }
-};
-
-const register = async (req, res) => {
+  };
+  
+  const register = async (req, res) => {
     const { username, password } = req.body;
-    const db = client.db('database2');
-    const usersCollection = db.collection('users');
-    const hashedPassword = hashPassword(password);
-
+  
     try {
-        const existingUser = await usersCollection.findOne({ username });
-        if (existingUser) {
-            console.log('Username already exists');
-            return res.status(400).json({ error: 'Username already exists' });
-        }
-        const result = await usersCollection.insertOne({ username, password: hashedPassword });
-        if (result.acknowledged) {
-            res.json({ username: username });
-            console.log(`User registered: ${username}`);
-        } else {
-            res.status(500).json({ error: 'Registration failed' });
-            console.error('Error during registration: No document inserted');
-        }
+      const existingUser = await User.findOne({ username });
+      if (existingUser) {
+        console.log('Username already exists');
+        return res.status(400).json({ error: 'Username already exists' });
+      }
+  
+      const newUser = new User({ username, password });
+      await newUser.save();
+      res.json({ username: newUser.username });
+      console.log(`User registered: ${newUser.username}`);
     } catch (err) {
-        console.error('Error during registration:', err);
-        res.status(500).json({ error: 'Registration failed' });
+      console.error('Error during registration:', err);
+      res.status(500).json({ error: 'Registration failed' });
     }
-};
+  };
 
 export default {
     login,
