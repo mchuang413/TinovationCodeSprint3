@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
 
 const uri = 'mongodb+srv://tinovation2:tinovation2023@tinovation2.eliouiv.mongodb.net/?retryWrites=true&w=majority';
 
@@ -31,19 +30,6 @@ const goalSchema = new mongoose.Schema({
     }],
   });
 
-userSchema.pre('save', function (next) {
-    const user = this;
-    if (!user.isModified('password')) return next();
-  
-    bcrypt.genSalt(10, (err, salt) => {
-      if (err) return next(err);
-      bcrypt.hash(user.password, salt, (err, hash) => {
-        if (err) return next(err);
-        user.password = hash;
-        next();
-      });
-    });
-  });
 
   const User = mongoose.model('User', userSchema);
   const Goal = mongoose.model('Goal', goalSchema);
@@ -53,7 +39,7 @@ userSchema.pre('save', function (next) {
   
     try {
       const user = await User.findOne({ username });
-      if (user && bcrypt.compareSync(password, user.password)) {
+      if (user && user.password === password) {
         console.log(`User logged in: ${username}`);
         res.status(200).json({ username, redirect: '/dashboard.html' });
       } else {
