@@ -69,7 +69,7 @@
                 chatLog.appendChild(loadingElement);
                 chatLog.scrollTop = chatLog.scrollHeight;
                 //create post req to express server
-                fetch('http://localhost:4000/dashboard', {
+                fetch('http://localhost:4000/dashboard/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -94,56 +94,6 @@
                 })
             })
 
-            const angryButton = document.getElementById('send-to-angrygpt');
-            angryButton.addEventListener('click', (e) => {
-                console.log("angry button clicked");
-                e.preventDefault();
-                const messageText = message.value;
-                message.value = '';
-                const messageElement = document.createElement('div');
-                //update message to user input
-                messageElement.classList.add('message');
-                messageElement.classList.add('message--sent');
-                messageElement.innerHTML = `
-                    <div class="message__text lead text-muted text-center">You(dumb human): ${messageText}</div>
-                `;
-                chatLog.appendChild(messageElement);
-                //scroll to top because why not
-                chatLog.scrollTop = chatLog.scrollHeight;
-                const loadingElement = document.createElement('div');
-                loadingElement.classList.add('message');
-                loadingElement.classList.add('message--received');
-                //update response text
-                loadingElement.innerHTML = `
-                <div class="message__text lead text-muted text-center">Intelligent and superior robot: [Generating...]</div>
-                `;
-                chatLog.appendChild(loadingElement);
-                chatLog.scrollTop = chatLog.scrollHeight;
-                //create post req to express server
-                fetch('http://localhost:4000', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    //response text
-                    body: JSON.stringify({
-                        message: personaPrompt + messageText
-                    })
-                })
-                //parse response
-                .then(res => res.json())
-                .then(data => {
-                    const messageElement = document.createElement('div');
-                    messageElement.classList.add('message');
-                    messageElement.classList.add('message--received');
-                    //update response text as gpt response
-                    messageElement.innerHTML = `
-                        <div class="message__text lead text-muted text-center">Intelligent and superior robot: ${data.message}</div>
-                    `;
-                    chatLog.replaceChild(messageElement, loadingElement);
-                    chatLog.scrollTop = chatLog.scrollHeight;
-                })
-            })
         </script>
         <script>
             (async () => {
