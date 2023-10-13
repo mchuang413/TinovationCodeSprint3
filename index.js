@@ -1,10 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import { fileURLToPath } from 'url';
 import path from 'path';
 
 import chatRoutes from './routes/dashRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 4000;
@@ -16,6 +20,8 @@ app.use(logger);
 app.use('/dashboard', chatRoutes);
 app.use('/auth', authRoutes);
 
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 function logger(req, res, next) {
     console.log(`${req.method} request received at ${req.originalUrl}`);
