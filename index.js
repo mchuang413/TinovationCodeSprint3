@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import path from 'path';
 
-import chatRoutes from './routes/chatRoutes.js';
+import chatRoutes from './routes/dashRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 
 const app = express();
