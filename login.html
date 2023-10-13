@@ -100,10 +100,9 @@
                       const data = await response.json();
                       document.getElementById('result').innerText = `logged in as ${data.username}. redirecting...`;
                       document.getElementById('result').style.color = 'green';
-                      // Redirect to dashboard.html after a short delay (for user to see the message)
                       setTimeout(() => {
                           window.location.href = data.redirect;
-                      }, 1000); // 2000 milliseconds (2 seconds) delay before redirection
+                      }, 300);
                   } else {
                       throw new Error('Login failed');
                   }

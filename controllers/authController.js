@@ -6,6 +6,10 @@ const uri = 'mongodb+srv://tinovation2:tinovation2023@tinovation2.eliouiv.mongod
 mongoose.connect(uri);
 
 const userSchema = new mongoose.Schema({
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        auto: true,
+      },
     username: {
       type: String,
       required: true,
@@ -15,11 +19,17 @@ const userSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    points: {
-      type: Number,
-      default: 0,
-    },
 });
+
+const goalSchema = new mongoose.Schema({
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Goal',
+    },
+    goals: [{
+      type: String,
+    }],
+  });
 
 userSchema.pre('save', function (next) {
     const user = this;
@@ -36,7 +46,7 @@ userSchema.pre('save', function (next) {
   });
 
   const User = mongoose.model('User', userSchema);
-
+  const Goal = mongoose.model('Goal', goalSchema);
 
   const login = async (req, res) => {
     const { username, password } = req.body;
@@ -68,6 +78,10 @@ userSchema.pre('save', function (next) {
   
       const newUser = new User({ username, password });
       await newUser.save();
+
+      const newGoals = new Goal({ userId: newUser._id, goals: [] });
+      await newGoals.save();
+
       res.json({ username: newUser.username });
       console.log(`User registered: ${newUser.username}`);
     } catch (err) {
