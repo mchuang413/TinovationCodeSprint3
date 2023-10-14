@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">Username</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Create New Goal</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <button id="addGoalTextButton">Add Goal</button>
+        <div class="goal-container" id="goalContainer"></div>
+        <div class="goal-input">
+            <input type="text" id="goalInput" placeholder="Enter your goal">
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // script.js
+
+document.addEventListener("DOMContentLoaded", function() {
+    const addGoalTextButton = document.getElementById("addGoalTextButton");
+    const goalContainer = document.getElementById("goalContainer");
+    const goalInput = document.getElementById("goalInput");
+    const sidebar = document.querySelector(".sidebar");
+    const mainContent = document.querySelector(".main-content");
+    const toggleSidebarButton = document.querySelector(".toggle-sidebar");
+
+    let goalCount = 1;
+
+    addGoalTextButton.addEventListener("click", function() {
+        const text = goalInput.value.trim();
+        if (text) {
+            const goalBox = document.createElement("div");
+            goalBox.className = "goal-box";
+            goalBox.textContent = "Goal " + goalCount + ": " + text;
+            goalContainer.appendChild(goalBox);
+            goalInput.value = "";
+            goalCount++;
+        } else {
+            const goalBox = document.createElement("div");
+            goalBox.className = "goal-box";
+            goalBox.textContent = "Goal " + goalCount;
+            goalContainer.appendChild(goalBox);
+            goalCount++;
+        }
+    });
+
+    toggleSidebarButton.addEventListener("click", function() {
+        if (sidebar.classList.contains("open-sidebar")) {
+            sidebar.classList.remove("open-sidebar");
+            mainContent.style.marginLeft = "0";
+        } else {
+            sidebar.classList.add("open-sidebar");
+            mainContent.style.marginLeft = "250px";
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
