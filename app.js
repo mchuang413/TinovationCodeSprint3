@@ -24,7 +24,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'web')));
 app.use(logger);
 
 app.use(session({
