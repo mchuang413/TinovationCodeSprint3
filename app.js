@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import mongoose from 'mongoose';
 
-
 import dashRoutes from './routes/dashRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 
@@ -36,9 +35,6 @@ app.use(session({
 
 app.use('/dashboard', dashRoutes);
 app.use('/auth', authRoutes);
-
-
-  
 
 function logger(req, res, next) {
     console.log(`${req.method} request received at ${req.originalUrl}`);
