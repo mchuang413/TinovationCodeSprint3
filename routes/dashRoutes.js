@@ -6,5 +6,6 @@ const router = express.Router();
 
 // Route for handling POST requests to '/'
 router.post('/chat', chatController.processMessage);
+router.get('/user', goalsController.getUserInfo);
 
 export default router;

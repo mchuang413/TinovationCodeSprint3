@@ -85,7 +85,7 @@
               const password = document.getElementById('password').value;
 
               try {
-                  const response = await fetch('http://127.0.0.1:4000/auth/login', {
+                  const response = await fetch('/auth/login', {
                       method: 'POST',
                       headers: {
                           'Content-Type': 'application/json',
@@ -100,9 +100,7 @@
                       const data = await response.json();
                       document.getElementById('result').innerText = `logged in as ${data.username}. redirecting...`;
                       document.getElementById('result').style.color = 'green';
-                      setTimeout(() => {
-                          window.location.href = data.redirect;
-                      }, 300);
+                      window.location.href = data.redirect;
                   } else {
                       throw new Error('Login failed');
                   }
@@ -112,7 +110,6 @@
                   document.getElementById('result').style.color = 'red';
               }
           }
-
             
         </script>
     </body>

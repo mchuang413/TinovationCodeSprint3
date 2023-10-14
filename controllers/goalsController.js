@@ -1,17 +1,29 @@
-import User from './authController.js';
+import mongoose from 'mongoose';
+import User from '../models/user.js';
+//const User = mongoose.model('User');
 
-const getUserUsername = async (userId) => {
-    try {
-      const user = await User.findOne({ userId: userId });
+
+const getUserInfo = async (req, res) => {
+  try {
+    const userId = req.session.userId;
+    console.log(userId);
+    console.log(User);
+    if (userId) {
+      const user = await User.findOne({ _id: userId }); 
       if (user) {
-        return user.username;
+        res.status(200).json({ username: user.username });
+      } else {
+        res.status(404).json({ error: 'User not found' });
       }
-      return null; // Return null if user not found
-    } catch (error) {
-      console.error('Error retrieving user:', error);
-      throw error; // Handle the error appropriately in your application
+    } else {
+      res.status(401).json({ error: 'Unauthorized' });
     }
-  };
-  
-  export default getUserUsername;
-  
+  } catch (error) {
+    console.error('Error fetching user information:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+export default {
+  getUserInfo,
+};

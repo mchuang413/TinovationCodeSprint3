@@ -24,21 +24,41 @@
         </section>
         <section class="jumbotron text-center py-5">
             <div class="container">
-                <h1 class="jumbotron-heading">GPT TEST!</h1>
+                <h1 id="heading">Welcome, .</h1>
                 <div class="container mx-auto my-4">
                     <p class="lead text-muted">Enter your request here:</p>
                     <input type="text" class="form-control text-center mb-3" id="message" placeholder="" value="" required>
                     <a href="#" class="btn btn-primary my-2" id="send-to-chatgpt">Send to ChatGPT</a>
                     <hr class="my-4">
                     <h2 class="jumbotron-heading text-center pixelated">Chat-log:</h2> <!-- Pixelated font class -->
-                    <div id="chat-log">
-                    </div>
+                    <div id="chat-log"></div>
                 </div>
             </div>
         </section>
     </main>
         <script>
-            //response
+            
+            async function fetchUserData() {
+                try {
+                    const response = await fetch('/dashboard/user', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        const heading = document.getElementById('heading');
+                        heading.innerText = `Welcome, ${data.username}!`;
+                    } else {
+                        console.error('Failed to fetch user data:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+            window.onload = fetchUserData;
             const chatLog = document.getElementById('chat-log');
             const message = document.getElementById('message');
             const personaPrompt = "The following is a message human who wants to complete a mission. The following message describes a goal the user wants to accomplish. \n Please respond like a counselor, inspiring, and concise manner. Please list out a few steps for the person to achieve their goal. Human: ";
