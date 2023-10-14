@@ -3,15 +3,14 @@
 
   const getUsername = async (req, res) => {
     try {
-      const userId = req.session.userId;
-      console.log(userId);
+      const userId = ObjectId.createFromHexString(req.session.userId);
       if (!ObjectId.isValid(userId)) {
         console.log('Invalid session', userId);
         return res.status(400).json({ error: 'Invalid session' });
       }
       const database = client.db('db1');
       const users = database.collection('users');
-      const user = await users.findOne({ _id: ObjectId.createFromHexString(userId) });
+      const user = await users.findOne({ _id: userId });
       if (user) {
         res.status(200).json({ username: user.username });
       } else {
