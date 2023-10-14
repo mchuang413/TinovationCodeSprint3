@@ -8,11 +8,9 @@
 </head>
 <body>
     <div class="sidebar">
-        <ul>
-            <li><a href="#">Username</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Create New Goal</a></li>
-        </ul>
+        <h1 id="username">error</h1>>
+        <a href="#">Settings</a></li><br>
+        <a href="#">Create New Goal</a></li>
     </div>
     <div class="main-content">
         <button id="addGoalTextButton">Add Goal</button>
@@ -24,58 +22,55 @@
     
     <script src="script.js"></script>
     <script>
-        // script.js
+    window.onload = fetchUsername();
+    document.addEventListener("DOMContentLoaded", function() {
+        const addGoalTextButton = document.getElementById("addGoalTextButton");
+        const goalContainer = document.getElementById("goalContainer");
+        const goalInput = document.getElementById("goalInput");
+        const sidebar = document.querySelector(".sidebar");
+        const mainContent = document.querySelector(".main-content");
+        const toggleSidebarButton = document.querySelector(".toggle-sidebar");
 
-document.addEventListener("DOMContentLoaded", function() {
-    const addGoalTextButton = document.getElementById("addGoalTextButton");
-    const goalContainer = document.getElementById("goalContainer");
-    const goalInput = document.getElementById("goalInput");
-    const sidebar = document.querySelector(".sidebar");
-    const mainContent = document.querySelector(".main-content");
-    const toggleSidebarButton = document.querySelector(".toggle-sidebar");
+        let goalCount = 1;
 
-    let goalCount = 1;
+        addGoalTextButton.addEventListener("click", function() {
+            const text = goalInput.value.trim();
+            if (text) {
+                const goalBox = document.createElement("div");
+                goalBox.className = "goal-box";
+                goalBox.textContent = "Goal " + goalCount + ": " + text;
 
-    addGoalTextButton.addEventListener("click", function() {
-        const text = goalInput.value.trim();
-        if (text) {
-            const goalBox = document.createElement("div");
-            goalBox.className = "goal-box";
-            goalBox.textContent = "Goal " + goalCount + ": " + text;
+                const goalLink = document.createElement("a");
+                goalLink.href = "dashboard.html";
+                goalLink.appendChild(goalBox);
 
-            // Make the goal clickable and add a link to dashboard.html
-            const goalLink = document.createElement("a");
-            goalLink.href = "dashboard.html";
-            goalLink.appendChild(goalBox);
+                goalContainer.appendChild(goalLink);
+                goalInput.value = "";
+                goalCount++;
+            } else {
+                const goalBox = document.createElement("div");
+                goalBox.className = "goal-box";
+                goalBox.textContent = "Goal " + goalCount;
 
-            goalContainer.appendChild(goalLink);
-            goalInput.value = "";
-            goalCount++;
-        } else {
-            const goalBox = document.createElement("div");
-            goalBox.className = "goal-box";
-            goalBox.textContent = "Goal " + goalCount;
+                const goalLink = document.createElement("a");
+                goalLink.href = "dashboard.html";
+                goalLink.appendChild(goalBox);
 
-            // Make the goal clickable and add a link to dashboard.html
-            const goalLink = document.createElement("a");
-            goalLink.href = "dashboard.html";
-            goalLink.appendChild(goalBox);
+                goalContainer.appendChild(goalLink);
+                goalCount++;
+            }
+        });
 
-            goalContainer.appendChild(goalLink);
-            goalCount++;
-        }
+        toggleSidebarButton.addEventListener("click", function() {
+            if (sidebar.classList.contains("open-sidebar")) {
+                sidebar.classList.remove("open-sidebar");
+                mainContent.style.marginLeft = "0";
+            } else {
+                sidebar.classList.add("open-sidebar");
+                mainContent.style.marginLeft = "250px";
+            }
+        });
     });
-
-    toggleSidebarButton.addEventListener("click", function() {
-        if (sidebar.classList.contains("open-sidebar")) {
-            sidebar.classList.remove("open-sidebar");
-            mainContent.style.marginLeft = "0";
-        } else {
-            sidebar.classList.add("open-sidebar");
-            mainContent.style.marginLeft = "250px";
-        }
-    });
-});
 
     </script>
 </body>

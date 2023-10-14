@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/user.js';
-//const User = mongoose.model('User');
 
-
-const getUserInfo = async (req, res) => {
+const getUsername = async (req, res) => {
   try {
     const userId = req.session.userId;
     console.log(userId);
@@ -25,5 +23,5 @@ const getUserInfo = async (req, res) => {
 };
 
 export default {
-  getUserInfo,
+  getUsername,
 };
