@@ -1,17 +1,5 @@
-import mongoose from 'mongoose';
+import client from '../db.js';
 
-const userSchema = new mongoose.Schema({
-    username: {
-      type: String,
-      required: true, 
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-});
-
-const User = mongoose.model('User', userSchema);
-
-export default User;
+const database = client.db('db1');
+database.createCollection('users');
+database.createCollection('goals');
