@@ -9,8 +9,6 @@ const login = async (req, res) => {
     const user = await users.findOne({ username });
     if (user && user.password === password) {
       req.session.userId = user._id;
-      console.log(req.session.userId);
-      console.log(user.id);
       console.log(`User logged in: ${username}`);
       res.status(200).json({ username, redirect: '/overview.html' });
     } else {
