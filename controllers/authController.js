@@ -24,7 +24,7 @@ const goalSchema = new mongoose.Schema({
       if (user && user.password === password) {
         req.session.userId = user._id;
         console.log(`User logged in: ${username}`);
-        res.status(200).json({ username, redirect: '/dashboard.html' });
+        res.status(200).json({ username, redirect: '/overview.html' });
         
       } else {
         console.log('Invalid username or password');
