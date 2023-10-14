@@ -42,14 +42,26 @@ document.addEventListener("DOMContentLoaded", function() {
             const goalBox = document.createElement("div");
             goalBox.className = "goal-box";
             goalBox.textContent = "Goal " + goalCount + ": " + text;
-            goalContainer.appendChild(goalBox);
+
+            // Make the goal clickable and add a link to dashboard.html
+            const goalLink = document.createElement("a");
+            goalLink.href = "dashboard.html";
+            goalLink.appendChild(goalBox);
+
+            goalContainer.appendChild(goalLink);
             goalInput.value = "";
             goalCount++;
         } else {
             const goalBox = document.createElement("div");
             goalBox.className = "goal-box";
             goalBox.textContent = "Goal " + goalCount;
-            goalContainer.appendChild(goalBox);
+
+            // Make the goal clickable and add a link to dashboard.html
+            const goalLink = document.createElement("a");
+            goalLink.href = "dashboard.html";
+            goalLink.appendChild(goalBox);
+
+            goalContainer.appendChild(goalLink);
             goalCount++;
         }
     });
