@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overview</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+    </style>
 </head>
 <body>
     <div class="sidebar">
-        <h1 id="username">error</h1>>
-        <a href="#">Settings</a></li><br>
-        <a href="#">Create New Goal</a></li>
+        <h1 id="username">Username</h1>
+        <a href="#">Settings</a>
+        <a href="#">Create New Goal</a>
     </div>
     <div class="main-content">
         <button id="addGoalTextButton">Add Goal</button>
@@ -19,8 +21,9 @@
             <input type="text" id="goalInput" placeholder="Enter your goal">
         </div>
     </div>
-    
+
     <script src="script.js"></script>
+
     <script>
     window.onload = fetchUsername();
     document.addEventListener("DOMContentLoaded", function() {
