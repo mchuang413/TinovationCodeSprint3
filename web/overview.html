@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overview</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
     </style>
 </head>
@@ -13,7 +12,7 @@
         <h1 id="username">Username</h1>
     </div>
     <div class="main-content">
-        <h3>Goals:</h3>
+        Goals:
         <div class="goal-container" id="goalContainer"></div>
         <div class="goal-input">
             <input type="text" id="goalInput" placeholder="Enter your goal">
@@ -29,27 +28,25 @@
         await displayGoals();
     };
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const addGoalButton = document.getElementById("addGoalButton");
-        const goalContainer = document.getElementById("goalContainer");
-        const goalInput = document.getElementById("goalInput");
+    const addGoalButton = document.getElementById("addGoalButton");
+    const goalContainer = document.getElementById("goalContainer");
+    const goalInput = document.getElementById("goalInput");
 
-        addGoalButton.addEventListener("click", function() {
-            const text = goalInput.value.trim();
-            if (text) {
-                addGoal(text);
-                const goalBox = document.createElement("div");
-                goalBox.className = "goal-box";
-                goalBox.textContent = text;
+    addGoalButton.addEventListener("click", function() {
+        const text = goalInput.value.trim();
+        if (text) {
+            addGoal(text);
+            const goalBox = document.createElement("div");
+            goalBox.className = "goal-box";
+            goalBox.textContent = text;
 
-                const goalLink = document.createElement("a");
-                goalLink.href = "dashboard.html";
-                goalLink.appendChild(goalBox);
+            const goalLink = document.createElement("a");
+            goalLink.href = `/dashboard.html?goal=${encodeURIComponent(text)}`;
+            goalLink.appendChild(goalBox);
 
-                goalContainer.appendChild(goalLink);
-                goalInput.value = "";
-            }
-        });
+            goalContainer.appendChild(goalLink);
+            goalInput.value = "";
+        }
     });
     </script>
 </body>
