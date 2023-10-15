@@ -33,7 +33,7 @@ async function displayGoals() {
                 goalContainer.appendChild(goalBox);
 
                 const goalLink = document.createElement("a");
-                goalLink.href = "dashboard.html";
+                goalLink.href = `dashboard.html?goal=${encodeURIComponent(goal[0])}`;
                 goalLink.appendChild(goalBox);
 
                 goalContainer.appendChild(goalLink);
