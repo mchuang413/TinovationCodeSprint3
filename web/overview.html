@@ -11,37 +11,36 @@
 <body>
     <div class="sidebar">
         <h1 id="username">Username</h1>
-        <a href="#">Settings</a>
-        <a href="#">Create New Goal</a>
     </div>
     <div class="main-content">
-        <button id="addGoalTextButton">Add Goal</button>
+        <h3>Goals:</h3>
         <div class="goal-container" id="goalContainer"></div>
         <div class="goal-input">
             <input type="text" id="goalInput" placeholder="Enter your goal">
+            <button id="addGoalButton">Add Goal</button>
         </div>
     </div>
 
     <script src="script.js"></script>
 
     <script>
-    window.onload = fetchUsername();
+    window.onload = async function() {
+        await fetchUsername();
+        await displayGoals();
+    };
+
     document.addEventListener("DOMContentLoaded", function() {
-        const addGoalTextButton = document.getElementById("addGoalTextButton");
+        const addGoalButton = document.getElementById("addGoalButton");
         const goalContainer = document.getElementById("goalContainer");
         const goalInput = document.getElementById("goalInput");
-        const sidebar = document.querySelector(".sidebar");
-        const mainContent = document.querySelector(".main-content");
-        const toggleSidebarButton = document.querySelector(".toggle-sidebar");
 
-        let goalCount = 1;
-
-        addGoalTextButton.addEventListener("click", function() {
+        addGoalButton.addEventListener("click", function() {
             const text = goalInput.value.trim();
             if (text) {
+                addGoal(text);
                 const goalBox = document.createElement("div");
                 goalBox.className = "goal-box";
-                goalBox.textContent = "Goal " + goalCount + ": " + text;
+                goalBox.textContent = text;
 
                 const goalLink = document.createElement("a");
                 goalLink.href = "dashboard.html";
@@ -49,32 +48,9 @@
 
                 goalContainer.appendChild(goalLink);
                 goalInput.value = "";
-                goalCount++;
-            } else {
-                const goalBox = document.createElement("div");
-                goalBox.className = "goal-box";
-                goalBox.textContent = "Goal " + goalCount;
-
-                const goalLink = document.createElement("a");
-                goalLink.href = "dashboard.html";
-                goalLink.appendChild(goalBox);
-
-                goalContainer.appendChild(goalLink);
-                goalCount++;
-            }
-        });
-
-        toggleSidebarButton.addEventListener("click", function() {
-            if (sidebar.classList.contains("open-sidebar")) {
-                sidebar.classList.remove("open-sidebar");
-                mainContent.style.marginLeft = "0";
-            } else {
-                sidebar.classList.add("open-sidebar");
-                mainContent.style.marginLeft = "250px";
             }
         });
     });
-
     </script>
 </body>
 </html>

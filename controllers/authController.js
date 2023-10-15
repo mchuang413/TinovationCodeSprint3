@@ -35,9 +35,6 @@ const register = async (req, res) => {
     const newUser = { username, password };
     await users.insertOne(newUser);
 
-    const goals = database.collection('goals');
-    const newGoals = { userId: newUser._id, goals: [] };
-    await goals.insertOne(newGoals);
 
     res.json({ username: newUser.username });
     console.log(`User registered: ${newUser.username}`);
