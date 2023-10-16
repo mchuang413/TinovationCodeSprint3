@@ -117,7 +117,7 @@
                     if (/^\d+\./.test(line)) {
                         const stepElement = document.createElement('li');
                         stepElement.classList.add('list-group-item');
-                        stepElement.classList.add('message-box');
+
                         stepElement.innerHTML = `
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="defaultCheck1">
@@ -131,7 +131,7 @@
                     } else {
                         const textElement = document.createElement('li');
                         textElement.classList.add('list-group-item');
-                        textElement.classList.add('message-box');
+
                         textElement.innerHTML = `
                             <div class="message__text lead text-muted">${line} </div>
                         `;
