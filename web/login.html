@@ -1,116 +1,65 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="login.css">
-        <title>Login</title>
-    </head>
-    <style>
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background: #000000;
-      }
+<html lang="en">
 
-      .form-container {
-        background: linear-gradient(to bottom right, #0396ff, #261d60, #0d015b);
-        border: 2px solid rgb(142, 200, 244);
-        border-radius: 30px;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        width: 500px; /* Adjust the width as needed */
-        height: 500px;
-        text-align: center;
-      }
-    </style>
-    <body>
-      <div class="form-container">
-        <form autocomplete="off" class="form">
-          <form autocomplete='off' class='form'>
-              <div class='control'>
-                <h1>
-                  Log In
-                </h1>
-              </div>
-              <div class='control block-cube block-input'>
-                <input name='username' id='username' placeholder='Username' type='text'>
-                <div class='bg-top'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg-right'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg'>
-                  <div class='bg-inner'></div>
-                </div>
-              </div>
-              <div class='control block-cube block-input'>
-                <input name='password' id='password' placeholder='Password' type='password'>
-                <div class='bg-top'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg-right'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg'>
-                  <div class='bg-inner'></div>
-                </div>
-              </div>
-              <button class='btn block-cube block-cube-hover' type='button'>
-                <div class='bg-top'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg-right'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='text' onclick="performLogin()">
-                  Log In
-                </div>
-              </button>
-            </form>
-          </form>
-          <div id="result"></div>
-      </div>
-        <div id="result"></div>
-        <script>
-            async function performLogin() {
-              const username = document.getElementById('username').value;
-              const password = document.getElementById('password').value;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
 
-              try {
-                  const response = await fetch('/auth/login', {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                          username: username,
-                          password: password,
-                      }),
-                  });
+<body>
+  <div class="form-container">
+    <form autocomplete="off" class="form">
+      <form autocomplete='off' class='form'>
+        <div class='control'>
+          <h1>Log In</h1>
+        </div>
+        <div class='control block-cube block-input'>
+          <input name='username' id='username' placeholder='Username' type='text'>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+        <div class='control block-cube block-input'>
+          <input name='password' id='password' placeholder='Password' type='password'>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+        <button class='btn block-cube block-cube-hover' type='button'>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='text' onclick="performLogin()">Log In</div>
+        </button>
+        <div class="already-have-account">
+          <p>Don't have account? <span><a href="/register.html">Register</a></span>.</p>
+        </div>
+      </form>
+    </form>
+    <div id="result"></div>
+  </div>
+  <div id="result"></div>
+  <script src="auth.js"></script>
+</body>
 
-                  if (response.ok) {
-                      const data = await response.json();
-                      document.getElementById('result').innerText = `logged in as ${data.username}. redirecting...`;
-                      document.getElementById('result').style.color = 'green';
-                      window.location.href = data.redirect;
-                  } else {
-                      throw new Error('Login failed');
-                  }
-              } catch (error) {
-                  console.error('Error:', error);
-                  document.getElementById('result').innerText = 'Incorrect username and password.';
-                  document.getElementById('result').style.color = 'red';
-              }
-          }
-            
-        </script>
-    </body>
 </html>

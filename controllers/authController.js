@@ -20,7 +20,7 @@ const login = async (req, res) => {
     res.status(500).json({ error: 'Login failed' });
   }
 };
-  
+
 const register = async (req, res) => {
   const { username, password } = req.body;
 
@@ -45,6 +45,6 @@ const register = async (req, res) => {
 };
 
 export default {
-    login,
-    register,
+  login,
+  register,
 };
