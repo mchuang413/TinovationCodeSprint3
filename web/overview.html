@@ -1,53 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overview</title>
-    <style>
-    </style>
-</head>
-<body>
-    <div class="sidebar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Overview</title>
+    </head>
+    <body>
         <h1 id="username">Username</h1>
-    </div>
-    <div class="main-content">
-        Goals:
-        <div class="goal-container" id="goalContainer"></div>
-        <div class="goal-input">
-            <input type="text" id="goalInput" placeholder="Enter your goal">
-            <button id="addGoalButton">Add Goal</button>
+        <div class="main-content">
+            Goals:
+            <div class="goal-container" id="goalContainer"></div>
+            <div class="goal-input">
+                <input type="text" id="goalInput" placeholder="Enter your goal">
+                <button id="addGoalButton">Add Goal</button>
+            </div>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
+        <script>
+            //update username and goals from db
+            window.onload = async function() {
+                await setUsername();
+                await setGoals();
+            };
 
-    <script>
-    window.onload = async function() {
-        await setUsername();
-        await setGoals();
-    };
+            const addGoalButton = document.getElementById("addGoalButton");
+            const goalContainer = document.getElementById("goalContainer");
+            const goalInput = document.getElementById("goalInput");
 
-    const addGoalButton = document.getElementById("addGoalButton");
-    const goalContainer = document.getElementById("goalContainer");
-    const goalInput = document.getElementById("goalInput");
+            //add goal to db + list
+            addGoalButton.addEventListener("click", function() {
+                const text = goalInput.value.trim();
+                if (text) {
+                    addGoal(text);
+                    const goalBox = document.createElement("div");
+                    goalBox.className = "goal-box";
+                    goalBox.textContent = text;
 
-    addGoalButton.addEventListener("click", function() {
-        const text = goalInput.value.trim();
-        if (text) {
-            addGoal(text);
-            const goalBox = document.createElement("div");
-            goalBox.className = "goal-box";
-            goalBox.textContent = text;
+                    const goalLink = document.createElement("a");
+                    goalLink.href = `/dashboard.html?goal=${encodeURIComponent(text)}`;
+                    goalLink.appendChild(goalBox);
 
-            const goalLink = document.createElement("a");
-            goalLink.href = `/dashboard.html?goal=${encodeURIComponent(text)}`;
-            goalLink.appendChild(goalBox);
-
-            goalContainer.appendChild(goalLink);
-            goalInput.value = "";
-        }
-    });
-    </script>
-</body>
+                    goalContainer.appendChild(goalLink);
+                    goalInput.value = "";
+                }
+            });
+        </script>
+    </body>
 </html>

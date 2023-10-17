@@ -22,11 +22,11 @@ app.use(express.static(path.join(__dirname, 'web')));
 app.use(logger);
 
 app.use(session({
-    secret: 'lesgodiamondforgenumber1', 
+    secret: 'lesgodiamondforgenumber1',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } 
-  }));
+    cookie: { secure: false }
+}));
 
 app.use('/dashboard', dashRoutes);
 app.use('/auth', authRoutes);

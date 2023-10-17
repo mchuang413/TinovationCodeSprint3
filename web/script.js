@@ -1,5 +1,3 @@
-
-
 async function fetchUsername() {
     try {
         const response = await fetch('/dashboard/user', {
@@ -8,7 +6,7 @@ async function fetchUsername() {
                 'Content-Type': 'application/json'
             }
         });
-       
+
         const data = await response.json();
         return data.username;
     } catch (error) {
@@ -16,7 +14,7 @@ async function fetchUsername() {
     }
 }
 
-async function setUsername(){
+async function setUsername() {
     const username = await fetchUsername();
     console.log(username);
     console.log("hello");
@@ -26,13 +24,13 @@ async function setUsername(){
 
 async function setGoals() {
     const goals = await getGoalArray();
-    const goalContainer = document.getElementById('goalContainer'); 
+    const goalContainer = document.getElementById('goalContainer');
 
     goalContainer.innerHTML = '';
     goals.forEach((goal) => {
         const goalBox = document.createElement('div');
         goalBox.className = 'goal-box';
-        goalBox.textContent = goal[0]; 
+        goalBox.textContent = goal[0];
         goalContainer.appendChild(goalBox);
 
         const goalLink = document.createElement("a");
@@ -47,7 +45,7 @@ async function setGoals() {
 
 async function getGoalArray() {
     try {
-        const response = await fetch('/dashboard/goals'); 
+        const response = await fetch('/dashboard/goals');
         if (response.ok) {
             const data = await response.json();
             return data.goals;

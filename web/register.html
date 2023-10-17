@@ -1,127 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="/css/auth.css">
 </head>
-<style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #000000;
-    }
 
-    .form-container {
-      background: linear-gradient(to bottom right, #0396ff, #261d60, #0d015b);
-      border: 2px solid rgb(142, 200, 244);
-      border-radius: 30px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      width: 500px; /* Adjust the width as needed */
-      height: 500px;
-      text-align: center;
-    }
-  </style>
 <body>
-    <div class="form-container">
-        <form autocomplete="off" class="form">
-          <form autocomplete='off' class='form'>
-              <div class='control'>
-                <h1>
-                  Register
-                </h1>
-              </div>
-              <div class='control block-cube block-input'>
-                <input name='username' id='username' placeholder='Username' type='text'>
-                <div class='bg-top'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg-right'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg'>
-                  <div class='bg-inner'></div>
-                </div>
-              </div>
-              <div class='control block-cube block-input'>
-                <input name='password' id='password' placeholder='Password' type='password'>
-                <div class='bg-top'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg-right'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg'>
-                  <div class='bg-inner'></div>
-                </div>
-              </div>
-              <button class='btn block-cube block-cube-hover' type='button'>
-                <div class='bg-top'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg-right'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='bg'>
-                  <div class='bg-inner'></div>
-                </div>
-                <div class='text' onclick="register()">
-                  Register
-                </div>
-              </button>
-            </form>
-          </form>
-          <div id="result"></div>
-      </div>
-        <div id="result"></div>
-
-    <script>
-        function register() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            console.log(username, password);
-
-            fetch('http://localhost:4000/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username,
-                    password,
-                }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else if (response.status === 400) {
-                    
-                    throw new Error('Username is already taken');
-                    console.log(taken);
-                } else {
-                    throw new Error('Registration failed');
-                }
-            })
-            .then(data => {
-                document.getElementById('result').innerText = `Registered as: ${data.username}`;
-                document.getElementById('result').style.color = 'green';
-            })
-            .catch(error => {
-                console.error('Error during registration:', error.message);
-                console.log(error.message);
-                if (error.message === 'Username is already taken') {
-                    document.getElementById('result').innerText = 'Username is already taken';
-                } else {
-                    document.getElementById('result').innerText = 'Registration failed';
-                }
-                document.getElementById('result').style.color = 'red';
-            });
-        }
-    </script>
+  <div class="form-container">
+    <form autocomplete="off" class="form">
+      <form autocomplete='off' class='form'>
+        <div class='control'>
+          <h1>Register</h1>
+        </div>
+        <div class='control block-cube block-input'>
+          <input name='username' id='username' placeholder='Username' type='text'>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+        <div class='control block-cube block-input'>
+          <input name='password' id='password' placeholder='Password' type='password'>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+        </div>
+        <button class='btn block-cube block-cube-hover' type='button'>
+          <div class='bg-top'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg-right'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='bg'>
+            <div class='bg-inner'></div>
+          </div>
+          <div class='text' onclick="register()">Register</div>
+        </button>
+        <div class="already-have-account">
+          <p>Already have account? <span><a href="/login.html">Login</a></span>.</p>
+        </div>
+      </form>
+    </form>
+    <div id="result"></div>
+  </div>
+  <div id="result"></div>
+  <script src="auth.js"></script>
 </body>
+
 </html>
