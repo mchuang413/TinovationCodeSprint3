@@ -79,3 +79,26 @@ async function addGoal(goalName) {
         console.error('Error adding goal:', error);
     }
 }
+
+async function addStep(goalName, stepName) {
+    try {
+        const response = await fetch('/dashboard/step', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({  
+                goal:goalName,
+                step: stepName 
+            })
+        });
+
+        if (response.ok) {
+            console.log('Step added successfully');
+        } else {
+            throw new Error('Network response was not ok.');
+        }
+    } catch (error) {
+        console.error('Error adding step:', error);
+    }
+}
