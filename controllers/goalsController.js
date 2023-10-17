@@ -82,33 +82,22 @@ const addStep = async (req, res) => {
   try {
     const { goal, step } = req.body;
     const userId = ObjectId.createFromHexString(req.session.userId);
-    if (!ObjectId.isValid(userId)) {
-      console.log('Invalid session', userId);
-      return res.status(400).json({ error: 'Invalid session' });
-    }
-
     const database = client.db('db1');
     const goalsCollection = database.collection('goals');
 
-    const userGoals = await goalsCollection.findOne({ userId });
+    const result = await goalsCollection.updateOne(
+      { userId, 'userGoals.0': { $exists: true } },
+      { $push: { 'userGoals.$[goal].1': step } },
+      { arrayFilters: [{ 'goal.0': goal }] }
+    );
 
-    if (!userGoals) {
+    if (result.matchedCount === 0) {
       return res.status(404).json({ error: 'User goals not found' });
     }
 
-    const goalIndex = userGoals.userGoals.findIndex((g) => g[0] === goal);
-
-    if (goalIndex === -1) {
+    if (result.modifiedCount === 0) {
       return res.status(404).json({ error: 'Goal not found' });
     }
-
-    const steps = userGoals.userGoals[goalIndex][1];
-    steps.push(step);
-
-    await goalsCollection.updateOne(
-      { userId },
-      { $set: { userGoals } }
-    );
 
     res.status(200).json({ message: 'Step added' });
   } catch (error) {
