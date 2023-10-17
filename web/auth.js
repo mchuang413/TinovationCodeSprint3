@@ -19,7 +19,7 @@ async function performLogin() {
             document.getElementById('result').style.color = 'green';
             setTimeout(function(){
                 window.location.href = data.redirect;
-            }, 4500);
+            }, 1000);
         } else {
             throw new Error('Login failed');
         }
@@ -53,7 +53,7 @@ async function register() {
             document.getElementById('result').style.color = 'green';
             setTimeout(function(){
                 window.location.href = "/login.html";
-            }, 4500);
+            }, 1000);
         } else if (response.status === 400) {
             throw new Error('Username is already taken');
         } else {
