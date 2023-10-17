@@ -51,14 +51,17 @@
                 <span id="analyze-counter" class="ml-2 hidden">0</span> <!-- Counter for button presses -->
                 <hr class="my-4">
                 <h2 class="jumbotron-headings pixelated">Missions</h2>
-                <ul id="chat-log" class="list-group">
-                </ul>
+                <div class="goal-container" id="goalContainer">
+                    <ul id="chat-log" class="list-group"></ul>
+                </div>
             </div>
         </div>
     </section>
     <script src="script.js"></script>
     <script>
         window.onload = setUsername();
+        const searchParams = new URLSearchParams(window.location.searchParams);
+        const goalName = searchParams.get('goal');
         const chatLog = document.getElementById('chat-log');
         const message = document.getElementById('message');
         const normalButton = document.getElementById('send-to-chatgpt');
@@ -117,6 +120,7 @@
 
                     responseLines.forEach(line => {
                         if (/^\d+\./.test(line)) {
+                            addStep(goalName, responseMessage);
                             const stepElement = document.createElement('li');
                             stepElement.classList.add('list-group-item');
 
