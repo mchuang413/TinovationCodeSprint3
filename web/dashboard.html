@@ -60,7 +60,7 @@
     <script src="script.js"></script>
     <script>
         window.onload = setUsername();
-        const searchParams = new URLSearchParams(window.location.searchParams);
+        const searchParams = new URLSearchParams(window.location.search);
         const goalName = searchParams.get('goal');
         const chatLog = document.getElementById('chat-log');
         const message = document.getElementById('message');
