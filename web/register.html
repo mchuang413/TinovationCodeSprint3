@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pixelify Sans">
 </head>
 <style>
+
+    body, h1, h2, h3, p, a, button {
+      font-family: 'Pixelify Sans', sans-serif;
+      color: white; /* Set text color to white */
+    }
+
     body {
       display: flex;
       justify-content: center;
@@ -19,12 +26,27 @@
     .form-container {
       background: linear-gradient(to bottom right, #0396ff, #261d60, #0d015b);
       border: 2px solid rgb(142, 200, 244);
-      border-radius: 30px;
+      border-radius: 30px;  
       padding: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       width: 500px; /* Adjust the width as needed */
       height: 500px;
       text-align: center;
+    }
+
+    .smth {
+      background-color: #3498db;
+      border: none;
+      font-family: 'Pixelify Sans';
+      font-size: 20px;
+      margin-top: 20px;
+      padding: 10px 10px; 
+      border-radius: 10px;
+      border-color: #eee;
+    }
+
+    .smth:hover {
+      background-color: #2183b9;
     }
   </style>
 <body>
@@ -74,6 +96,8 @@
                   Register
                 </div>
               </button>
+            <button class = 'smth' href="\login.html">Already have an Account?</button>
+
             </form>
           </form>
           <div id="result"></div>
