@@ -2,9 +2,15 @@
   "name": "tinovationcodesprint2",
   "version": "1.0.0",
   "description": "Authors: - No one",
+<<<<<<< Updated upstream
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+  "main": "./server/app.js",
+  "scripts": {
+    "devStart": "nodemon /server/app.js"
+>>>>>>> Stashed changes
   },
   "author": "",
   "license": "ISC",
