@@ -7,6 +7,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <style>
+    
     .message-box {
         background: transparent;
         border: 2px solid linear-gradient(to bottom, #310481, #3a0097);
@@ -26,93 +27,131 @@
         font-weight: bold;
     }
 
-    /* Main Styles */
-    .button {
-    display: block;
-    background-color: #c0392b;
-    width: 100px;
-    height: 50px;
-    line-height: 100px;
-    margin: auto;
-    color: #fff;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
-    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
-    }
-    .button span,
-    .button .icon {
-    display: block;
-    height: 100%;
-    text-align: center;
-    position: absolute;
-    }
-    .button span {
-    width: 50%;
-    line-height: inherit;
-    font-size: 20px;
-    text-transform: uppercase;
-    left: 0;
-    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
-    }
-    .button span:after {
-    content: "";
-    background-color: #a53125;
-    width: 2px;
-    height: 70%;
-    position: absolute;
-    top: 15%;
-    right: -1px;
-    }
-    .button .icon {
-    width: 28%;
-    right: 0;
-    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
-    }
-    .button .icon .fa {
-    font-size: 30px;
-    vertical-align: middle;
-    transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4), height 0.25s ease;
-    }
-    .button .icon .fa-remove {
-    height: 36px;
-    }
-    .button .icon .fa-check {
-    display: none;
-    }
-    .button.success span, .button:hover span {
-    left: -72%;
-    opacity: 0;
-    }
-    .button.success .icon, .button:hover .icon {
-    width: 100%;
-    }
-    .button.success .icon .fa, .button:hover .icon .fa {
-    font-size: 45px;
-    }
-    .button.success {
-    background-color: #27ae60;
-    }
-    .button.success .icon .fa-remove {
-    display: none;
-    }
-    .button.success .icon .fa-check {
+    ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tg-list {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.tg-list-item {
+  margin: 0 2em;
+}
+
+h2 {
+  color: #777;
+}
+
+h4 {
+  color: #999;
+}
+
+.tgl {
+  display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+  box-sizing: border-box;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl + .tgl-btn {
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+.tgl + .tgl-btn:before {
+  display: none;
+}
+.tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+    .custom-checkbox {
+    position: relative;
     display: inline-block;
-    }
-    .button:hover {
-    opacity: 0.9;
-    }
-    .button:hover .icon .fa-remove {
-    height: 46px;
-    }
-    .button:active {
-    opacity: 1;
-    }
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox input:checked + .checkmark:after {
+    content: '\2713'; /* Checkmark symbol */
+    color: #3498db;
+    font-size: 18px;
+    position: absolute;
+    top: -2px;
+    left: 2px;
+}
+
+.tgl-ios + .tgl-btn {
+  background: #fbfbfb;
+  border-radius: 2em;
+  padding: 2px;
+  transition: all 0.4s ease;
+  border: 1px solid #e8eae9;
+}
+.tgl-ios + .tgl-btn:after {
+  border-radius: 2em;
+  background: #fbfbfb;
+  transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+.tgl-ios + .tgl-btn:hover:after {
+  will-change: padding;
+}
+.tgl-ios + .tgl-btn:active {
+  box-shadow: inset 0 0 0 2em #e8eae9;
+}
+.tgl-ios + .tgl-btn:active:after {
+  padding-right: 0.8em;
+}
+.tgl-ios:checked + .tgl-btn {
+  background: #86d993;
+}
+.tgl-ios:checked + .tgl-btn:active {
+  box-shadow: none;
+}
+.tgl-ios:checked + .tgl-btn:active:after {
+  margin-left: -0.8em;
+}
 
 </style>
 
@@ -174,29 +213,28 @@
         let counter = 0;
         
         async function buildSteps() {
-            const stepArray = await getSteps();
-            for (var i = 0; i < stepArray.length; i++) {
-                const stepElement = document.createElement('li');
-                stepElement.classList.add('list-group-item');
-                var txt = stepArray[i];
-                stepElement.innerHTML = `
-                            <div class="form-check">
-                                <a class="button" href="#" role="button">
-                                    <span>remove</span>
-                                    <div class="icon">
-                                        <i class="fa fa-remove"></i>
-                                        <i class="fa fa-check"></i>
-                                    </div>
-                                </a>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    ${txt}
-                                </label>
-                            </div>
-                `;
-                chatLog.appendChild(stepElement);
-                stepElement.scrollIntoView({behavior: "smooth"});
-            }
-        }
+    const stepArray = await getSteps();
+    for (var i = 0; i < stepArray.length; i++) {
+        const stepElement = document.createElement('li');
+        stepElement.classList.add('list-group-item');
+        var txt = stepArray[i];
+        const uniqueId = `cb${i}`;
+        stepElement.innerHTML = `
+            <div class="form-check">
+                <li class="tg-list-item">
+                    <label class="form-check-label" for="${uniqueId}">
+                        <input class="tgl tgl-ios" id="${uniqueId}" type="checkbox"/>
+                        <span class="tgl-btn"></span>
+                    </label>
+                </li>
+                ${txt}
+            </div>
+        `;
+        chatLog.appendChild(stepElement);
+        stepElement.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
 
         function toggleElements() {
             message.classList.toggle('hidden');
