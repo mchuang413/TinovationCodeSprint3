@@ -14,6 +14,20 @@ async function fetchUsername() {
     }
 }
 
+async function getSteps() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const goalName = searchParams.get('goal');
+    var goalIndex = -1;
+    const goalArray = await getGoalArray();
+    for (var i = 0; i < goalArray.length; i++) {
+        if (goalArray[i][0] == goalName) {
+            goalIndex = i;
+            break;
+        }
+    }
+    return goalArray[goalIndex][1];
+}
+
 async function setUsername() {
     const username = await fetchUsername();
     console.log(username);
