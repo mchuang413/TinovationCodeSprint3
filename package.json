@@ -2,15 +2,9 @@
   "name": "tinovationcodesprint2",
   "version": "1.0.0",
   "description": "Authors: - No one",
-<<<<<<< Updated upstream
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-=======
   "main": "./server/app.js",
   "scripts": {
-    "devStart": "nodemon /server/app.js"
->>>>>>> Stashed changes
+    "devStart": "nodemon ./server/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +13,11 @@
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "openai": "^4.11.1"
+    "express-session": "^1.17.3",
+    "mongodb": "^6.1.0",
+    "nodemon": "^3.0.1",
+    "openai": "^4.12.1"
   }
 }
