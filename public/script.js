@@ -14,22 +14,6 @@ async function fetchUsername() {
     }
 }
 
-
-async function getSteps() {
-    const searchParams = new URLSearchParams(window.location.search);
-    const goalName = searchParams.get('goal');
-    var goalIndex = -1;
-    const goalArray = await getGoalArray();
-    for (var i = 0; i < goalArray.length; i++) {
-        if (goalArray[i][0] == goalName) {
-            goalIndex = i;
-            break;
-        }
-    }
-    return goalArray[goalIndex][1];
-}
-
-
 async function setUsername() {
     const username = await fetchUsername();
     console.log(username);
@@ -49,7 +33,6 @@ async function setGoals() {
         goalBox.textContent = goal[0];
         goalContainer.appendChild(goalBox);
 
-
         const goalLink = document.createElement("a");
         goalLink.href = `dashboard.html?goal=${encodeURIComponent(goal[0])}`;
         goalLink.appendChild(goalBox);
@@ -58,6 +41,7 @@ async function setGoals() {
         goalInput.value = "";
     });
 }
+
 
 async function getGoalArray() {
     try {
@@ -86,7 +70,6 @@ async function addGoal(goalName) {
             })
         });
 
-
         if (response.ok) {
             console.log('Goal added successfully');
         } else {
@@ -97,7 +80,6 @@ async function addGoal(goalName) {
     }
 }
 
-
 async function addStep(goalName, stepName) {
     try {
         const response = await fetch('/dashboard/step', {
@@ -105,12 +87,11 @@ async function addStep(goalName, stepName) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                goal: goalName,
-                step: stepName
+            body: JSON.stringify({  
+                goal:goalName,
+                step: stepName 
             })
         });
-
 
         if (response.ok) {
             console.log('Step added successfully');
