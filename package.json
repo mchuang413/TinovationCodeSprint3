@@ -2,9 +2,10 @@
   "name": "tinovationcodesprint2",
   "version": "1.0.0",
   "description": "Authors: - No one",
-  "main": "./server/app.js",
+  "main": "app.js",
   "scripts": {
-    "devStart": "nodemon ./server/app.js"
+    "start": "node app.js",
+    "devStart": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <title>gpt test</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <style>
+    
     .message-box {
         background: transparent;
         border: 2px solid linear-gradient(to bottom, #310481, #3a0097);
@@ -16,11 +16,9 @@
         margin-bottom: 10px;
     }
 
-
     .hidden {
         display: none;
     }
-
 
     #analyze-counter {
         font-size: 24px;
@@ -29,203 +27,158 @@
         font-weight: bold;
     }
 
-
     ul,
-    li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
+.tg-list {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
 
-    .tg-list {
-        text-align: center;
-        display: flex;
-        align-items: center;
-    }
+.tg-list-item {
+  margin: 0 2em;
+}
 
+h2 {
+  color: #777;
+}
 
-    .tg-list-item {
-        margin: 0 2em;
-    }
+h4 {
+  color: #999;
+}
 
-
-    h2 {
-        color: #777;
-    }
-
-
-    h4 {
-        color: #999;
-    }
-
-
-    .tgl {
-        display: none;
-    }
-
-    .tgl,
-    .tgl:after,
-    .tgl:before,
-    .tgl *,
-    .tgl *:after,
-    .tgl *:before,
-    .tgl+.tgl-btn {
-        box-sizing: border-box;
-    }
-
-    .tgl::-moz-selection,
-    .tgl:after::-moz-selection,
-    .tgl:before::-moz-selection,
-    .tgl *::-moz-selection,
-    .tgl *:after::-moz-selection,
-    .tgl *:before::-moz-selection,
-    .tgl+.tgl-btn::-moz-selection {
-        background: none;
-    }
-
-    .tgl::selection,
-    .tgl:after::selection,
-    .tgl:before::selection,
-    .tgl *::selection,
-    .tgl *:after::selection,
-    .tgl *:before::selection,
-    .tgl+.tgl-btn::selection {
-        background: none;
-    }
-
-    .tgl+.tgl-btn {
-        outline: 0;
-        display: block;
-        width: 4em;
-        height: 2em;
-        position: relative;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .tgl+.tgl-btn:after,
-    .tgl+.tgl-btn:before {
-        position: relative;
-        display: block;
-        content: "";
-        width: 50%;
-        height: 100%;
-    }
-
-    .tgl+.tgl-btn:after {
-        left: 0;
-    }
-
-    .tgl+.tgl-btn:before {
-        display: none;
-    }
-
-    .tgl:checked+.tgl-btn:after {
-        left: 50%;
-    }
-
+.tgl {
+  display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+  box-sizing: border-box;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl + .tgl-btn {
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+.tgl + .tgl-btn:before {
+  display: none;
+}
+.tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
     .custom-checkbox {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-    }
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3498db;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox input:checked + .checkmark:after {
+    content: '\2713'; /* Checkmark symbol */
+    color: #3498db;
+    font-size: 18px;
+    position: absolute;
+    top: -2px;
+    left: 2px;
+}
+
+.tgl-ios + .tgl-btn {
+  background: #fbfbfb;
+  border-radius: 2em;
+  padding: 2px;
+  transition: all 0.4s ease;
+  border: 1px solid #e8eae9;
+}
+.tgl-ios + .tgl-btn:after {
+  border-radius: 2em;
+  background: #fbfbfb;
+  transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+.tgl-ios + .tgl-btn:hover:after {
+  will-change: padding;
+}
+.tgl-ios + .tgl-btn:active {
+  box-shadow: inset 0 0 0 2em #e8eae9;
+}
+.tgl-ios + .tgl-btn:active:after {
+  padding-right: 0.8em;
+}
+.tgl-ios:checked + .tgl-btn {
+  background: #86d993;
+}
+.tgl-ios:checked + .tgl-btn:active {
+  box-shadow: none;
+}
+.tgl-ios:checked + .tgl-btn:active:after {
+  margin-left: -0.8em;
+}
 
 
-    .custom-checkbox input {
-        display: none;
-    }
 
-
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #3498db;
-        transition: all 0.3s ease;
-    }
-
-
-    .custom-checkbox input:checked+.checkmark:after {
-        content: '\2713';
-        /* Checkmark symbol */
-        color: #3498db;
-        font-size: 18px;
-        position: absolute;
-        top: -2px;
-        left: 2px;
-    }
-
-
-    .tgl-ios+.tgl-btn {
-        background: #fbfbfb;
-        border-radius: 2em;
-        padding: 2px;
-        transition: all 0.4s ease;
-        border: 1px solid #e8eae9;
-    }
-
-    .tgl-ios+.tgl-btn:after {
-        border-radius: 2em;
-        background: #fbfbfb;
-        transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
-    }
-
-    .tgl-ios+.tgl-btn:hover:after {
-        will-change: padding;
-    }
-
-    .tgl-ios+.tgl-btn:active {
-        box-shadow: inset 0 0 0 2em #e8eae9;
-    }
-
-    .tgl-ios+.tgl-btn:active:after {
-        padding-right: 0.8em;
-    }
-
-    .tgl-ios:checked+.tgl-btn {
-        background: #86d993;
-    }
-
-    .tgl-ios:checked+.tgl-btn:active {
-        box-shadow: none;
-    }
-
-    .tgl-ios:checked+.tgl-btn:active:after {
-        margin-left: -0.8em;
-    }
 </style>
 
-
-<!-- navbar -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar navbar-custom">
-        <div class="container">
-            <a class="navbar-brand" href="/index.html">
-                <img src="assets/DiamondForgeLogo.png" alt="Diamond Forge Logo">
-                DiamondForge
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- login+signup buttons -->
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link login-link" href="/login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register.html">Sign Up</a>
-                    </li>
-                </ul>
+    <!-- navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar navbar-custom">
+            <div class="container">
+                <a class="navbar-brand" href="/index.html">
+                    <img src="assets/DiamondForgeLogo.png" alt="Diamond Forge Logo">
+                    DiamondForge
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- login+signup buttons -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link login-link" href="/login.html">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register.html">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
-
+        </nav>
+    </header>
 <body>
     <section class="jumbotron py-5">
         <div class="container">
@@ -246,10 +199,11 @@
     </section>
     <script src="script.js"></script>
     <script>
-        window.onload = async function () {
+        
+        window.onload = async function() {
             await setUsername();
             await buildSteps();
-        }
+        } 
         const searchParams = new URLSearchParams(window.location.search);
         const goalName = searchParams.get('goal');
         console.log(goalName);
@@ -259,6 +213,7 @@
         const analyzeAgainButton = document.getElementById('analyze-again');
         const analyzeCounter = document.getElementById('analyze-counter');
         let counter = 0;
+        
         async function buildSteps() {
     const stepArray = await getSteps();
     for (var i = 0; i < stepArray.length; i++) {
@@ -290,36 +245,31 @@
             analyzeCounter.classList.toggle('hidden');
         }
 
-
         normalButton.addEventListener('click', (e) => {
             e.preventDefault();
             const messageText = message.value;
             message.value = '';
 
-
             toggleElements(); // Hide search bar and send button, show Analyze Goal Again button and counter
             counter++; // Increment the counter
             analyzeCounter.textContent = counter; // Update the counter text
 
-
             const listElement = document.createElement('li');
             listElement.classList.add('list-group-item');
             listElement.innerHTML = `
-<div class="message__text lead text-muted">You: ${messageText} </div>
-`;
+                <div class="message__text lead text-muted">You: ${messageText} </div>
+            `;
             chatLog.appendChild(listElement);
             listElement.scrollIntoView({ behavior: "smooth" });
-
 
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('message');
             loadingElement.classList.add('message--received');
             loadingElement.innerHTML = `
-<div class="message__text lead text-muted">[Analyzing...]</div>
-`;
+                <div class="message__text lead text-muted">[Analyzing...]</div>
+            `;
             chatLog.appendChild(loadingElement);
             chatLog.scrollTop = chatLog.scrollHeight;
-
 
             fetch('http://localhost:4000/dashboard/chat', {
                 method: 'POST',
@@ -335,9 +285,7 @@
                     const responseMessage = data.message;
                     const responseLines = responseMessage.split("\n");
 
-
                     loadingElement.style.display = "none";
-
 
                     responseLines.forEach(line => {
                         if (/^\d+\./.test(line)) {
@@ -345,29 +293,28 @@
                             stepElement.classList.add('list-group-item');
                             addStep(goalName, line);
                             stepElement.innerHTML = `
-<div class="form-check">
-<a class="button" href="#" role="button">
-<span>remove</span>
-<div class="icon">
-<i class="fa fa-remove"></i>
-<i class="fa fa-check"></i>
-</div>
-</a>
-<label class="form-check-label" for="defaultCheck1">
-${line}
-</label>
-</div>
-`;
+                            <div class="form-check">
+                                <a class="button" href="#" role="button">
+                                    <span>remove</span>
+                                    <div class="icon">
+                                        <i class="fa fa-remove"></i>
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                </a>
+                                <label class="form-check-label" for="defaultCheck1">
+                                    ${line}
+                                </label>
+                            </div>
+                        `;
                             chatLog.appendChild(stepElement);
                             stepElement.scrollIntoView({ behavior: "smooth" });
                         } else {
                             const textElement = document.createElement('li');
                             textElement.classList.add('list-group-item');
 
-
                             textElement.innerHTML = `
-<div class="message__text lead text-muted">${line} </div>
-`;
+                            <div class="message__text lead text-muted">${line} </div>
+                        `;
                             chatLog.appendChild(textElement);
                             textElement.scrollIntoView({ behavior: "smooth" });
                         }
@@ -375,12 +322,10 @@ ${line}
                 });
         });
 
-
         analyzeAgainButton.addEventListener('click', () => {
             toggleElements();
         });
     </script>
 </body>
-
 
 </html>
