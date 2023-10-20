@@ -174,7 +174,7 @@ body {
   background: #3498db;
   border-radius: 100%;
   transform: translate3d(0, 150%, 0) scale(1.7);
-  transition: transform 0.45s;
+  transition: transform 0.2s;
 }
 @supports (filter: url("#goo")) {
   .blob-btn__blob {
