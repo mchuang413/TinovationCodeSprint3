@@ -80,14 +80,14 @@ const getGoals = async (req, res) => {
 
 const addStep = async (req, res) => {
   try {
-    const { goal, step } = req.body;
+    const { goal, steps } = req.body; 
     const userId = ObjectId.createFromHexString(req.session.userId);
     const database = client.db('db1');
     const goalsCollection = database.collection('goals');
 
     const result = await goalsCollection.updateOne(
       { userId, 'userGoals.0': { $exists: true } },
-      { $push: { 'userGoals.$[goal].1': step } },
+      { $push: { 'userGoals.$[goal].1': { $each: steps } } }, 
       { arrayFilters: [{ 'goal.0': goal }] }
     );
 
@@ -99,12 +99,13 @@ const addStep = async (req, res) => {
       return res.status(404).json({ error: 'Goal not found' });
     }
 
-    res.status(200).json({ message: 'Step added' });
+    res.status(200).json({ message: 'Steps added' }); 
   } catch (error) {
-    console.error('Error adding step:', error);
+    console.error('Error adding steps:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 export default {
   getUsername,
