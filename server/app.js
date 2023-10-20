@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
+import redirectRoutes from './routes/redirectRoutes.js';
 import dashRoutes from './routes/dashRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 
@@ -16,20 +17,21 @@ const port = 4000;
 
 app.use(cors());
 app.use(bodyParser.json());
-
-
-app.use(express.static(path.join(__dirname, 'web')));
 app.use(logger);
 
 app.use(session({
-    secret: 'lesgodiamondforgenumber1',
+    secret: 'diamondforge is pro',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
 }));
 
+app.use('/', redirectRoutes);
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
 app.use('/dashboard', dashRoutes);
 app.use('/auth', authRoutes);
+
 
 function logger(req, res, next) {
     console.log(`${req.method} request received at ${req.originalUrl}`);
