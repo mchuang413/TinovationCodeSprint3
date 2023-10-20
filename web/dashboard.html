@@ -34,7 +34,6 @@ li {
   padding: 0;
 }
 
-<<<<<<< Updated upstream
 .tg-list {
   text-align: center;
   display: flex;
@@ -52,93 +51,6 @@ h2 {
 h4 {
   color: #999;
 }
-=======
-    .tg-list {
-        text-align: center;
-        display: flex;
-        align-items: center;
-    }
-
-    .tg-list-item {
-        margin: 0 2em;
-    }
-
-    h2 {
-        color: #777;
-    }
-
-    h4 {
-        color: #999;
-    }
-
-    .tgl {
-        display: none;
-    }
-
-    .tgl,
-    .tgl:after,
-    .tgl:before,
-    .tgl *,
-    .tgl *:after,
-    .tgl *:before,
-    .tgl+.tgl-btn {
-        box-sizing: border-box;
-    }
-
-    .tgl::-moz-selection,
-    .tgl:after::-moz-selection,
-    .tgl:before::-moz-selection,
-    .tgl *::-moz-selection,
-    .tgl *:after::-moz-selection,
-    .tgl *:before::-moz-selection,
-    .tgl+.tgl-btn::-moz-selection {
-        background: none;
-    }
-
-    .tgl::selection,
-    .tgl:after::selection,
-    .tgl:before::selection,
-    .tgl *::selection,
-    .tgl *:after::selection,
-    .tgl *:before::selection,
-    .tgl+.tgl-btn::selection {
-        background: none;
-    }
-
-    .tgl+.tgl-btn {
-        outline: 0;
-        display: block;
-        width: 4em;
-        height: 2em;
-        position: relative;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .tgl+.tgl-btn:after,
-    .tgl+.tgl-btn:before {
-        position: relative;
-        display: block;
-        content: "";
-        width: 50%;
-        height: 100%;
-    }
-
-    .tgl+.tgl-btn:after {
-        left: 0;
-    }
-
-    .tgl+.tgl-btn:before {
-        display: none;
-    }
-
-    .tgl:checked+.tgl-btn:after {
-        left: 50%;
-    }
->>>>>>> Stashed changes
 
 .tgl {
   display: none;
@@ -241,7 +153,6 @@ h4 {
   margin-left: -0.8em;
 }
 
-<<<<<<< Updated upstream
 
 
 </style>
@@ -265,90 +176,6 @@ h4 {
                         </li>
                     </ul>
                 </div>
-=======
-    .custom-checkbox input {
-        display: none;
-    }
-
-    .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #3498db;
-        transition: all 0.3s ease;
-    }
-
-    .custom-checkbox input:checked+.checkmark:after {
-        content: '\2713';
-        /* Checkmark symbol */
-        color: #3498db;
-        font-size: 18px;
-        position: absolute;
-        top: -2px;
-        left: 2px;
-    }
-
-    .tgl-ios+.tgl-btn {
-        background: #fbfbfb;
-        border-radius: 2em;
-        padding: 2px;
-        transition: all 0.4s ease;
-        border: 1px solid #e8eae9;
-    }
-
-    .tgl-ios+.tgl-btn:after {
-        border-radius: 2em;
-        background: #fbfbfb;
-        transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
-    }
-
-    .tgl-ios+.tgl-btn:hover:after {
-        will-change: padding;
-    }
-
-    .tgl-ios+.tgl-btn:active {
-        box-shadow: inset 0 0 0 2em #e8eae9;
-    }
-
-    .tgl-ios+.tgl-btn:active:after {
-        padding-right: 0.8em;
-    }
-
-    .tgl-ios:checked+.tgl-btn {
-        background: #86d993;
-    }
-
-    .tgl-ios:checked+.tgl-btn:active {
-        box-shadow: none;
-    }
-
-    .tgl-ios:checked+.tgl-btn:active:after {
-        margin-left: -0.8em;
-    }
-</style>
-
-<!-- navbar -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar navbar-custom">
-        <div class="container">
-            <a class="navbar-brand" href="/index.html">
-                <img src="assets/DiamondForgeLogo.png" alt="Diamond Forge Logo">
-                DiamondForge
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- login+signup buttons -->
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link login-link" href="/login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register.html">Sign Up</a>
-                    </li>
-                </ul>
->>>>>>> Stashed changes
             </div>
         </nav>
     </header>
@@ -372,13 +199,8 @@ h4 {
     </section>
     <script src="script.js"></script>
     <script>
-<<<<<<< Updated upstream
         
         window.onload = async function() {
-=======
-
-        window.onload = async function () {
->>>>>>> Stashed changes
             await setUsername();
             await buildSteps();
         } 
@@ -391,7 +213,6 @@ h4 {
         const analyzeAgainButton = document.getElementById('analyze-again');
         const analyzeCounter = document.getElementById('analyze-counter');
         let counter = 0;
-<<<<<<< Updated upstream
         
         async function buildSteps() {
     const stepArray = await getSteps();
@@ -401,17 +222,6 @@ h4 {
         var txt = stepArray[i];
         const uniqueId = `cb${i}`;
         stepElement.innerHTML = `
-=======
-
-        async function buildSteps() {
-            const stepArray = await getSteps();
-            for (var i = 0; i < stepArray.length; i++) {
-                const stepElement = document.createElement('li');
-                stepElement.classList.add('list-group-item');
-                var txt = stepArray[i];
-                const uniqueId = `cb${i}`;
-                stepElement.innerHTML = `
->>>>>>> Stashed changes
             <div class="form-check">
                 <li class="tg-list-item">
                     <label class="form-check-label" for="${uniqueId}">
@@ -422,17 +232,10 @@ h4 {
                 ${txt}
             </div>
         `;
-<<<<<<< Updated upstream
         chatLog.appendChild(stepElement);
         stepElement.scrollIntoView({ behavior: "smooth" });
     }
 }
-=======
-                chatLog.appendChild(stepElement);
-                stepElement.scrollIntoView({ behavior: "smooth" });
-            }
-        }
->>>>>>> Stashed changes
 
 
         function toggleElements() {
