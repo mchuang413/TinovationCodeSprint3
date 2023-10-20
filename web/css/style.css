@@ -95,7 +95,7 @@ body {
 .buttons {
     justify-content: center;
     text-align: center;
-    margin-top: 1.6rem;
+    margin-top: 2.2rem;
     margin-right: 15px;
     border-radius: 30px;
 }
@@ -103,7 +103,7 @@ body {
 .blob-btn {
   z-index: 1;
   position: relative;
-  padding: 20px 46px;
+  padding: 10px 30px;
   margin-bottom: 30px;
   text-align: center;
   text-transform: uppercase;
@@ -158,7 +158,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 30px;
-  background: #ffffff;
+  background: #000;
 }
 .blob-btn__blobs {
   position: relative;
@@ -230,7 +230,7 @@ body {
 }
 
 .hero-section {
-    padding: 10rem 0;
+    padding: 7rem 0;
     text-align: center;
     background-color: black;
 }
@@ -280,9 +280,9 @@ body {
 .glow-on-hover {
     width: 220px;
     height: 75px;
-    margin-top: 10px;
+    margin-top: 25px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 20px;
     border-color: white;
     outline: none;
     color: #fff;
