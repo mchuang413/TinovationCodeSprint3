@@ -27,7 +27,7 @@ app.use(session({
 }));
 
 app.use('/', redirectRoutes);
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'web')));
 
 app.use('/dashboard', dashRoutes);
 app.use('/auth', authRoutes);
