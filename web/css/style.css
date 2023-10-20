@@ -278,10 +278,10 @@ body {
 }
 
 .glow-on-hover {
-    width: 220px;
-    height: 75px;
+    width: 200px;
+    height: 65px;
     margin-top: 25px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 20px;
     border-color: white;
     outline: none;
