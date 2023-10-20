@@ -1,0 +1,342 @@
+/* main font */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+/* pixel font */
+@import url('https://fonts.googleapis.com/css?family=Pixelify+Sans');
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Quicksand", sans-serif;
+    font-size: 62.5%;
+    font-size: 10px;
+}
+h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 2rem;
+        font-family: 'Pixelify Sans';
+    }
+
+    .nav-link {
+        font-size: 1.6rem;
+    }
+
+    .main-title {
+        font-size: 6rem;
+        font-family: 'Pixelify Sans';
+    }
+
+    .hero-section {
+        padding: 5rem 0;
+    }
+
+    .hero-section p {
+        font-size: 1.6rem;
+        margin-top: 1.6rem;
+    }
+
+    .btn-custom {
+        font-size: 1.4rem;
+        padding: 1.6rem 1.6rem;
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+    }
+}
+
+/* main font */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+/* pixel font */
+@import url('https://fonts.googleapis.com/css?family=Pixelify+Sans');
+
+.navbar {
+    background-color: black;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    font-family: "Quicksand", sans-serif;
+    font-size: 62.5%;
+    font-size: 10px;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 20%;
+    margin-right: 10px;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  background: #000;
+  font-family: "Quicksand", sans-serif;
+}
+
+.buttons {
+    justify-content: center;
+    text-align: center;
+    margin-top: 2.2rem;
+    margin-right: 15px;
+    border-radius: 30px;
+}
+
+.blob-btn {
+  z-index: 1;
+  position: relative;
+  padding: 10px 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #3498db;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 0.5s;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.blob-btn:before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #3498db;
+  border-radius: 30px;
+}
+.blob-btn:after {
+  content: "";
+  z-index: -2;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s 0.2s;
+  border-radius: 30px;
+}
+.blob-btn:hover {
+  color: #ffffff;
+  border-radius: 30px;
+}
+.blob-btn:hover:after {
+  transition: all 0.3s;
+  left: 0;
+  top: 0;
+  border-radius: 30px;
+}
+.blob-btn__inner {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: #000;
+}
+.blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url("#goo");
+}
+.blob-btn__blob {
+  position: absolute;
+  top: 2px;
+  width: 30%;
+  height: 100%;
+  background: #3498db;
+  border-radius: 100%;
+  transform: translate3d(0, 150%, 0) scale(1.7);
+  transition: transform 0.45s;
+}
+@supports (filter: url("#goo")) {
+  .blob-btn__blob {
+    transform: translate3d(0, 150%, 0) scale(1.4);
+  }
+}
+.blob-btn__blob:nth-child(1) {
+  left: 0%;
+  transition-delay: 0s;
+}
+.blob-btn__blob:nth-child(2) {
+  left: 30%;
+  transition-delay: 0.08s;
+}
+.blob-btn__blob:nth-child(3) {
+  left: 60%;
+  transition-delay: 0.16s;
+}
+.blob-btn__blob:nth-child(4) {
+  left: 90%;
+  transition-delay: 0.24s;
+}
+.blob-btn:hover .blob-btn__blob {
+  transform: translateZ(0) scale(1.7);
+}
+@supports (filter: url("#goo")) {
+  .blob-btn:hover .blob-btn__blob {
+    transform: translateZ(0) scale(1.4);
+  }
+}
+.navbar-brand:hover {
+    color: #3498db;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #3498db;
+}
+
+.navbar-nav .nav-link {
+    font-size: 2rem;
+    color: white;
+}
+
+.navbar-brand {
+    font-family: 'Pixelify Sans';
+    font-size: 2.4rem;
+    color: white;
+}
+
+.main-title {
+    font-size: 8rem;
+    color: #3498db;
+}
+
+.hero-section {
+    padding: 7rem 0;
+    text-align: center;
+    background-color: black;
+}
+
+.hero-section p {
+    font-size: 2rem;
+    margin-top: 2rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+}
+
+.btn-custom {
+    font-size: 3rem;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #2183b9;
+}
+
+.feature-icon {
+    font-size: 3.6rem;
+    color: #3498db;
+}
+
+.login-link {
+    margin-right: 2rem;
+}
+
+.navbar-custom {
+    background-color: black;
+}
+
+.container {
+    justify-content: end;
+}
+
+.hero-section .img-fluid {
+    border-radius: 2.8rem;
+}
+
+.glow-on-hover {
+    width: 200px;
+    height: 65px;
+    margin-top: 25px;
+    border-radius: 12px;
+    font-size: 20px;
+    border-color: white;
+    outline: none;
+    color: #fff;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    border-color: white;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    border-color: white;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
