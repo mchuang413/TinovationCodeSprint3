@@ -4,32 +4,35 @@ import { ObjectId } from 'mongodb';
 const getUsername = async (req, res) => {
   try {
     const userId = ObjectId.createFromHexString(req.session.userId);
-    if (!ObjectId.isValid(userId)) {
-      console.log('Invalid session', userId);
-      return res.status(400).json({ error: 'Invalid session' });
-    }
     const database = client.db('db1');
     const users = database.collection('users');
     const user = await users.findOne({ _id: userId });
     if (user) {
       res.status(200).json({ username: user.username });
     } else {
-      res.status(404).json({ error: 'User not found' });
+      res.status(404).json({ error: 'user not found' });
     }
   } catch (error) {
-    console.error('Error fetching user information:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('error fetching user information:', error);
+    res.status(500).json({ error: 'internal server error' });
   }
 };
+
+const getId =  (req, res) => {
+  try {
+    const userId = ObjectId.createFromHexString(req.session.userId);
+    res.status(200).json({ userId: userId });
+  } catch (error) {
+    console.error('error fetching user information:', error);
+    res.status(500).json({ error: 'internal server error' });
+  }
+  
+}
 
 const addGoal = async (req, res) => {
   try {
     const { goal } = req.body;
     const userId = ObjectId.createFromHexString(req.session.userId);
-    if (!ObjectId.isValid(userId)) {
-      console.log('Invalid session', userId);
-      return res.status(400).json({ error: 'Invalid session' });
-    }
 
     const database = client.db('db1');
     const goalsCollection = database.collection('goals');
@@ -50,18 +53,13 @@ const addGoal = async (req, res) => {
 
     res.status(200).json({ message: 'Goal added' });
   } catch (error) {
-    console.error('Error adding goal:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('error adding goal:', error);
+    res.status(500).json({ error: 'internal server error' });
   }
 };
 const getGoals = async (req, res) => {
   try {
     const userId = ObjectId.createFromHexString(req.session.userId);
-    if (!ObjectId.isValid(userId)) {
-      console.log('Invalid session', userId);
-      return res.status(400).json({ error: 'Invalid session' });
-    }
-
     const database = client.db('db1');
     const goalsCollection = database.collection('goals');
     const userGoals = await goalsCollection.findOne({ userId });
@@ -73,8 +71,8 @@ const getGoals = async (req, res) => {
       res.status(200).json({ goals: [] });
     }
   } catch (error) {
-    console.error('Error fetching goals:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('error fetching goals:', error);
+    res.status(500).json({ error: 'internal server error' });
   }
 };
 
@@ -92,17 +90,17 @@ const addStep = async (req, res) => {
     );
 
     if (result.matchedCount === 0) {
-      return res.status(404).json({ error: 'User goals not found' });
+      return res.status(404).json({ error: 'goals not found' });
     }
 
     if (result.modifiedCount === 0) {
-      return res.status(404).json({ error: 'Goal not found' });
+      return res.status(404).json({ error: 'goal not found' });
     }
 
-    res.status(200).json({ message: 'Steps added' }); 
+    res.status(200).json({ message: 'steps added' }); 
   } catch (error) {
-    console.error('Error adding steps:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('error adding steps:', error);
+    res.status(500).json({ error: 'server error' });
   }
 };
 
@@ -112,4 +110,5 @@ export default {
   addGoal,
   getGoals,
   addStep,
+  getId,
 };

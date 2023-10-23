@@ -33,7 +33,7 @@ redirectRoutes.get('/register.html', (req, res) => {
     res.sendFile(path.join(publicPath, 'register.html'));
 });
 
-redirectRoutes.get('/payment.html', (req, res) => {
+redirectRoutes.get('/payment.html', loginCheck, (req, res) => {
     res.sendFile(path.join(publicPath, 'payment.html'));
 })
 
