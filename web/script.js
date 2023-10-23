@@ -6,7 +6,6 @@ async function fetchUsername() {
                 'Content-Type': 'application/json'
             }
         });
-
         const data = await response.json();
         return data.username;
     } catch (error) {
@@ -20,6 +19,21 @@ async function setUsername() {
     console.log("hello");
     const heading = document.getElementById('username');
     heading.innerText = `Welcome, ${username}!`;
+}
+
+async function getId() {
+    try {
+        const response = await fetch('/dashboard/id', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data.userId;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 async function setGoals() {
