@@ -39,7 +39,7 @@ async function addStepsToGoal(goalName, stepsArray) {
             throw new Error('server error');
         }
     } catch (error) {
-        console.error('oh no an error', error);
+        console.error('chris all your fault: oh no an error', error);
     }
 }
 
