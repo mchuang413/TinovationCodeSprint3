@@ -26,21 +26,10 @@ h1 {
   font-size: 50px;
   margin-bottom: 20px;
 }
-h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #FFD700;
-}
-
-#brand {
-  display: flex;
-  align-items: center;
-  justify-content: center
-}
 
 .form {
   width: 300px;
-  padding: 10px 15px 24px;
+  padding: 60px 15px 24px;
   margin: 0 auto;
 }
 
