@@ -1,14 +1,6 @@
-import {Stripe} from 'stripe';
-import dotenv from 'dotenv';
-import client from '../db.js';
-import bodyParser from 'body-parser';
-
-dotenv.config();
-
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
 const paySuccess = (req, res) => {
     const event = req.body;
+
     switch (event.type) {
         case 'payment_intent.succeeded': {
             const paymentIntent = event.data.object;
@@ -18,6 +10,7 @@ const paySuccess = (req, res) => {
             switch (productId) {
                 case 'pm_1O3sBcDmetiXZalSqPYLhIXL':
                     diamondsToAdd = 100;
+                    console.log("diamonds bought");
                     break;
                 case 'standard_product_id':
                     diamondsToAdd = 500;
@@ -28,7 +21,6 @@ const paySuccess = (req, res) => {
                 default:
                     diamondsToAdd = 0;
             }
-
             console.log(`Added ${diamondsToAdd} diamonds to the user's account.`);
             break;
         }
@@ -39,15 +31,8 @@ const paySuccess = (req, res) => {
 
     res.status(200).end();
 };
-const setDiamonds = async (req, res) => {
-}
-
-const getDiamonds = async (req, res) => {
-}
 
 export default {
-    setDiamonds,
-    getDiamonds,
     paySuccess,
 };
 
