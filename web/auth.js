@@ -1,4 +1,5 @@
-async function performLogin() {
+
+ async function performLogin() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     try {
@@ -60,12 +61,12 @@ async function register() {
             throw new Error('Registration failed');
         }
     } catch (error) {
-        console.error('Error during registration:', error.message);
         if (error.message === 'Username is already taken') {
             document.getElementById('result').innerText = 'Username is already taken';
         } else {
             document.getElementById('result').innerText = 'Registration failed';
         }
+        document.getElementById('result').innerText = error.message;
         document.getElementById('result').style.color = 'red';
     }
 }
