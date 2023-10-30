@@ -6,10 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <link rel="stylesheet" href="/css/auth.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
 </head>
 
 <body>
   <div class="form-container">
+    <div id = "brand">
+      <h2>DiamondForge</h2>
+    </div>
     <form autocomplete="off" class="form">
       <form autocomplete='off' class='form'>
         <div class='control'>
@@ -39,7 +44,7 @@
             <div class='bg-inner'></div>
           </div>
         </div>
-        <button class='btn block-cube block-cube-hover' type='button'>
+        <button class='btn block-cube block-cube-hover' onclick="performLogin()" type='button'>
           <div class='bg-top'>
             <div class='bg-inner'></div>
           </div>
@@ -49,7 +54,7 @@
           <div class='bg'>
             <div class='bg-inner'></div>
           </div>
-          <div class='text' onclick="performLogin()">Log In</div>
+          <div class='text'>Log In</div>
         </button>
         <div class="already-have-account">
           <p>Don't have account? <span><a href="/register.html">Register</a></span>.</p>
@@ -61,5 +66,16 @@
   <div id="result"></div>
   <script src="auth.js"></script>
 </body>
+
+<script>
+  let input = document.getElementById('username');
+  let input2 = document.getElementById('password');
+  input.addEventListener("keypress", (event) => {
+    if (event.keyCode == 13) performLogin();
+  });
+  input2.addEventListener("keypress", (event) => {
+    if (event.keyCode == 13) performLogin();
+  });
+</script>
 
 </html>
