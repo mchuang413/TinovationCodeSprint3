@@ -1,22 +1,20 @@
-import {Stripe} from 'stripe';
 import dotenv from 'dotenv';
 import client from '../db.js';
-import bodyParser from 'body-parser';
+import { ObjectId } from 'mongodb';
 
 dotenv.config();
 
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-const paySuccess = (req, res) => {
+const paySuccess = async (req, res) => {
     const event = req.body;
+    
     switch (event.type) {
-        case 'payment_intent.succeeded': {
+        case 'checkout.session.completed': {
             const paymentIntent = event.data.object;
-            const productId = paymentIntent.id;
-
+            const productId = paymentIntent.client_reference_id;
             let diamondsToAdd = 0;
             switch (productId) {
-                case 'pm_1O3sBcDmetiXZalSqPYLhIXL':
+                case 'michael-fix-the-switches-on-dashboard':
                     diamondsToAdd = 100;
                     break;
                 case 'standard_product_id':
@@ -27,7 +25,16 @@ const paySuccess = (req, res) => {
                     break;
                 default:
                     diamondsToAdd = 0;
-            }
+            } 
+            // try{
+            //     const userId = ObjectId.createFromHexString(req.session.userId);
+            //     const database = client.db('db1');
+            //     const goalsCollection = database.collection('goals');
+            //     const userGoals = await goalsCollection.findOne({ userId });
+                
+            // }catch(error){
+            //     console.error('Error:', error);
+            // }
 
             console.log(`Added ${diamondsToAdd} diamonds to the user's account.`);
             break;
@@ -39,14 +46,12 @@ const paySuccess = (req, res) => {
 
     res.status(200).end();
 };
-const setDiamonds = async (req, res) => {
-}
+
 
 const getDiamonds = async (req, res) => {
 }
 
 export default {
-    setDiamonds,
     getDiamonds,
     paySuccess,
 };
