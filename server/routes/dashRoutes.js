@@ -11,6 +11,6 @@ router.post('/goal', goalsController.addGoal);
 router.get('/goals', goalsController.getGoals);
 router.post('/step', goalsController.addStep);
 //router.post('/post', payController.buyDiamonds);
-router.post('/id', goalsController.getId);
+router.get('/id', goalsController.getId);
 
-export default router;  
+export default router;
