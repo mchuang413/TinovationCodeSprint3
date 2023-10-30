@@ -6,15 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
   <link rel="stylesheet" href="/css/auth.css">
-
-  <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
 </head>
 
 <body>
   <div class="form-container">
-    <div id = "brand">
-      <h2>DiamondForge</h2>
-    </div>
     <form autocomplete="off" class="form">
       <form autocomplete='off' class='form'>
         <div class='control'>
@@ -66,14 +61,5 @@
   <div id="result"></div>
   <script src="auth.js"></script>
 </body>
-<script>
-  let input = document.getElementById('username');
-  let input2 = document.getElementById('password');
-  input.addEventListener("keypress", (event) => {
-      if (event.keyCode == 13) register();
-  }); 
-  input2.addEventListener("keypress", (event) => {
-      if (event.keyCode == 13) register();
-  });
-</script>
+
 </html>

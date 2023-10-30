@@ -1,5 +1,4 @@
-
- async function performLogin() {
+async function performLogin() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     try {
@@ -56,15 +55,17 @@ async function register() {
                 window.location.href = "/login.html";
             }, 1000);
         } else if (response.status === 400) {
-           throw new Error('Username is already taken');
-        } else if (username == '' || password == '') {
-            throw new Error('Username or password cannot be blank')
+            throw new Error('Username is already taken');
         } else {
             throw new Error('Registration failed');
         }
     } catch (error) {
         console.error('Error during registration:', error.message);
-        document.getElementById('result').innerText = error.message;
+        if (error.message === 'Username is already taken') {
+            document.getElementById('result').innerText = 'Username is already taken';
+        } else {
+            document.getElementById('result').innerText = 'Registration failed';
+        }
         document.getElementById('result').style.color = 'red';
     }
 }
