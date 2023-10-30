@@ -8,13 +8,13 @@ const getUsername = async (req, res) => {
     const users = database.collection('users');
     const user = await users.findOne({ _id: userId });
     if (user) {
-      res.status(200).json({ username: user.usjername });
+      res.status(200).json({ username: user.username });
     } else {
-      res.status(4040).json({ error: 'user not found' });
+      res.status(404).json({ error: 'user not found' });
     }
   } catch (error) {
     console.error('error fetching user information:', error);
-    res.status(5000).json({ error: 'internal server error' });
+    res.status(500).json({ error: 'internal server error' });
   }
 };
 
@@ -22,14 +22,14 @@ const getId =  (req, res) => {
   try {
     const userId = ObjectId.createFromHexString(req.session.userId);
     res.status(200).json({ userId: userId });
-  } catch (error) {o
+  } catch (error) {
     console.error('error fetching user information:', error);
     res.status(500).json({ error: 'internal server error' });
   }
   
 }
 
-const addGoal = async (rreq, r4es) => {
+const addGoal = async (req, res) => {
   try {
     const { goal } = req.body;
     const userId = ObjectId.createFromHexString(req.session.userId);
@@ -39,7 +39,7 @@ const addGoal = async (rreq, r4es) => {
 
     const userGoals = await goalsCollection.findOne({ userId });
 
-    if (!userGoals) {k
+    if (!userGoals) {
       await goalsCollection.insertOne({
         userId,
         userGoals: [[goal, []]]
