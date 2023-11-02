@@ -71,12 +71,10 @@ async function buildSteps() {
             stepElement.innerHTML = `
                 <div class="form-check">
                     <li class="tg-list-item">
-                        <label class="form-check-label" for="${uniqueId}">
-                            <input class="tgl tgl-ios" id="${uniqueId}" type="checkbox"/>
-                            <span class="tgl-btn"></span>
-                        </label>    
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"><strong>${stepNumber}.</strong> ${step}
+                        </div>
                     </li>
-                    <strong>${stepNumber}.</strong> ${step}
                 </div>
             `;
             chatLog.appendChild(stepElement);
