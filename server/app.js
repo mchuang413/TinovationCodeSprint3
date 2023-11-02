@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(logger);
 
 app.use(session({
-    secret: 'diamondforge is pro',
+    secret: 'alternate form of the derivative',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
