@@ -13,6 +13,27 @@ async function fetchUsername() {
     }
 }
 
+async function fetchDiamonds() {
+    try {
+        const response = await fetch('/dashboard/diamonds', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        return data.diamonds;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+async function setDiamonds(){
+    const diamondText = document.getElementById("diamonds");
+    const diamonds = await fetchDiamonds();
+    diamondText.textContent = 'Diamonds: ' + diamonds;
+}
+
 async function setUsername() {
     const username = await fetchUsername();
     console.log(username);
@@ -20,6 +41,8 @@ async function setUsername() {
     const heading = document.getElementById('username');
     heading.innerText = `Welcome, ${username}!`;
 }
+
+
 
 async function getId() {
     try {
