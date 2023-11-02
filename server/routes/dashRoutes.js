@@ -10,7 +10,9 @@ router.get('/user', goalsController.getUsername);
 router.post('/goal', goalsController.addGoal);
 router.get('/goals', goalsController.getGoals);
 router.post('/step', goalsController.addStep);
-router.post('/pay', payController.paySuccess);
 router.get('/id', goalsController.getId);
+
+router.post('/pay', payController.paySuccess);
+router.get('/diamonds', payController.getDiamonds);
 
 export default router;
