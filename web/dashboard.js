@@ -39,9 +39,10 @@ async function addStepsToGoal(goalName, stepsArray) {
             throw new Error('server error');
         }
     } catch (error) {
-        console.error('chris all your fault: oh no an error', error);
+        console.error('chris all your fault', error);
     }
 }
+
 
 async function getSteps() {
     const searchParams = new URLSearchParams(window.location.search);

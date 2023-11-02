@@ -16,11 +16,28 @@
     <stripe-buy-button 
       buy-button-id="buy_btn_1O3rzVDmetiXZalSMcY4fNFE"
       publishable-key="pk_test_51O3jxQDmetiXZalSx2CEoIG5lTdD3dfMO1iut7gV2yXBUYeZw7ZrzrE4PqtHOL2GZlA3wHMtLTd6GaCt0hCid7wT00F7lHd9js"
-      client-reference-id="michael-fix-the-switches-on-dashboard"
+      client-reference-id="username"
     >
     </stripe-buy-button>
     
   </section>
+
+  <button onclick="redirectOverview()">aaaaaa</button>
+
+  <script src="script.js"></script>
+  <script>
+    function redirectOverview(){
+      window.location.href='/overview.html';
+    }
+
+    async function setClientReferenceId() {
+      const userId = await getId();
+      const stripeButton = document.querySelector('stripe-buy-button');
+      stripeButton.setAttribute('client-reference-id', userId);
+    }
+
+    window.onload = setClientReferenceId;
+  </script>
 </body>
 
 </html>

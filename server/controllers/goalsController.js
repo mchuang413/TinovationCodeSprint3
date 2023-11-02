@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 const getUsername = async (req, res) => {
   try {
     const userId = ObjectId.createFromHexString(req.session.userId);
-    const database = client.db('db1');
+    const database = client.db('db1');  
     const users = database.collection('users');
     const user = await users.findOne({ _id: userId });
     if (user) {
