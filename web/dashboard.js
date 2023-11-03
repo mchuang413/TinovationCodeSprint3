@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     buildSteps();
     setGoal();
@@ -58,9 +59,15 @@ async function getSteps() {
     return goalArray[goalIndex][1];
 }
 
+async function getTextArray() {
+    const stepsArray = await getSteps();
+    const textArray = stepsArray.map(step => step.text);
+    return textArray;
+}
+
 async function buildSteps() {
     try {
-        const stepArray = await getSteps();
+        const stepArray = await getTextArray();
         chatLog.innerHTML = '';
 
         stepArray.forEach((step, index) => {
@@ -72,13 +79,24 @@ async function buildSteps() {
                 <div class="form-check">
                     <li class="tg-list-item">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"><strong>${stepNumber}.</strong> ${step}
+                            <input class="form-check-input" type="checkbox" data-index="${index}" id="${uniqueId}"><strong>${stepNumber}.</strong> ${step}
                         </div>
                     </li>
                 </div>
             `;
             chatLog.appendChild(stepElement);
+
+            const switchElement = document.getElementById(uniqueId);
+
+            switchElement.addEventListener('', async (event, state) => {
+                const stepIndex = event.target.dataset.index;
+                const stepsArray = await getSteps();
+                const step = stepsArray[stepIndex];
+                
+            });
         });
+
+        
 
         chatLog.scrollTop = chatLog.scrollHeight;
     } catch (error) {

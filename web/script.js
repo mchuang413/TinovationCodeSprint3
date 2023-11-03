@@ -43,7 +43,6 @@ async function setUsername() {
 }
 
 
-
 async function getId() {
     try {
         const response = await fetch('/dashboard/id', {
