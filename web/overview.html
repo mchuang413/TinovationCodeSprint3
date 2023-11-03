@@ -1,64 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Overview</title>
-        <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
-        <link rel="stylesheet" href="css/overview.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overview</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
+    <link rel="stylesheet" href="css/overview.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <h1 id="username">Username</h1>
 
-    </head>
-    <body>
-            <!-- Navbar -->
-        <h1 id="username">Username</h1>
-       
-        <div class="main-content">
-            <div id="diamonds"">Diamonds: 0</div>
-            Goals:
-            <div class="goal-container" id="goalContainer"></div>
-            <div class="goal-input">
-                <input type="text" id="goalInput" placeholder="Enter your goal">
-                <button id="addGoalButton">Add Goal</button>
-            </div>
-        </div>
-        <button onclick="redirectPayment()">eeeeee</button>
+    <div class="main-content">
+      <div id="diamonds">Diamonds: 0</div>
+      Goals:
+      <div class="goal-container" id="goalContainer"></div>
+      <div class="goal-input">
+        <input type="text" id="goalInput" placeholder="Enter your goal" />
+        <input
+          type="text"
+          id="diamondInput"
+          placeholder="Enter number of Diamonds"
+        />
+        <button id="addGoalButton">Add Goal</button>
+      </div>
+      <div id="error-container"></div>
+    </div>
+    <button onclick="redirectPayment()">Payment Link</button>
 
-        <script src="script.js"></script>
-        <script>
-            //update username and goals from db
-            window.onload = async function() {
-                await setUsername();
-                await setGoals();
-                await setDiamonds();
-            };
+    <script src="script.js"></script>
+    <script>
+      //update username and goals from db
+      window.onload = async function () {
+        await setUsername();
+        await setGoals();
+        await setDiamonds();
+      };
 
+      const addGoalButton = document.getElementById("addGoalButton");
+      const goalContainer = document.getElementById("goalContainer");
+      const goalInput = document.getElementById("goalInput");
+      const diamondInput = document.getElementById("diamondInput");
 
-            const addGoalButton = document.getElementById("addGoalButton");
-            const goalContainer = document.getElementById("goalContainer");
-            const goalInput = document.getElementById("goalInput");
+      //add goal to db + list
+      addGoalButton.addEventListener("click", async function () {
+        const text = goalInput.value.trim();
+        var diamonds = await fetchDiamonds();
+        const diamondInputText = diamondInput.value;
+        const diamondInputInteger = parseInt(diamondInputText, 10);
 
-            //add goal to db + list
-            addGoalButton.addEventListener("click", function() {
-                const text = goalInput.value.trim();
-                if (text) {
-                    addGoal(text);
-                    const goalBox = document.createElement("div");
-                    goalBox.className = "goal-box";
-                    goalBox.textContent = text;
+        if (diamonds >= diamondInputInteger && text) {
+          addGoal(text);
+          const goalBox = document.createElement("div");
+          goalBox.className = "goal-box";
+          goalBox.textContent = text;
 
-                    const goalLink = document.createElement("a");
-                    goalLink.href = `/dashboard.html?goal=${encodeURIComponent(text)}`;
-                    goalLink.appendChild(goalBox);
+          const goalLink = document.createElement("a");
+          goalLink.href = `/dashboard.html?goal=${encodeURIComponent(text)}`;
+          goalLink.appendChild(goalBox);
 
-                    goalContainer.appendChild(goalLink);
-                    goalInput.value = "";
-                }
-            });
-            
-            function redirectPayment() {
-                window.location.href='/payment.html'
-            }
+          goalContainer.appendChild(goalLink);
+          goalInput.value = "";
+        } else {
+          const errorContainer = document.getElementById("error-container");
+          const errorDiv = document.createElement("div");
+          errorDiv.className = "alert alert-danger";
 
-        </script>
-    </body>
+          // Error message text
+          errorDiv.textContent =
+            "Please enter a valid amount of diamonds or purchase more here: ";
+
+          // Create a button/link
+          const errorButton = document.createElement("a");
+          errorButton.textContent = "Purchase Diamonds"; // Button text
+          errorButton.href = "/payment.html"; // Link to the purchase page
+
+          // Apply CSS styles to the link to make it a box
+          errorButton.style.display = "inline-block";
+          errorButton.style.padding = "10px 20px"; // Adjust padding as needed
+          errorButton.style.background = "#5aa8fb"; // Background color
+          errorButton.style.color = "#fff"; // Text color
+          errorButton.style.textDecoration = "none"; // Remove underline
+          errorButton.style.borderRadius = "5px"; // Add rounded corners
+
+          // Append the button to the error message
+          errorDiv.appendChild(errorButton);
+
+          errorContainer.appendChild(errorDiv);
+          errorContainer.classList.add("show"); // Add the "show" class to display the error
+          setTimeout(function () {
+            errorContainer.classList.remove("show"); // Remove the "show" class after 2 seconds
+            errorContainer.removeChild(errorDiv); // Remove the error message
+          }, 2000);
+        }
+      });
+
+      function redirectPayment() {
+        window.location.href = "/payment.html";
+      }
+    </script>
+  </body>
 </html>
