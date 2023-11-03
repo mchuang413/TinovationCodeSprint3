@@ -78,14 +78,16 @@ const getGoals = async (req, res) => {
 
 const addStep = async (req, res) => {
   try {
-    const { goal, steps } = req.body; 
+    const { goal, steps } = req.body;
     const userId = ObjectId.createFromHexString(req.session.userId);
     const database = client.db('db1');
     const goalsCollection = database.collection('goals');
+    
+    const stepArray = steps.map(step => ({ text: step, completed: false }));
 
     const result = await goalsCollection.updateOne(
       { userId, 'userGoals.0': { $exists: true } },
-      { $push: { 'userGoals.$[goal].1': { $each: steps } } }, 
+      { $push: { 'userGoals.$[goal].1': { $each: stepArray } } }, 
       { arrayFilters: [{ 'goal.0': goal }] }
     );
 
