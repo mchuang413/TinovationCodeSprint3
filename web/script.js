@@ -29,6 +29,7 @@ async function fetchDiamonds() {
 }
 
 async function updateDiamonds(count) {
+    
     try {
         const response = await fetch('/dashboard/updateDiamonds', {
             method: 'POST',
@@ -53,7 +54,9 @@ async function updateDiamonds(count) {
 async function setDiamonds(){
     const diamondText = document.getElementById("diamonds");
     const diamonds = await fetchDiamonds();
+    console.log(diamonds);
     diamondText.textContent = 'Diamonds: ' + diamonds;
+    console.log("setDiamonds executed2");
 }
 
 async function setUsername() {
