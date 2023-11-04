@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     buildSteps();
     setGoal();
+    checkIfCompleted();
 });
 
 const searchParams = new URLSearchParams(window.location.search);
@@ -108,10 +109,9 @@ async function buildSteps() {
                 } catch (error) {
                     console.error('Error updating step status:', error);
                 }
+                checkIfCompleted();
             });
         });
-
-        
 
         chatLog.scrollTop = chatLog.scrollHeight;
     } catch (error) {
@@ -119,7 +119,28 @@ async function buildSteps() {
     }
 }
 
-
+async function checkIfCompleted() {
+    var num = 0;
+    const stepArray = await getSteps();
+    stepArray.forEach((step, index) => {
+        const stepNumber = index + 1;
+        const stepText = step.text;
+        const isChecked = step.completed;
+        const checked = isChecked ? num++ : num+=0;
+    });
+    const size = stepArray.length;
+    if (size == num) {
+        console.log("YAYAYAYAYAYAYAYAYAY");
+        const alertElement = document.getElementById("alert");
+        alertElement.classList.add("alert");
+        alertElement.innerHTML = `
+            <div class="alert alert-success" role="alert">
+                CONGRATULATIONS!!! Your goal is completed!
+            </div>
+            <canvas class="confetti" id="canvas"></canvas>
+        `;
+    }
+}
 
 function toggleElements() {
     message.classList.toggle('hidden');
@@ -159,7 +180,7 @@ normalButton.addEventListener('click', (e) => {
             });
 
             addStepsToGoal(goalName, stepsArray);
-        }); 
+        });
 });
 
 analyzeAgainButton.addEventListener('click', () => {
