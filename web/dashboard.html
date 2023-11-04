@@ -7,13 +7,13 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
     <style>
-        body {
+        .custom-theme body {
             background-color: black;
             color: white;
             font-family: "Quicksand", sans-serif;
         }
 
-        .message-box {
+        .custom-theme .message-box {
             background: transparent;
             border: 2px solid linear-gradient(to bottom, #310481, #3a0097);
             border-radius: 10px;
@@ -21,55 +21,59 @@
             margin-bottom: 10px;
         }
 
-        .hidden {
+        .custom-theme .hidden {
             display: none;
         }
 
-        #analyze-counter {
+        .custom-theme #analyze-counter {
             font-size: 24px;
             margin-left: 10px;
             color: #007BFF;
             font-weight: bold;
         }
 
-        ul,
-        li {
+        .custom-theme ul,
+        .custom-theme li {
             list-style: none;
             margin: 0;
             padding: 0;
         }
 
-        .tg-list-item {
+        .custom-theme .tg-list-item {
             margin: 0 2em;
         }
 
-        .form-check {
+        .custom-theme .form-check {
             padding: 10px;
             margin: 5px;
             display: flex;
         }
 
-        .form-check-label {
+        .custom-theme .form-check-label {
             font-size: 20px;
         }
 
-        .form-check-input {
+        .custom-theme .form-check-input {
             margin-right: 25px;
             transform: scale(2);
         }
-        .list-group-item {
+
+        .custom-theme .list-group-item {
             color: white;
             background-color: #111;
-            border: 1px solid #222; 
+            border: 1px solid #222;
         }
-       
+
+        .custom-theme .quicksand-font {
+            font-family: 'Quicksand', sans-serif;
+        }
     </style>
 </head>
 
 
 
-<body>
-    <section class="jumbotron py-5">
+<body class="custom-theme">
+  
         <div class="container">
             <h1 id="goalTitle">Error</h1>
             <div class="container mx-auto my-4">
