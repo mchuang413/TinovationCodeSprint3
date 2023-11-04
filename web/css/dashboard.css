@@ -8,7 +8,7 @@ body {
 
 #diamondForgePixelText {
     font-family: 'Pixelify Sans';
-      font-size: 2.4rem;
+      font-size: 2rem;
       color: white;
 }
 
@@ -71,6 +71,7 @@ li {
 
 .navbar-brand {
   text-decoration: none;
+  font-size: 30rp;
 }
 
 .navbar-brand img {
@@ -91,7 +92,7 @@ li {
 
 
 .navbar-nav .nav-link {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
 } 
 
@@ -277,4 +278,8 @@ li {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.goalTitle{
+  font-size: 14px;
 }

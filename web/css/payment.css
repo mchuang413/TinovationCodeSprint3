@@ -334,6 +334,21 @@ body {
     border-radius: 10px;
     border-color: white;
 }
+.section{
+    align-items: center;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+
+
+}
+.text-center{
+    color:white;
+    margin-bottom: 40px;
+}
+
 
 
 @keyframes glowing {

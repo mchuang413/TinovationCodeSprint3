@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     buildSteps();
     setGoal();
     checkIfCompleted(); 
+    const navbarBrand = document.querySelector('.navbar-brand'); 
+    navbarBrand.style.fontSize = '1.5rem';
 });
 
 const searchParams = new URLSearchParams(window.location.search);

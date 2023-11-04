@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #username {
     text-align: center;
+    
 }
 
 #diamondIcon {
@@ -150,3 +151,14 @@ button:hover {
         display: none; /* Hide the container at the end of the animation */
     }
 }
+
+.error-message {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .error-message.show {
+    display: block;
+    opacity: 1;
+  }

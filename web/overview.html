@@ -63,7 +63,7 @@
         />
         <button id="addGoalButton">Add Goal</button>
       </div>
-      <div id="error-container"></div>
+      <div id="error-container" class="error-message""></div>
     </div>
 
     <script src="script.js"></script>
@@ -107,7 +107,10 @@
           }, 2000);
         } else {
           const errorContainer = document.getElementById("error-container");
+          errorContainer.classList.add("show");
+
           const errorDiv = document.createElement("div");
+          errorContainer.style.display = "block";
           errorDiv.className = "alert alert-danger";
 
           errorDiv.textContent =
@@ -123,14 +126,15 @@
           errorButton.style.textDecoration = "none";
           errorButton.style.borderRadius = "5px";
 
+          
           errorDiv.appendChild(errorButton);
 
           errorContainer.appendChild(errorDiv);
           errorContainer.classList.add("show");
           setTimeout(function () {
             errorContainer.classList.remove("show");
-            errorContainer.removeChild(errorDiv); // Remove the error message
-          }, 2000);
+            errorContainer.innerHTML = "";
+          }, 5000);
         }
       });
 
