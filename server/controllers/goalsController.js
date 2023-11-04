@@ -122,15 +122,12 @@ const updateStep = async (req, res) => {
       }
     }
     const step = userGoals.userGoals[goalIndex][1][stepIndex];
-
     step.completed = completed;
 
     await goalsCollection.updateOne(
       { userId },
       { $set: { userGoals: userGoals.userGoals } }
     );
-
-    console.log(step)
 
     res.status(200).json({ message: 'Step completion status updated successfully' });
   } catch (error) {

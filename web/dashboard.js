@@ -81,7 +81,7 @@ async function buildSteps() {
                 <div class="form-check">
                     <li class="tg-list-item">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" data-bs-theme="dark" type="checkbox" role="switch" data-index="${index}" ${checked}><strong>${stepNumber}.</strong> ${stepText}
+                            <input class="form-check-input" data-bs-theme="dark" type="checkbox" role="switch" data-index="${index}" ${checked}><strong>${stepNumber}.</strong> <span class="quicksand-font">${stepText}</span>
                         </div>
                     </li>
                 </div>
