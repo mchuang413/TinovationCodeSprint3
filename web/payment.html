@@ -50,19 +50,22 @@
 
 
     <stripe-buy-button
+      id="button1"
       buy-button-id="buy_btn_1O8a9ADmetiXZalSUYEmvzGT"
       publishable-key="pk_test_51O3jxQDmetiXZalSx2CEoIG5lTdD3dfMO1iut7gV2yXBUYeZw7ZrzrE4PqtHOL2GZlA3wHMtLTd6GaCt0hCid7wT00F7lHd9js"
-    >
-    </stripe-buy-button>
-
-    <stripe-buy-button
-    buy-button-id="buy_btn_1O8aJWDmetiXZalS9lyAzIJd"
-    publishable-key="pk_test_51O3jxQDmetiXZalSx2CEoIG5lTdD3dfMO1iut7gV2yXBUYeZw7ZrzrE4PqtHOL2GZlA3wHMtLTd6GaCt0hCid7wT00F7lHd9js"
-    client-reference-id="username"
       >
     </stripe-buy-button>
 
     <stripe-buy-button
+      id="button2"
+      buy-button-id="buy_btn_1O8aJWDmetiXZalS9lyAzIJd"
+      publishable-key="pk_test_51O3jxQDmetiXZalSx2CEoIG5lTdD3dfMO1iut7gV2yXBUYeZw7ZrzrE4PqtHOL2GZlA3wHMtLTd6GaCt0hCid7wT00F7lHd9js"
+      client-reference-id="username"
+      >
+    </stripe-buy-button>
+
+    <stripe-buy-button
+      id="button3"
       buy-button-id="buy_btn_1O8aDzDmetiXZalSncpoLNqk"
       publishable-key="pk_test_51O3jxQDmetiXZalSx2CEoIG5lTdD3dfMO1iut7gV2yXBUYeZw7ZrzrE4PqtHOL2GZlA3wHMtLTd6GaCt0hCid7wT00F7lHd9js"
       client-reference-id="username"
@@ -79,11 +82,21 @@
 
       async function setClientReferenceId() {
         const userId = await getId();
-        const stripeButton = document.querySelector("stripe-buy-button");
-        stripeButton.setAttribute("client-reference-id", userId);
+        const buttonIds = ["button1", "button2", "button3"];
+        
+        buttonIds.forEach(buttonId => {
+            const button = document.getElementById(buttonId);
+            if (buttonId === "button1") {
+                button.setAttribute("client-reference-id", `${userId}-100`);
+            } else if (buttonId === "button2") {
+                button.setAttribute("client-reference-id", `${userId}-500`);
+            } else if (buttonId === "button3") {
+                button.setAttribute("client-reference-id", `${userId}-1000`);
+            }
+        });
       }
 
-      window.onload = setClientReferenceId;
+      window.onload(setClientReferenceId());
     </script>
   </body>
 </html>
