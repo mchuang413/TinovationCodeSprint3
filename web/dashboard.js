@@ -1,8 +1,7 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     buildSteps();
     setGoal();
-    checkIfCompleted();
+    checkIfCompleted(); 
 });
 
 const searchParams = new URLSearchParams(window.location.search);
@@ -129,16 +128,17 @@ async function checkIfCompleted() {
         const checked = isChecked ? num++ : num+=0;
     });
     const size = stepArray.length;
-    if (size == num) {
+    if (num != 0 && size == num) {
         console.log("YAYAYAYAYAYAYAYAYAY");
         const alertElement = document.getElementById("alert");
         alertElement.classList.add("alert");
         alertElement.innerHTML = `
             <div class="alert alert-success" role="alert">
                 CONGRATULATIONS!!! Your goal is completed!
+                
             </div>
-            <canvas class="confetti" id="canvas"></canvas>
         `;
+        startConfetti()
     }
 }
 
