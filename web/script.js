@@ -28,6 +28,28 @@ async function fetchDiamonds() {
     }
 }
 
+async function updateDiamonds(count) {
+    try {
+        const response = await fetch('/dashboard/updateDiamonds', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                diamonds: count
+            })
+        });
+
+        if (response.ok) {
+            console.log('Diamonds updated successfully');
+        } else {
+            throw new Error('Network response was not ok.');
+        }
+    } catch (error) {
+        console.error('Error updating diamonds:', error);
+    }
+}
+
 async function setDiamonds(){
     const diamondText = document.getElementById("diamonds");
     const diamonds = await fetchDiamonds();
@@ -41,7 +63,6 @@ async function setUsername() {
     const heading = document.getElementById('username');
     heading.innerText = `Welcome, ${username}!`;
 }
-
 
 async function getId() {
     try {
@@ -57,6 +78,7 @@ async function getId() {
         console.error('Error:', error);
     }
 }
+
 
 async function setGoals() {
     const goals = await getGoalArray();

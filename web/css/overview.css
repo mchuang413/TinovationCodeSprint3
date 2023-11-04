@@ -106,7 +106,7 @@ button:hover {
 }
 
 #error-container.show {
-    visibility: visible;
+    
     display: block; /* Show the container when it has the "show" class */
     animation: fadeOut 10s forwards; /* Add a fading animation */
 }
