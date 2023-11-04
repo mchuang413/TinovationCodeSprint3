@@ -35,6 +35,14 @@ const register = async (req, res) => {
     const newUser = { username, password };
     await users.insertOne(newUser);
 
+    const userId = newUser._id; // Assuming your user object has an _id property
+    const goalsCollection = database.collection('goals');
+    const defaultGoals = {
+      userId: userId,
+      userGoals: [], 
+      diamonds: 0,
+    };
+    await goalsCollection.insertOne(defaultGoals);
 
     res.json({ username: newUser.username });
     console.log(`User registered: ${newUser.username}`);

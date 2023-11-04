@@ -71,8 +71,10 @@
 </head>
 
 <body>
+    <!--
     <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%"></canvas>
-    <section class="jumbotron py-5">
+    -->    
+<section class="jumbotron py-5">
         <div class="alert" id="alert">
         </div>
         <div class="container">
@@ -85,6 +87,7 @@
                 <span id="analyze-counter" class="ml-2 hidden">0</span> <!-- Counter for button presses -->
                 <hr class="my-4">
                 <h2 class="jumbotron-headings pixelated">Missions</h2>
+                <div class="loading-message" id="loadingMessage">Enter a prompt to generate missions</div>
                 <div class="goal-container" id="goalContainer">
                     <ul id="chat-log" class="list-group"></ul>
                 </div>

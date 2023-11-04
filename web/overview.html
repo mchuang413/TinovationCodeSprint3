@@ -36,7 +36,7 @@
         <input
           type="text"
           id="diamondInput"
-          placeholder="Enter number of Diamonds"
+          placeholder="Enter # of Diamonds"
         />
         <button id="addGoalButton">Add Goal</button>
       </div>
@@ -66,7 +66,7 @@
         const diamondInputInteger = parseInt(diamondInputText, 10);
 
         if (diamonds >= diamondInputInteger && text) {
-          addGoal(text);
+          addGoal(text, diamonds);
           const goalBox = document.createElement("div");
           goalBox.className = "goal-box";
           goalBox.textContent = text;
@@ -77,6 +77,8 @@
 
           goalContainer.appendChild(goalLink);
           goalInput.value = "";
+
+          updateDiamonds(diamonds - diamondInputInteger);
         } else {
           const errorContainer = document.getElementById("error-container");
           const errorDiv = document.createElement("div");

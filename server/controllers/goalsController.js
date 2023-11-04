@@ -31,7 +31,7 @@ const getId = (req, res) => {
 
 const addGoal = async (req, res) => {
   try {
-    const { goal } = req.body;
+    const { goal, diamonds} = req.body;
     const userId = ObjectId.createFromHexString(req.session.userId);
 
     const database = client.db('db1');
@@ -42,7 +42,7 @@ const addGoal = async (req, res) => {
     if (!userGoals) {
       await goalsCollection.insertOne({
         userId,
-        userGoals: [[goal, []]]
+        userGoals: [[goal, [], diamonds]]
       });
     } else {
       await goalsCollection.updateOne(
