@@ -26,11 +26,13 @@ h1, h2, h3, h4, h5, h6 {
 #diamonds {
     font-size: 20px;
     margin-bottom: 10px;
+    margin-top: 10px;
     color: #66ccff; /* Light blue color for text */
 }
 
 /* Style for Goals */
 .goal-container {
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -63,6 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .goal-input button {
     padding: 5px 10px;
+    margin: 5px;
     background-color: #007bff; /* Bright blue color for button */
     color: #fff;
     cursor: pointer;
@@ -75,6 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Style for "eeeeee" button */
 button {
     font-size: 16px;
+    margin: 10px;
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -85,4 +89,35 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+#error-container {
+    background-color: #007bff; /* Bright red background color */
+    color: #fff; /* White text color */
+    margin: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 10px; /* Display at the bottom of the screen */
+    left: 48%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    visibility: hidden;
+}
+
+#error-container.show {
+    visibility: visible;
+    display: block; /* Show the container when it has the "show" class */
+    animation: fadeOut 10s forwards; /* Add a fading animation */
+}
+
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none; /* Hide the container at the end of the animation */
+    }
 }
