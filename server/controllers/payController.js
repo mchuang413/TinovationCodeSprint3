@@ -62,9 +62,33 @@ const getDiamonds = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+const updateDiamonds = async (req, res) => {
+    const { diamonds } = req.body;
+    try {
+        const userId = ObjectId.createFromHexString(req.session.userId);
+        const database = client.db('db1');
+        const goalsCollection = database.collection('goals');
+        const userGoals = await goalsCollection.findOne({ userId });
+    
+        if (userGoals) {
+          const diamonds = userGoals.diamonds;
+          await goalsCollection.updateOne(
+            { userId },
+            { $set: { diamonds : diamonds } }
+          );
+        } else {
+          res.status(200).json({ diamonds });
+        }
+      } catch (error) {
+        console.error('error fetching diamonds:', error);
+        res.status(500).json({ error: 'internal server error' });
+      }
+}
  
 export default {
     getDiamonds,
     paySuccess,
+    updateDiamonds
 };
 
