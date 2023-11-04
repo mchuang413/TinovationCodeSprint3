@@ -51,7 +51,7 @@ const addGoal = async (req, res) => {
       );
     }
 
-    res.status(200).json({ message: 'Goal added' });
+    res.status(200).json({ message: 'goal added' });
   } catch (error) {
     console.error('error adding goal:', error);
     res.status(500).json({ error: 'internal server error' });
@@ -89,7 +89,7 @@ const addStep = async (req, res) => {
       { userId, 'userGoals.0': { $exists: true } },
       { $push: { 'userGoals.$[goal].1': { $each: stepArray } } }, 
       { arrayFilters: [{ 'goal.0': goal }] }
-    );
+    );  
 
     if (result.matchedCount === 0) {
       return res.status(404).json({ error: 'goals not found' });
@@ -105,6 +105,46 @@ const addStep = async (req, res) => {
     res.status(500).json({ error: 'server error' });
   }
 };
+const updateStep = async (req, res) => {
+  try {
+    const { goal, stepIndex, completed } = req.body;
+    const userId = ObjectId.createFromHexString(req.session.userId);
+    const database = client.db('db1');
+    const goalsCollection = database.collection('goals');
+    const userGoals = await goalsCollection.findOne({ userId });
+    console.log(userGoals);
+    let goalIndex = -1;
+    
+    for (var i = 0; i < userGoals.length; i++) {
+      if (goalArray[i][0] == goal) {
+          goalIndex = i;
+          break;
+      }
+    }
+    console.log(goalIndex);
+    const step = userGoals[goalIndex][1][stepIndex];
+    console.log(step.text);
+
+    // const result = await goalsCollection.updateOne(
+    //   { userId },
+    //   {$set: { 'userGoals.$[goal].1.$[step].completed': completed } },
+    //   { arrayFilters: [{ 'goal': goal }, { 'step': stepIndex }]
+    // });
+
+    // if (result.matchedCount === 0) {
+    //   return res.status(404).json({ error: 'Goal or step not found' });
+    // }
+
+    // if (result.modifiedCount === 0) {
+    //   return res.status(500).json({ error: 'Step completion status not updated' });
+    // }
+
+    res.status(200).json({ message: 'Step completion status updated successfully' });
+  } catch (error) {
+    console.error('Error updating step completion status:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 
 export default {
@@ -112,5 +152,6 @@ export default {
   addGoal,
   getGoals,
   addStep,
+  updateStep,
   getId,
 };
