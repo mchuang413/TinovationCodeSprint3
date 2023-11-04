@@ -18,17 +18,40 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container">
-        <a class="navbar-brand" href="/index.html">
-          <h1></ht><img src="assets/favicon.png" alt="Diamond Forge Logo" />DiamondForge </h1>
+        <a class="navbar-brand" href="/overview.html">
+          <img src="assets/favicon.png" alt="Diamond Forge Logo" /> DiamondForge
         </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <img src="diamond.png" alt="Diamond Icon" id="diamondIcon" />
+            <li class="nav-item" id="diamondcss">
+              <div id="diamonds">Diamonds: 0</div>
+            </li> 
+            <li class="nav-item">
+              <div class="buttons">
+                <button class="blob-btn" onclick="redirectPayment()">
+                  Purchase Diamonds
+                  <span class="blob-btn__inner">
+                    <span class="blob-btn__blobs">
+                      <span class="blob-btn__blob"></span
+                      ><span class="blob-btn__blob"></span>
+                      <span class="blob-btn__blob"></span
+                      ><span class="blob-btn__blob"></span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
+
     <h1 id="username">Username</h1>
 
     <div class="main-content">
-      <div id="diamonds">Diamonds: 0</div>
       Goals:
       <div class="goal-container" id="goalContainer"></div>
       <div class="goal-input">
@@ -42,7 +65,6 @@
       </div>
       <div id="error-container"></div>
     </div>
-    <button onclick="redirectPayment()">Payment Link</button>
 
     <script src="script.js"></script>
     <script>
@@ -84,27 +106,23 @@
           const errorDiv = document.createElement("div");
           errorDiv.className = "alert alert-danger";
 
-   
           errorDiv.textContent =
             "Please enter a valid amount of diamonds or purchase more here: ";
 
-         
           const errorButton = document.createElement("a");
-          errorButton.textContent = "Purchase Diamonds"; 
+          errorButton.textContent = "Purchase Diamonds";
           errorButton.href = "/payment.html";
 
-          
           errorButton.style.display = "inline-block";
-          errorButton.style.padding = "10px 20px"; 
-          errorButton.style.background = "#5aa8fb";  
+          errorButton.style.padding = "10px 20px";
+          errorButton.style.background = "#5aa8fb";
           errorButton.style.textDecoration = "none";
           errorButton.style.borderRadius = "5px";
 
-          
           errorDiv.appendChild(errorButton);
 
           errorContainer.appendChild(errorDiv);
-          errorContainer.classList.add("show"); 
+          errorContainer.classList.add("show");
           setTimeout(function () {
             errorContainer.classList.remove("show");
             errorContainer.removeChild(errorDiv); // Remove the error message

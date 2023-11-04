@@ -7,73 +7,40 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
     <link rel="stylesheet" href="css/confetti.css" />
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
-        body {
-            background-color: black;
-            color: white;
-            font-family: "Quicksand", sans-serif !important;
-        }
-
-        .message-box {
-            background: transparent;
-            border: 2px solid linear-gradient(to bottom, #310481, #3a0097);
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #analyze-counter {
-            font-size: 24px;
-            margin-left: 10px;
-            color: #007BFF;
-            font-weight: bold;
-        }
-
-        ul,
-        li {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .tg-list-item {
-            margin: 0 2em;
-        }
-
-        .form-check {
-            padding: 10px;
-            margin: 5px;
-            display: flex;
-        }
-
-        .form-check-label {
-            font-size: 20px;
-        }
-
-        .form-check-input {
-            margin-right: 25px;
-            transform: scale(2);
-        }
-
-        
-        .list-group-item {
-            color: white;
-            background-color: #111;
-            border: 1px solid #222; 
-        }
-        
-    </style>
+    <link rel="stylesheet" href="css/dashboard.css"/>
 </head>
 
 <body>
     <!--
     <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%"></canvas>
     -->    
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="/overview.html">
+        <img src="assets/favicon.png" alt="Diamond Forge Logo" id="diamondForgePixelText"/> DiamondForge
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <div class="buttons">
+              <button class="blob-btn" onclick="redirectOverview()">
+                Back to Overview
+                <span class="blob-btn__inner">
+                  <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span
+                    ><span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span
+                    ><span class="blob-btn__blob"></span>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 <section class="jumbotron py-5">
         <div class="alert" id="alert">
         </div>
