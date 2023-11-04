@@ -13,6 +13,38 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left; /* Left-align headers */
 }
 
+.main-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+#username {
+    text-align: center;
+}
+
+#diamondIcon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 20%;
+    margin-right: 10px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 3rem;
+    margin-right: 15px;
+    border-radius: 30px;
+}
+
+#diamondcss {
+    justify-content: center;
+    text-align: center;
+    margin-top: 3rem;
+    margin-right: 15px;
+    border-radius: 30px;
+}
 
 /* Style for Navbar */
 #username {
@@ -101,11 +133,9 @@ button:hover {
     left: 48%;
     transform: translateX(-50%);
     z-index: 9999;
-    visibility: hidden;
 }
 
 #error-container.show {
-    
     display: block; /* Show the container when it has the "show" class */
     animation: fadeOut 10s forwards; /* Add a fading animation */
 }
