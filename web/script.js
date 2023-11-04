@@ -116,7 +116,7 @@ async function getGoalArray() {
 }
 
 
-async function addGoal(goalName) {
+async function addGoal(goalName, diamonds) {
     try {
         const response = await fetch('/dashboard/goal', {
             method: 'POST',
@@ -124,7 +124,8 @@ async function addGoal(goalName) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                goal: goalName
+                goal: goalName,
+                diamonds: diamonds
             })
         });
 

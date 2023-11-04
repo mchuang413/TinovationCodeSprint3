@@ -81,7 +81,7 @@ async function buildSteps() {
                 <div class="form-check">
                     <li class="tg-list-item">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" data-bs-theme="dark" type="checkbox" role="switch" data-index="${index}" ${checked}><strong>${stepNumber}.</strong> <span class="quicksand-font">${stepText}</span>
+                            <input class="form-check-input" data-bs-theme="dark" type="checkbox" role="switch" data-index="${index}" ${checked}> &nbsp;&nbsp; <strong>${stepNumber}.</strong> &nbsp;&nbsp; <span class="quicksand-font">${stepText}</span>
                         </div>
                     </li>
                 </div>
@@ -149,6 +149,17 @@ function toggleElements() {
     analyzeCounter.classList.toggle('hidden');
 }
 
+function loading(){
+    const loadingMessage = document.getElementById('loadingMessage');
+    loadingMessage.textContent = 'Loading...';
+    loadingMessage.style.display = 'block';
+}
+
+function hideLoading() {
+    const loadingMessage = document.getElementById('loadingMessage');
+    loadingMessage.style.display = 'none';
+}
+
 normalButton.addEventListener('click', (e) => {
     e.preventDefault();
     const messageText = message.value;
@@ -156,6 +167,9 @@ normalButton.addEventListener('click', (e) => {
 
     toggleElements();
     counter++;
+
+    loading();
+    
 
     fetch('http://localhost:4000/dashboard/chat', {
         method: 'POST',
@@ -180,7 +194,10 @@ normalButton.addEventListener('click', (e) => {
             });
 
             addStepsToGoal(goalName, stepsArray);
+            hideLoading();
         });
+
+    
 });
 
 analyzeAgainButton.addEventListener('click', () => {
