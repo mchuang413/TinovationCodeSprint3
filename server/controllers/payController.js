@@ -12,9 +12,23 @@ const paySuccess = async (req, res) => {
         case 'checkout.session.completed': {
             const paymentIntent = event.data.object;
             const userId = ObjectId.createFromHexString(paymentIntent.client_reference_id);
-            console.log(userId);
-            let diamondsToAdd = 100;
 
+            let diamondsToAdd = 0;
+
+            if (paymentIntent.display_items) {
+                console.log("yay");
+                for (const item of paymentIntent.display_items) {
+                    console.log(item.custom.name);
+                    if (item.custom.name === '100 Diamonds') {
+                        diamondsToAdd = 100;
+                    } else if (item.custom.name === '500 Diamonds') {
+                        diamondsToAdd = 500;
+                    } else if (item.custom.name === '1000 Diamonds') {
+                        diamondsToAdd = 1000;
+                    }
+                }
+            }
+            
             try {
                 const database = client.db('db1');
                 const goalsCollection = database.collection('goals');
@@ -69,17 +83,11 @@ const updateDiamonds = async (req, res) => {
         const userId = ObjectId.createFromHexString(req.session.userId);
         const database = client.db('db1');
         const goalsCollection = database.collection('goals');
-        const userGoals = await goalsCollection.findOne({ userId });
-    
-        if (userGoals) {
-          const diamonds = userGoals.diamonds;
-          await goalsCollection.updateOne(
+        
+        await goalsCollection.updateOne(
             { userId },
-            { $set: { diamonds : diamonds } }
-          );
-        } else {
-          res.status(200).json({ diamonds });
-        }
+            { $set: { diamonds: diamonds } }
+        );
       } catch (error) {
         console.error('error fetching diamonds:', error);
         res.status(500).json({ error: 'internal server error' });
