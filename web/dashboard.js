@@ -76,16 +76,17 @@ async function buildSteps() {
             const stepText = step.text;
             const isChecked = step.completed;
             const checked = isChecked ? 'checked' : '';
-            
+
             stepElement.innerHTML = `
                 <div class="form-check">
                     <li class="tg-list-item">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" data-index="${index}" ${checked}><strong>${stepNumber}.</strong> ${stepText}
+                            <input class="form-check-input" data-bs-theme="dark" type="checkbox" role="switch" data-index="${index}" ${checked}><strong>${stepNumber}.</strong> ${stepText}
                         </div>
                     </li>
                 </div>
             `;
+            
             chatLog.appendChild(stepElement);
 
             stepElement.addEventListener('change', async (event) => {

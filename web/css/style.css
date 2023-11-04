@@ -16,9 +16,6 @@ h1 {
     font-family: 'Pixelify Sans', sans-serif;
 }
 
-/* Media Queries for Responsiveness */
-
-/* For smaller screens */
 @media (max-width: 768px) {
     .navbar-brand {
         font-size: 2rem;
@@ -52,12 +49,6 @@ h1 {
         font-size: 3rem;
     }
 }
-
-/* main font */
-@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
-
-/* pixel font */
-@import url('https://fonts.googleapis.com/css?family=Pixelify+Sans');
 
 
 html {
