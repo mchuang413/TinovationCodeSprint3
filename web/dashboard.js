@@ -67,32 +67,46 @@ async function getTextArray() {
 
 async function buildSteps() {
     try {
-        const stepArray = await getTextArray();
+        const stepArray = await getSteps();
         chatLog.innerHTML = '';
-
         stepArray.forEach((step, index) => {
             const stepElement = document.createElement('li');
             stepElement.classList.add('list-group-item');
             const stepNumber = index + 1;
-            const uniqueId = `cb${index}`;
+            const stepText = step.text;
+            const isChecked = step.completed;
+            const checked = isChecked ? 'checked' : '';
+            
             stepElement.innerHTML = `
                 <div class="form-check">
                     <li class="tg-list-item">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" data-index="${index}" id="${uniqueId}"><strong>${stepNumber}.</strong> ${step}
+                            <input class="form-check-input" type="checkbox" role="switch" data-index="${index}" ${checked}><strong>${stepNumber}.</strong> ${stepText}
                         </div>
                     </li>
                 </div>
             `;
             chatLog.appendChild(stepElement);
 
-            const switchElement = document.getElementById(uniqueId);
-
-            switchElement.addEventListener('', async (event, state) => {
+            stepElement.addEventListener('change', async (event) => {
+                const searchParams = new URLSearchParams(window.location.search);
+                const goal = searchParams.get('goal');
                 const stepIndex = event.target.dataset.index;
                 const stepsArray = await getSteps();
                 const step = stepsArray[stepIndex];
-                
+                const completed = event.target.checked;
+                console.log(completed);
+                try {
+                    await fetch('/dashboard/updateStep', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ goal, stepIndex, completed })
+                    });
+                } catch (error) {
+                    console.error('Error updating step status:', error);
+                }
             });
         });
 
