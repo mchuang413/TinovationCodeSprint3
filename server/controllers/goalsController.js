@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 const getUsername = async (req, res) => {
   try {
     const userId = ObjectId.createFromHexString(req.session.userId);
-    const database = client.db('db1');  
+    const database = client.db('db1');
     const users = database.collection('users');
     const user = await users.findOne({ _id: userId });
     if (user) {
@@ -18,7 +18,7 @@ const getUsername = async (req, res) => {
   }
 };
 
-const getId =  (req, res) => {
+const getId = (req, res) => {
   try {
     const userId = ObjectId.createFromHexString(req.session.userId);
     res.status(200).json({ userId: userId });
@@ -26,7 +26,7 @@ const getId =  (req, res) => {
     console.error('error fetching user information:', error);
     res.status(500).json({ error: 'internal server error' });
   }
-  
+
 }
 
 const addGoal = async (req, res) => {
@@ -51,7 +51,7 @@ const addGoal = async (req, res) => {
       );
     }
 
-    res.status(200).json({ message: 'Goal added' });
+    res.status(200).json({ message: 'goal added' });
   } catch (error) {
     console.error('error adding goal:', error);
     res.status(500).json({ error: 'internal server error' });
@@ -82,12 +82,12 @@ const addStep = async (req, res) => {
     const userId = ObjectId.createFromHexString(req.session.userId);
     const database = client.db('db1');
     const goalsCollection = database.collection('goals');
-    
+
     const stepArray = steps.map(step => ({ text: step, completed: false }));
 
     const result = await goalsCollection.updateOne(
       { userId, 'userGoals.0': { $exists: true } },
-      { $push: { 'userGoals.$[goal].1': { $each: stepArray } } }, 
+      { $push: { 'userGoals.$[goal].1': { $each: stepArray } } },
       { arrayFilters: [{ 'goal.0': goal }] }
     );
 
@@ -99,10 +99,43 @@ const addStep = async (req, res) => {
       return res.status(404).json({ error: 'goal not found' });
     }
 
-    res.status(200).json({ message: 'steps added' }); 
+    res.status(200).json({ message: 'steps added' });
   } catch (error) {
     console.error('error adding steps:', error);
     res.status(500).json({ error: 'server error' });
+  }
+};
+const updateStep = async (req, res) => {
+  try {
+    const { goal, stepIndex, completed } = req.body;
+    const userId = ObjectId.createFromHexString(req.session.userId);
+    const database = client.db('db1');
+    const goalsCollection = database.collection('goals');
+    const userGoals = await goalsCollection.findOne({ userId });
+
+    let goalIndex = -1;
+
+    for (var i = 0; i < userGoals.userGoals.length; i++) {
+      if (userGoals.userGoals[i][0] == goal) {
+        goalIndex = i;
+        break;
+      }
+    }
+    const step = userGoals.userGoals[goalIndex][1][stepIndex];
+
+    step.completed = completed;
+
+    await goalsCollection.updateOne(
+      { userId },
+      { $set: { userGoals: userGoals.userGoals } }
+    );
+
+    console.log(step)
+
+    res.status(200).json({ message: 'Step completion status updated successfully' });
+  } catch (error) {
+    console.error('Error updating step completion status:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
@@ -112,5 +145,6 @@ export default {
   addGoal,
   getGoals,
   addStep,
+  updateStep,
   getId,
 };
