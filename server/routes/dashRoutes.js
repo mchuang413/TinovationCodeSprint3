@@ -10,6 +10,8 @@ router.post('/chat', chatController.processMessage);
 router.get('/user', goalsController.getUsername);
 router.post('/goal', goalsController.addGoal);
 router.get('/goals', goalsController.getGoals);
+router.post('/removeGoal', goalsController.removeGoal);
+
 router.post('/step', goalsController.addStep);
 router.post('/updateStep', goalsController.updateStep);
 

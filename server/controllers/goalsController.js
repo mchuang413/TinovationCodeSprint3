@@ -57,6 +57,42 @@ const addGoal = async (req, res) => {
     res.status(500).json({ error: 'internal server error' });
   }
 };
+
+const removeGoal = async (req, res) => {
+  try {
+    const userId = ObjectId.createFromHexString(req.session.userId);
+    const { goal } = req.body;
+
+    const database = client.db('db1');
+    const goalsCollection = database.collection('goals');
+
+    const userGoals = await goalsCollection.findOne({ userId });
+
+    if (userGoals && userGoals.userGoals) {
+      const goalIndex = userGoals.userGoals.findIndex(innerGoal => innerGoal[0] === goal);
+
+      if (goalIndex !== -1) {
+        userGoals.userGoals.splice(goalIndex, 1);
+
+        await goalsCollection.updateOne(
+          { userId },
+          { $set: { userGoals: userGoals.userGoals } }
+        );
+
+        res.status(200).json({ message: 'Goal removed successfully' });
+      } else {
+        res.status(404).json({ error: 'Goal not found' });
+      }
+    } else {
+      res.status(404).json({ error: 'No goals found for the user' });
+    }
+  } catch (error) {
+    console.error('Error removing goal:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
 const getGoals = async (req, res) => {
   try {
     const userId = ObjectId.createFromHexString(req.session.userId);
@@ -140,6 +176,7 @@ const updateStep = async (req, res) => {
 export default {
   getUsername,
   addGoal,
+  removeGoal,
   getGoals,
   addStep,
   updateStep,
