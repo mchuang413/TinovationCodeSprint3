@@ -11,32 +11,19 @@ const paySuccess = async (req, res) => {
     switch (event.type) {
         case 'checkout.session.completed': {
             const paymentIntent = event.data.object;
-            const userId = ObjectId.createFromHexString(paymentIntent.client_reference_id);
-
-            let diamondsToAdd = 0;
-
-            if (paymentIntent.display_items) {
-                console.log("yay");
-                for (const item of paymentIntent.display_items) {
-                    console.log(item.custom.name);
-                    if (item.custom.name === '100 Diamonds') {
-                        diamondsToAdd = 100;
-                    } else if (item.custom.name === '500 Diamonds') {
-                        diamondsToAdd = 500;
-                    } else if (item.custom.name === '1000 Diamonds') {
-                        diamondsToAdd = 1000;
-                    }
-                }
-            }
-            
+            const clientReferenceId = paymentIntent.client_reference_id;
+            const [userId, diamondsToAdd] = clientReferenceId.split('-').map(value => String(value));
+            console.log(userId, diamondsToAdd);
             try {
+                const userIdObject = ObjectId.createFromHexString(userId);
                 const database = client.db('db1');
                 const goalsCollection = database.collection('goals');
-                const userGoals = await goalsCollection.findOne({ userId });
+                const userGoals = await goalsCollection.findOne({ userId: userIdObject });
+                console.log(userGoals);
                 if (userGoals) {
-                    userGoals.diamonds = (userGoals.diamonds || 0) + diamondsToAdd;
+                    userGoals.diamonds = (userGoals.diamonds || 0) + parseInt(diamondsToAdd);
                     await goalsCollection.updateOne(
-                        { userId },
+                        { userId: userIdObject },
                         { $set: { diamonds: userGoals.diamonds } }
                     );
                     console.log(`Added ${diamondsToAdd} diamonds to the user's account.`);
