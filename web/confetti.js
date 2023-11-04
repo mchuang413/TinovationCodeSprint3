@@ -19,8 +19,8 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
   function resetParticle(particle, width, height) {
     particle.color = colors[(Math.random() * colors.length) | 0];
     particle.x = Math.random() * width;
-    particle.y = Math.random() * height - height;
-    particle.diameter = Math.random() * 5 + 3; // Adjust the range for smaller particles
+    particle.y = Math.random() * -height; // Start particles from the top of the page
+    particle.diameter = Math.random() * 5 + 3;
     particle.tilt = Math.random() * 10 - 10;
     particle.tiltAngleIncrement = Math.random() * 0.07 + 0.05;
     particle.tiltAngle = 0;
@@ -44,7 +44,7 @@ var removeConfetti; //call to stop the confetti animation and remove all confett
 		if (canvas === null) {
 			canvas = document.createElement("canvas");
 			canvas.setAttribute("id", "confetti-canvas");
-			canvas.setAttribute("style", "display:block;z-index:999999;pointer-events:none");
+			canvas.setAttribute("style", "position:fixed;top:0;left:0;z-index:999999;pointer-events:none");
 			document.body.appendChild(canvas);
 			canvas.width = width;
 			canvas.height = height;

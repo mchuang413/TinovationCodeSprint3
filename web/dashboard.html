@@ -8,10 +8,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
     <link rel="stylesheet" href="css/confetti.css" />
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
         body {
             background-color: black;
             color: white;
-            font-family: "Quicksand", sans-serif;
+            font-family: "Quicksand", sans-serif !important;
         }
 
         .message-box {
@@ -66,7 +67,6 @@
             border: 1px solid #222; 
         }
         
-       
     </style>
 </head>
 
@@ -80,7 +80,7 @@
         <div class="container">
             <h1 id="goalTitle">Error</h1>
             <div class="container mx-auto my-4">
-                <p>Enter your request here:</p>
+                <p id="prompt">Enter your request here:</p>
                 <input type="text" class="form-control mb-3" id="message" placeholder="" value="" required>
                 <a href="#" class="btn btn-primary my-2" id="send-to-chatgpt">Send</a>
                 <a href="#" class="btn btn-primary my-2 hidden" id="analyze-again">Analyze Goal Again</a>
@@ -94,7 +94,6 @@
             </div>
         </div>
         
-    </section>
     </section>
     <script src="script.js"></script>
     <script src="dashboard.js"></script>

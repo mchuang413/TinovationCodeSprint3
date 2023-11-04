@@ -44,6 +44,21 @@ async function addStepsToGoal(goalName, stepsArray) {
     }
 }
 
+async function getGoalDiamonds() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const goalName = searchParams.get('goal');
+    var goalIndex = -1;
+    const goalArray = await getGoalArray();
+    for (var i = 0; i < goalArray.length; i++) {
+        if (goalArray[i][0] == goalName) {
+            goalIndex = i;
+            break;
+        }
+    }
+    return goalArray[goalIndex][2];
+}
+
+as
 
 async function getSteps() {
     const searchParams = new URLSearchParams(window.location.search);
@@ -110,6 +125,8 @@ async function buildSteps() {
                 }
                 checkIfCompleted();
             });
+            hideLoading();
+            hideInput();
         });
 
         chatLog.scrollTop = chatLog.scrollHeight;
@@ -134,7 +151,7 @@ async function checkIfCompleted() {
         alertElement.classList.add("alert");
         alertElement.innerHTML = `
             <div class="alert alert-success" role="alert">
-                CONGRATULATIONS!!! Your goal is completed!
+                CONGRATULATIONS!!! Your goal is completed! Click here to claim your x diamonds!
                 
             </div>
         `;
@@ -158,6 +175,15 @@ function loading(){
 function hideLoading() {
     const loadingMessage = document.getElementById('loadingMessage');
     loadingMessage.style.display = 'none';
+}
+
+function hideInput(){
+    const prompt = document.getElementById('prompt');
+    const input = document.getElementById('message');
+    const sendButton = document.getElementById('send-to-chatgpt');
+    prompt.style.display = 'none';
+    input.style.display = 'none';
+    sendButton.style.display = 'none';
 }
 
 normalButton.addEventListener('click', (e) => {

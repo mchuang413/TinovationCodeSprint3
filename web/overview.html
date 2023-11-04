@@ -66,7 +66,7 @@
         const diamondInputInteger = parseInt(diamondInputText, 10);
 
         if (diamonds >= diamondInputInteger && text) {
-          addGoal(text, diamonds);
+          addGoal(text, diamondInputText);
           const goalBox = document.createElement("div");
           goalBox.className = "goal-box";
           goalBox.textContent = text;
@@ -84,30 +84,29 @@
           const errorDiv = document.createElement("div");
           errorDiv.className = "alert alert-danger";
 
-          // Error message text
+   
           errorDiv.textContent =
             "Please enter a valid amount of diamonds or purchase more here: ";
 
-          // Create a button/link
+         
           const errorButton = document.createElement("a");
-          errorButton.textContent = "Purchase Diamonds"; // Button text
-          errorButton.href = "/payment.html"; // Link to the purchase page
+          errorButton.textContent = "Purchase Diamonds"; 
+          errorButton.href = "/payment.html";
 
-          // Apply CSS styles to the link to make it a box
+          
           errorButton.style.display = "inline-block";
-          errorButton.style.padding = "10px 20px"; // Adjust padding as needed
-          errorButton.style.background = "#5aa8fb"; // Background color
-          errorButton.style.color = "#fff"; // Text color
-          errorButton.style.textDecoration = "none"; // Remove underline
-          errorButton.style.borderRadius = "5px"; // Add rounded corners
+          errorButton.style.padding = "10px 20px"; 
+          errorButton.style.background = "#5aa8fb";  
+          errorButton.style.textDecoration = "none";
+          errorButton.style.borderRadius = "5px";
 
-          // Append the button to the error message
+          
           errorDiv.appendChild(errorButton);
 
           errorContainer.appendChild(errorDiv);
-          errorContainer.classList.add("show"); // Add the "show" class to display the error
+          errorContainer.classList.add("show"); 
           setTimeout(function () {
-            errorContainer.classList.remove("show"); // Remove the "show" class after 2 seconds
+            errorContainer.classList.remove("show");
             errorContainer.removeChild(errorDiv); // Remove the error message
           }, 2000);
         }
