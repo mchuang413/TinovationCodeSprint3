@@ -14,5 +14,5 @@ router.get('/id', goalsController.getId);
 
 router.post('/pay', payController.paySuccess);
 router.get('/diamonds', payController.getDiamonds);
-
+router.post('/updateDiamonds', payController.updateDiamonds);
 export default router;
