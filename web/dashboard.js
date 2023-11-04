@@ -175,6 +175,7 @@ async function checkIfCompleted() {
         const alertElement = document.getElementById("alert");
         alertElement.classList.add("alert");
         const diamonds = await getGoalDiamonds();
+        console.log(diamonds);
         alertElement.innerHTML = `
             <div class="alert alert-success" role="alert">
                 CONGRATULATIONS!!! Your goal is completed! Click here to claim your ${diamonds} diamonds!
@@ -185,9 +186,8 @@ async function checkIfCompleted() {
 
         alertElement.addEventListener('click', async (event) => {
             const userDiamonds = await fetchDiamonds();
-            updateDiamonds(diamonds + userDiamonds);
+            updateDiamonds(parseInt(diamonds, 10) + parseInt(userDiamonds, 10));
             removeGoal();
-            
         });
     }
 }
@@ -203,6 +203,26 @@ function loading(){
     const loadingMessage = document.getElementById('loadingMessage');
     loadingMessage.textContent = 'Loading...';
     loadingMessage.style.display = 'block';
+    const rickrollImage = document.createElement('img');
+    rickrollImage.src = '/assets/virus.png'; 
+    rickrollImage.style.width = '400px'; 
+    rickrollImage.style.height = 'auto'; 
+    rickrollImage.style.marginTop = '20px';
+    rickrollImage.style.opacity = '0';
+    rickrollImage.id = 'ad';
+
+    rickrollImage.addEventListener('click', function() {
+        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ',  '_blank');
+    });
+
+    loadingMessage.appendChild(document.createElement('br')); 
+    loadingMessage.appendChild(rickrollImage);
+
+    setTimeout(function() {
+        rickrollImage.style.transition = 'opacity 0.5s ease-in-out';
+        rickrollImage.style.opacity = '1';
+    }, 100);
+
 }
 
 function hideLoading() {
@@ -210,6 +230,11 @@ function hideLoading() {
     loadingMessage.style.display = 'none';
 }
 
+function hideAd(){
+    const rickrollImage = document.getElementById('ad');
+    rickrollImage.style.display = 'none';
+}
+    
 function hideInput(){
     const prompt = document.getElementById('prompt');
     const input = document.getElementById('message');
@@ -254,6 +279,7 @@ normalButton.addEventListener('click', (e) => {
 
             addStepsToGoal(goalName, stepsArray);
             hideLoading();
+            hideAd();
         });
 
     

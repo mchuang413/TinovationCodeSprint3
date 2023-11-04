@@ -78,7 +78,11 @@
           goalContainer.appendChild(goalLink);
           goalInput.value = "";
 
-          updateDiamonds(diamonds - diamondInputInteger);
+          await updateDiamonds(diamonds - diamondInputInteger);
+          
+          setTimeout(async () => {
+              await setDiamonds();
+          }, 2000);
         } else {
           const errorContainer = document.getElementById("error-container");
           const errorDiv = document.createElement("div");
