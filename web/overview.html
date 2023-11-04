@@ -12,31 +12,31 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container">
-          <a class="navbar-brand" href="/index.html">
-              <img src="assets/favicon.png" alt="Diamond Forge Logo"> DiamondForge
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <!-- Buy Diamond Button -->
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                      <div class="buttons">
-                          <button class="blob-btn" onclick=redirectPayment()>Buy Diamonds
-                              <span class="blob-btn__inner">
-                                  <span class="blob-btn__blobs">
-                                      <span class="blob-btn__blob"></span><span class="blob-btn__blob"></span>
-                                      <span class="blob-btn__blob"></span><span class="blob-btn__blob"></span>
-                                  </span>
-                              </span>
-                          </button>
-                      </div>
-                  </li>
-              </ul>
-          </div>
+        <a class="navbar-brand" href="/index.html">
+          <img src="assets/favicon.png" alt="Diamond Forge Logo" /> DiamondForge
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Buy Diamond Button -->
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <div class="buttons">
+                <button class="blob-btn" onclick="redirectPayment()">
+                  Buy Diamonds
+                  <span class="blob-btn__inner">
+                    <span class="blob-btn__blobs">
+                      <span class="blob-btn__blob"></span
+                      ><span class="blob-btn__blob"></span>
+                      <span class="blob-btn__blob"></span
+                      ><span class="blob-btn__blob"></span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
-  </nav>
-
-
-
+    </nav>
     <h1 id="username">Username</h1>
 
     <div class="main-content">
@@ -82,7 +82,7 @@
           const goalBox = document.createElement("div");
           goalBox.className = "goal-box";
           goalBox.textContent = text;
-          
+
           const goalLink = document.createElement("a");
           goalLink.href = `/dashboard.html?goal=${encodeURIComponent(text)}`;
           goalLink.appendChild(goalBox);
