@@ -20,6 +20,31 @@ async function setGoal() {
     goalTitle.textContent = `Goal: ${goalName}`;
 }
 
+async function removeGoal() {
+    const searchParams = new URLSearchParams(window.location.search);
+    const goalName = searchParams.get('goal');
+    try {
+        const response = await fetch('/dashboard/removeGoal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                goal: goalName,
+            })
+        });
+
+        if (response.ok) {
+            console.log('Goal added successfully');
+            window.location.href = 'overview.html';
+        } else {
+            throw new Error('Network response was not ok.');
+        }
+    } catch (error) {
+        console.error('Error adding goal:', error);
+    }
+}
+
 async function addStepsToGoal(goalName, stepsArray) {
     try {
         const response = await fetch('/dashboard/step', {
@@ -58,7 +83,7 @@ async function getGoalDiamonds() {
     return goalArray[goalIndex][2];
 }
 
-as
+
 
 async function getSteps() {
     const searchParams = new URLSearchParams(window.location.search);
@@ -149,13 +174,21 @@ async function checkIfCompleted() {
         console.log("YAYAYAYAYAYAYAYAYAY");
         const alertElement = document.getElementById("alert");
         alertElement.classList.add("alert");
+        const diamonds = await getGoalDiamonds();
         alertElement.innerHTML = `
             <div class="alert alert-success" role="alert">
-                CONGRATULATIONS!!! Your goal is completed! Click here to claim your x diamonds!
+                CONGRATULATIONS!!! Your goal is completed! Click here to claim your ${diamonds} diamonds!
                 
             </div>
         `;
         startConfetti()
+
+        alertElement.addEventListener('click', async (event) => {
+            const userDiamonds = await fetchDiamonds();
+            updateDiamonds(diamonds + userDiamonds);
+            removeGoal();
+            
+        });
     }
 }
 
@@ -229,3 +262,4 @@ normalButton.addEventListener('click', (e) => {
 analyzeAgainButton.addEventListener('click', () => {
     toggleElements();
 });
+
