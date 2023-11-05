@@ -18,10 +18,9 @@ const paySuccess = async (req, res) => {
                 const userIdObject = ObjectId.createFromHexString(userId);
                 const database = client.db('db1');
                 const goalsCollection = database.collection('goals');
-                const currentDiamonds = await getDiamonds(req, res);
+                const userGoals = await goalsCollection.findOne({ userId: userIdObject });
                 if (userGoals) {
-                    const updatedDiamonds = (currentDiamonds || 0) + parseInt(diamondsToAdd);
-                    console.log(currentDiamonds);
+                    const updatedDiamonds = (userGoals.diamonds || 0) + parseInt(diamondsToAdd);
                     await goalsCollection.updateOne(
                         { userId: userIdObject },
                         { $set: { diamonds: updatedDiamonds } }
