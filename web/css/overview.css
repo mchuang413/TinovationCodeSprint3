@@ -7,10 +7,9 @@ body {
     color:white;
 }
 
-/* Set headers to Pixelify Sans */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Pixelify Sans', sans-serif;
-    text-align: left; /* Left-align headers */
+    text-align: left; 
 }
 
 .main-content {

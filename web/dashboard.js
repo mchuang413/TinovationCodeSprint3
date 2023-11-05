@@ -257,7 +257,7 @@ normalButton.addEventListener('click', (e) => {
     loading();
     
 
-    fetch('http://localhost:4000/dashboard/chat', {
+    fetch('/dashboard/chat', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
