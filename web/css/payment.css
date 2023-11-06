@@ -16,9 +16,7 @@ h1 {
     font-family: 'Pixelify Sans', sans-serif;
 }
 
-/* Media Queries for Responsiveness */
 
-/* For smaller screens */
 @media (max-width: 768px) {
     .navbar-brand {
         font-size: 2rem;

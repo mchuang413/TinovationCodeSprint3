@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     buildSteps();
     setGoal();
     checkIfCompleted(); 
+    setTitle();
     const navbarBrand = document.querySelector('.navbar-brand'); 
     navbarBrand.style.fontSize = '1.5rem';
 });
@@ -14,6 +15,13 @@ const normalButton = document.getElementById('send-to-chatgpt');
 const analyzeAgainButton = document.getElementById('analyze-again');
 const analyzeCounter = document.getElementById('analyze-counter');
 let counter = 0;
+
+async function setTitle(){
+    const title = document.getElementById('title');
+    const searchParams = new URLSearchParams(window.location.search);
+    const goalName = searchParams.get('goal');
+    title.textContent = `${goalName}`;
+}
 
 async function setGoal() {
     const goalTitle = document.getElementById('goalTitle');

@@ -285,12 +285,18 @@ h2{
   font-size: 25px;
   color: #bcbcbc;
   margin-top: 85px;
+  
 }
 
 .fade-in {
   opacity: 0; 
   animation: fadeIn 2s ease-in-out 1s forwards; 
+  position:relative;
+  display: inline-block;
+  text-shadow: 0 0 10px rgb(255, 255, 255); 
 }
+
+
 
 @keyframes fadeIn {
   from {
@@ -316,4 +322,29 @@ h2{
 .darker-section .col-lg-4 {
   margin-left: 27px;
   margin-right: 27px;
+}
+
+h3{
+  font-size: 30px;
+  font-family: 'Pixelify Sans', sans-serif;
+  margin-top: 10px;
+  color:white;
+}
+
+h4{
+  font-family: 'Pixelify Sans';
+  font-size: 23px;
+  color: #180024;
+  margin-bottom: 6px;
+}
+
+p2{
+  color: #2b0140;
+  font-size:20px;
+}
+
+.diamond{
+  width: 30px; 
+  height: 30px;
+  margin-top: -7px; 
 }
