@@ -2,6 +2,7 @@
  async function performLogin() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+
     try {
         const response = await fetch('/auth/login', {
             method: 'POST',
@@ -34,7 +35,23 @@
 async function register() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    console.log(username, password);
+    const usernameRegex = /^[a-zA-Z0-9_]{4,17}$/; 
+
+    if (!usernameRegex.test(username)) {
+        if (username.length < 4 || username.length > 18) {
+            document.getElementById('result').innerText = 'Username has to be 4-18 chars.';
+        } else {
+            document.getElementById('result').innerText = 'Username must be alphanumeric.\n(underscores allowed)';
+        }
+        document.getElementById('result').style.color = 'red';
+        return;
+    } 
+
+    if(password.length < 6) {
+        document.getElementById('result').innerText = 'Password must at least 6 chars.';
+        document.getElementById('result').style.color = 'red';
+        return;
+    }
 
     try {
         const response = await fetch('/auth/register', {
