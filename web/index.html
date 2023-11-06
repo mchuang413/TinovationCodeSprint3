@@ -150,6 +150,23 @@
       </div>
     </section>
 
+    <div class="carousel-container">
+      <div class="carousel-images">
+          <img class="carousel-image" src="/assets/WWF.jpg" alt="Image 1">
+          <img class="carousel-image" src="/assets/USASwimming.jpg" alt="Image 2">
+          <img class="carousel-image" src="/assets/Philips66.jpg" alt="Image 3">
+          <img class="carousel-image" src="/assets/St.-Jude.jpg" alt="Image 4">
+          <img class="carousel-image" src="/assets/WWF.jpg" alt="Image 1">
+          <img class="carousel-image" src="/assets/USASwimming.jpg" alt="Image 2">
+          <img class="carousel-image" src="/assets/Philips66.jpg" alt="Image 3">
+          <img class="carousel-image" src="/assets/St.-Jude.jpg" alt="Image 4">
+          <img class="carousel-image" src="/assets/WWF.jpg" alt="Image 1">
+          <img class="carousel-image" src="/assets/USASwimming.jpg" alt="Image 2">
+          <img class="carousel-image" src="/assets/Philips66.jpg" alt="Image 3">
+          <img class="carousel-image" src="/assets/St.-Jude.jpg" alt="Image 4">
+      </div>
+  </div>
+
     <!-- Explanation of Diamonds and Goals -->
     <div class="explanation-section">
       <div class="container">
@@ -187,5 +204,15 @@
         window.location.href = "/payment.html";
       }
     </script>
+    <script>
+      // JavaScript can be used to dynamically calculate the width of the image container
+      // based on the number of images and their individual width.
+
+      const imageCount = document.querySelectorAll(".carousel-image").length;
+      const imageWidth = document.querySelector(".carousel-image").offsetWidth;
+      const carouselImages = document.querySelector(".carousel-images");
+
+      carouselImages.style.width = `${imageCount * imageWidth}px`;
+  </script>
   </body>
 </html>
