@@ -44,6 +44,21 @@
                 </button>
               </div>
             </li>
+            <li class="nav-item">
+              <div class="buttons">
+                <button class="blob-btn" onclick="redirectSettings()">
+                  Account Settings
+                  <span class="blob-btn__inner">
+                    <span class="blob-btn__blobs">
+                      <span class="blob-btn__blob"></span
+                      ><span class="blob-btn__blob"></span>
+                      <span class="blob-btn__blob"></span
+                      ><span class="blob-btn__blob"></span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -144,6 +159,9 @@
 
       function redirectIndex() {
         window.location.href = "/index.html";
+      }
+      function redirectSettings() {
+        window.location.href = "/settings.html";
       }
     </script>
   </body>

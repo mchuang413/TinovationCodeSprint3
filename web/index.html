@@ -146,5 +146,34 @@
         window.location.href = "/payment.html";
       }
     </script>
+    <script>
+      const imageCount = document.querySelectorAll(".carousel-image").length;
+      const imageWidth = document.querySelector(".carousel-image").offsetWidth;
+      const carouselImages = document.querySelector(".carousel-images");
+
+      carouselImages.style.width = `${imageCount * imageWidth}px`;
+  </script>
+
+
+  <!-- 
+    <div class="carousel-container">
+      <div class="carousel-images">
+          <img class="carousel-image" src="/assets/WWF.jpg" alt="Image 1">
+          <img class="carousel-image" src="/assets/USASwimming.jpg" alt="Image 2">
+          <img class="carousel-image" src="/assets/Philips66.jpg" alt="Image 3">
+          <img class="carousel-image" src="/assets/St.-Jude.jpg" alt="Image 4">
+          <img class="carousel-image" src="/assets/WWF.jpg" alt="Image 1">
+          <img class="carousel-image" src="/assets/USASwimming.jpg" alt="Image 2">
+          <img class="carousel-image" src="/assets/Philips66.jpg" alt="Image 3">
+          <img class="carousel-image" src="/assets/St.-Jude.jpg" alt="Image 4">
+          <img class="carousel-image" src="/assets/WWF.jpg" alt="Image 1">
+          <img class="carousel-image" src="/assets/USASwimming.jpg" alt="Image 2">
+          <img class="carousel-image" src="/assets/Philips66.jpg" alt="Image 3">
+          <img class="carousel-image" src="/assets/St.-Jude.jpg" alt="Image 4">
+      </div>
+  </div>
+   -->
+
+
   </body>
 </html>
