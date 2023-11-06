@@ -86,6 +86,7 @@ html {
   transition: color 0.5s;
   cursor: pointer;
   border-radius: 30px;
+  
 }
 .blob-btn:before {
   content: "";
