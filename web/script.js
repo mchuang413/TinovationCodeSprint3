@@ -52,6 +52,7 @@ async function updateDiamonds(count) {
 }
 
 async function setDiamonds(){
+    console.log('setDiamonds');
     const diamondsCount = await fetchDiamonds();
     const diamondsCountElement = document.getElementById("diamondsCount");
     diamondsCountElement.textContent = diamondsCount;

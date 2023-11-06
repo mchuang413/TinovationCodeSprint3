@@ -66,11 +66,11 @@
       Goals:
       <div class="goal-container" id="goalContainer"></div>
       <div class="goal-input">
-        <input type="text" id="goalInput" placeholder="Enter your goal" />
+        <input type="text" id="goalInput" placeholder="goal name" />
         <input
           type="text"
           id="diamondInput"
-          placeholder="Enter # of Diamonds"
+          placeholder="# of diamonds"
         />
         <button id="addGoalButton">Add Goal</button>
       </div>
@@ -112,10 +112,7 @@
           goalInput.value = "";
 
           await updateDiamonds(diamonds - diamondInputInteger);
-          
-          setTimeout(async () => {
-              await setDiamonds();
-          }, 2000);
+          await setDiamonds();
         } else {
           const errorContainer = document.getElementById("error-container");
           errorContainer.classList.add("show");

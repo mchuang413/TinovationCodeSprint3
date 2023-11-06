@@ -74,6 +74,7 @@ const updateDiamonds = async (req, res) => {
             { userId },
             { $set: { diamonds: diamonds } }
         );
+        res.status(200).json({ message: 'goal added' });
       } catch (error) {
         console.error('error fetching diamonds:', error);
         res.status(500).json({ error: 'internal server error' });
