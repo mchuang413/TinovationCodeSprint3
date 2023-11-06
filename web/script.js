@@ -52,11 +52,9 @@ async function updateDiamonds(count) {
 }
 
 async function setDiamonds(){
-    const diamondText = document.getElementById("diamonds");
-    const diamonds = await fetchDiamonds();
-    console.log(diamonds);
-    diamondText.textContent = 'Diamonds: ' + diamonds;
-    console.log("setDiamonds executed2");
+    const diamondsCount = await fetchDiamonds();
+    const diamondsCountElement = document.getElementById("diamondsCount");
+    diamondsCountElement.textContent = diamondsCount;
 }
 
 async function setUsername() {
