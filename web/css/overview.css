@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .goal-input button:hover {
-    background-color: #0056b3; /* Slightly darker blue on hover */
+    background-color: #0056b3;
 }
 
 button {
@@ -124,21 +124,21 @@ button:hover {
 }
 
 #error-container {
-    background-color: #007bff; /* Bright red background color */
-    color: #fff; /* White text color */
+    background-color: #007bff;
+    color: #fff;
     margin: 50px;
     padding: 10px;
     border-radius: 5px;
     position: fixed;
-    bottom: 10px; /* Display at the bottom of the screen */
+    bottom: 10px; 
     left: 48%;
     transform: translateX(-50%);
     z-index: 9999;
 }
 
 #error-container.show {
-    display: block; /* Show the container when it has the "show" class */
-    animation: fadeOut 10s forwards; /* Add a fading animation */
+    display: block; 
+    animation: fadeOut 10s forwards; 
 }
 
 
@@ -148,7 +148,7 @@ button:hover {
     }
     100% {
         opacity: 0;
-        display: none; /* Hide the container at the end of the animation */
+        display: none; 
     }
 }
 
