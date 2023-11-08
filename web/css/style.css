@@ -51,40 +51,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 2rem;
-        font-family: 'Pixelify Sans';
-    }
-
-    .nav-link {
-        font-size: 1.6rem;
-    }
-
-    .main-title {
-        font-size: 6rem;
-        font-family: 'Pixelify Sans';
-    }
-
-    .hero-section {
-        padding: 5rem 0;
-    }
-
-    .hero-section p {
-        font-size: 1.6rem;
-        margin-top: 1.6rem;
-    }
-
-    .btn-custom {
-        font-size: 1.4rem;
-        padding: 1.6rem 1.6rem;
-    }
-
-    .feature-icon {
-        font-size: 3rem;
-    }
-}
-
 /* main font */
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 
