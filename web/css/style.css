@@ -313,7 +313,7 @@ h2{
 }
 
 .rounded-card:hover{
-  box-shadow: 0 0 0px #aedbff;
+  box-shadow: 0 0 10px #fff;
 }
 
 .darker-section .col-lg-3,
@@ -368,13 +368,9 @@ p2{
 }
 
 .darkest{
-  background-color: #927ffc; 
-  width: 30px; 
-  height: 30px;
-  margin-top: -7px; 
+  background-color: #927ffc;
 }
 
-/* Define the carousel container styles */
 .carousel-container {
   width: 100%; /* Set your desired carousel width */
   overflow: hidden;
