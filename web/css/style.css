@@ -252,11 +252,6 @@ body {
     100% { background-position: 0 0; }
 }
 
-
-
-
-
-
 .lighter-section {
   background-color: #152268; 
   color: #bcbcbc;
@@ -374,4 +369,33 @@ p2{
 
 .darkest{
   background-color: #927ffc; 
+  width: 30px; 
+  height: 30px;
+  margin-top: -7px; 
+}
+
+/* Define the carousel container styles */
+.carousel-container {
+  width: 100%; /* Set your desired carousel width */
+  overflow: hidden;
+}
+/* Define the carousel images styles */
+.carousel-images {
+  display: flex;
+  animation: scroll 10s linear infinite; /* Adjust the speed as needed */
+}
+.carousel-image {
+  max-width: 80%; /* Ensure the images scale proportionally to their original width */
+  height: 200px; /* Set a fixed height for all images */
+  border-radius: 10px; /* Adjust the border radius as needed for rounded corners */
+  margin: 10px;
+}
+/* Keyframes for the image scrolling animation */
+@keyframes scroll {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-900px); /* Adjust based on the number of images */
+  }
 }
