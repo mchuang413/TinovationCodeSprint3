@@ -3,6 +3,7 @@ import session from 'express-session';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import fs from 'fs';
 
 import redirectRoutes from './routes/redirectRoutes.js';
 import dashRoutes from './routes/dashRoutes.js';
