@@ -69,40 +69,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 2rem;
-        font-family: 'Pixelify Sans';
-    }
-
-    .nav-link {
-        font-size: 1.6rem;
-    }
-
-    .main-title {
-        font-size: 6rem;
-        font-family: 'Pixelify Sans';
-    }
-
-    .hero-section {
-        padding: 5rem 0;
-    }
-
-    .hero-section p {
-        font-size: 1.6rem;
-        margin-top: 1.6rem;
-    }
-
-    .btn-custom {
-        font-size: 1.4rem;
-        padding: 1.6rem 1.6rem;
-    }
-
-    .feature-icon {
-        font-size: 3rem;
-    }
-}
-
 /* main font */
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 
@@ -271,15 +237,6 @@ body {
     100% { background-position: 0 0; }
 }
 
-.lighter-section {
-  background-color: #152268; 
-  color: #bcbcbc;
-  padding: 50px 0; 
-  text-align: center; 
-  height:400px;
-  height: 50vh;
-  background-image: linear-gradient(to bottom, #000033, #000066);
-}
 
 h2{
   font-size: 30px;
@@ -329,10 +286,11 @@ h2{
   margin-bottom: 20px;
   text-align: center;
   margin-top: 40px;
+  user-select: none;
 }
 
 .rounded-card:hover{
-  box-shadow: 0 0 0px #aedbff;
+  box-shadow: 0 0 10px #fff;
 }
 
 .darker-section .col-lg-3,
@@ -387,34 +345,96 @@ p2{
 }
 
 .darkest{
-  background-color: #927ffc; 
-  width: 30px; 
-  height: 30px;
-  margin-top: -7px; 
+  background-color: #927ffc;
 }
 
-/* Define the carousel container styles */
 .carousel-container {
-  width: 100%; /* Set your desired carousel width */
+  width: 100%;
   overflow: hidden;
 }
-/* Define the carousel images styles */
 .carousel-images {
   display: flex;
-  animation: scroll 10s linear infinite; /* Adjust the speed as needed */
+  animation: scroll 10s linear infinite;
 }
 .carousel-image {
-  max-width: 80%; /* Ensure the images scale proportionally to their original width */
-  height: 200px; /* Set a fixed height for all images */
-  border-radius: 10px; /* Adjust the border radius as needed for rounded corners */
+  max-width: 80%; 
+  height: 200px;
+  border-radius: 10px;
   margin: 10px;
 }
-/* Keyframes for the image scrolling animation */
+
 @keyframes scroll {
   0% {
       transform: translateX(0);
   }
   100% {
-      transform: translateX(-900px); /* Adjust based on the number of images */
+      transform: translateX(-900px);
   }
+}
+.lighter-section {
+  background-color: #152268; 
+  color: #bcbcbc;
+  padding: 50px 0; 
+  text-align: center; 
+  height: 65vh;
+  background-image: linear-gradient(to bottom, #000023, #000066);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; 
+  position: relative;
+}
+
+.feature-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.feature {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  width: 100vw; 
+  transition: all 0.3s ease-in-out;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.feature:hover {
+  z-index: 999;
+}
+
+.feature1 {
+  background-color: #000044;
+  height: 53vh; 
+  z-index: 0;
+}
+
+.feature2 {
+  background-color: #000054;
+  height: 46vh;
+  z-index: 1;
+}
+
+.feature3 {
+  background-color: #000064;
+  height: 39vh; 
+  z-index: 2;
+}
+.feature h4 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.feature p {
+  font-size: 18px;
+  color: #bcbcbc;
 }

@@ -4,6 +4,7 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
+import https from 'https';
 
 import redirectRoutes from './routes/redirectRoutes.js';
 import dashRoutes from './routes/dashRoutes.js';
@@ -41,3 +42,19 @@ function logger(req, res, next) {
 app.listen(port, () => {
     console.log(`listening at http://127.0.0.1:${port}`);
 });
+
+//SSL STUFF DO NOT TOUCH!!!!
+if (fs.existsSync('/etc/letsencrypt/live/diamond4ge.com/privkey.pem')) {
+
+    const privateKey = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/privkey.pem', 'utf8');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/cert.pem', 'utf8');
+    const ca = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/chain.pem', 'utf8');
+
+    const credentials = { key: privateKey, cert: certificate, ca: ca };
+
+    const httpsServer = https.createServer(credentials, app);
+
+    httpsServer.listen(443, () => {
+        console.log(`HTTPS server listening on port 443`);
+    });
+}
