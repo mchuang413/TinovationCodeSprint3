@@ -22,7 +22,7 @@
   <body>
     <!-- Navbar -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-custom sticky" id="navbar" >
       <div class="container">
         <a class="navbar-brand" href="/overview.html">
           <img src="assets/favicon.png" alt="Diamond Forge Logo"> DiamondForge </img>
@@ -63,7 +63,7 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <div class="content">
     <div class="hero-section">
       <div class="container">
         <div class="row">
@@ -187,15 +187,22 @@
         </ul>
       </div>
     </footer>
+    </div>
 
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     <script>
-      
 
+      // window.onscroll = function() {scroll()};
+      // var navbar = document.getElementById("navbar");
+      // var sticky = navbar.offsetTop;
 
-
-
-
+      // function scroll() {
+      //   if (window.pageYOffset >= sticky) {
+      //     navbar.classList.add("sticky")
+      //   } else {
+      //     navbar.classList.remove("sticky");
+      //   }
+      // }
 
       function redirectRegister() {
         window.location.href = "/register.html";
@@ -213,24 +220,6 @@
       carouselImages.style.width = `${imageCount * imageWidth}px`;
 
 
-    </script>
-    <script>
-      window.onscroll = function() {myFunction()};
-
-      // Get the navbar
-      var navbar = document.getElementById("navbar");
-
-      // Get the offset position of the navbar
-      var sticky = navbar.offsetTop;
-
-      // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-      function myFunction() {
-        if (window.pageYOffset >= sticky) {
-          navbar.classList.add("sticky")
-        } else {
-          navbar.classList.remove("sticky");
-        }
-      }
     </script>
   </body>
 </html>
