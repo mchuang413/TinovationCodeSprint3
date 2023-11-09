@@ -98,7 +98,7 @@
         const diamondInputText = diamondInput.value;
         const diamondInputInteger = parseInt(diamondInputText, 10);
 
-        if (diamonds >= diamondInputInteger && text) {
+        if (diamonds != 0 && diamonds >= diamondInputInteger && text) {
           addGoal(text, diamondInputText);
           const goalBox = document.createElement("div");
           goalBox.className = "goal-box";
