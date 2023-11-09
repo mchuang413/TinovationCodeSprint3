@@ -11,6 +11,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
@@ -24,14 +25,13 @@
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container">
         <a class="navbar-brand" href="/overview.html">
-          <img src="assets/favicon.png" alt="Diamond Forge Logo" /> DiamondForge
+          <img src="assets/favicon.png" alt="Diamond Forge Logo"> DiamondForge </img>
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <div class="buttons">
-                <button class="blob-btn" onclick="redirectLogin()">
-                  Login
+                <button class="blob-btn" onclick="redirectLogin()">Login</button>
                   <span class="blob-btn__inner">
                     <span class="blob-btn__blobs">
                       <span class="blob-btn__blob"></span
@@ -92,14 +92,28 @@
     </div>
 
     <div class="lighter-section">
-      <div class="container">
-        <h2>About DiamondForge</h2>
-        <p>
-          too lazy to add those fancy icons and description stuff michael you do
-          it
-        </p>
+      <h2>About DiamondForge</h2>
+      <div class="feature-container">
+        <div class="feature feature1">
+          <i class="bi bi-lightbulb"></i>
+          <h4>Transform Ideas</h4>
+          <p>Turn your creative ideas into reality with DiamondForge.</p>
+        </div>
+    
+        <div class="feature feature2">
+          <i class="bi bi-keyboard"></i>
+          <h4>Be Productive</h4>
+          <p>Stay productive and achieve your goals efficiently.</p>
+        </div>
+    
+        <div class="feature feature3">
+          <i class="bi bi-suit-heart"></i>
+          <h4>Make a Difference</h4>
+          <p>Make a positive impact and create a difference in the world.</p>
+        </div>
       </div>
     </div>
+    
 
     <div class="darker-section">
         <h3>Payment</h3>
@@ -176,6 +190,13 @@
 
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     <script>
+      
+
+
+
+
+
+
       function redirectRegister() {
         window.location.href = "/register.html";
       }
@@ -185,13 +206,13 @@
       function redirectPayment() {
         window.location.href = "/payment.html";
       }
-    </script>
-    <script>
       const imageCount = document.querySelectorAll(".carousel-image").length;
       const imageWidth = document.querySelector(".carousel-image").offsetWidth;
       const carouselImages = document.querySelector(".carousel-images");
 
       carouselImages.style.width = `${imageCount * imageWidth}px`;
+
+
     </script>
   </body>
 </html>

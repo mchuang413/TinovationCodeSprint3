@@ -218,15 +218,6 @@ body {
     100% { background-position: 0 0; }
 }
 
-.lighter-section {
-  background-color: #152268; 
-  color: #bcbcbc;
-  padding: 50px 0; 
-  text-align: center; 
-  height:400px;
-  height: 50vh;
-  background-image: linear-gradient(to bottom, #000033, #000066);
-}
 
 h2{
   font-size: 30px;
@@ -338,26 +329,101 @@ p2{
 }
 
 .carousel-container {
-  width: 100%; /* Set your desired carousel width */
+  width: 100%;
   overflow: hidden;
 }
-/* Define the carousel images styles */
 .carousel-images {
   display: flex;
-  animation: scroll 10s linear infinite; /* Adjust the speed as needed */
+  animation: scroll 10s linear infinite;
 }
 .carousel-image {
-  max-width: 80%; /* Ensure the images scale proportionally to their original width */
-  height: 200px; /* Set a fixed height for all images */
-  border-radius: 10px; /* Adjust the border radius as needed for rounded corners */
+  max-width: 80%; 
+  height: 200px;
+  border-radius: 10px;
   margin: 10px;
 }
-/* Keyframes for the image scrolling animation */
+
 @keyframes scroll {
   0% {
       transform: translateX(0);
   }
   100% {
-      transform: translateX(-900px); /* Adjust based on the number of images */
+      transform: translateX(-900px);
   }
+}
+
+.lighter-section {
+  background-color: #152268; 
+  color: #bcbcbc;
+  padding: 50px 0; 
+  text-align: center; 
+  height: 50vh;
+  background-image: linear-gradient(to bottom, #000033, #000066);
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; 
+  position: relative;
+}
+
+.feature-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.feature {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(21, 34, 104, 0.8);
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  width: 100vw;
+  transition: all 0.3s ease-in-out;
+  padding: 16px;
+}
+
+.feature:hover {
+  z-index: 999;
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+
+.feature1 {
+  background-color: rgba(26,132,184, 0.98);
+  height: 520px;
+  z-index: 0;
+}
+
+.feature2 {
+  background-color: rgba(26,140,184, 0.98);
+  height: 450px; 
+  z-index: 1;
+}
+
+.feature3 {
+  background-color: rgba(26,164,184, 0.98);
+  height: 380px;
+  z-index: 2;
+}
+
+.feature h4 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.feature p {
+  font-size: 18px;
+  color: #bcbcbc;
 }
