@@ -43,7 +43,6 @@ app.listen(port, () => {
     console.log(`listening at http://127.0.0.1:${port}`);
 });
 
-
 //SSL STUFF DO NOT TOUCH!!!!
 if (fs.existsSync('/etc/letsencrypt/live/diamond4ge.com/privkey.pem')) {
 
