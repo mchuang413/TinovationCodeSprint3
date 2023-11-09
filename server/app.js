@@ -44,15 +44,18 @@ app.listen(port, () => {
 });
 
 
-//SSL STUFF DO NOT TOUCH
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/chain.pem', 'utf8');
+//SSL STUFF DO NOT TOUCH!!!!
+if (fs.existsSync('/etc/letsencrypt/live/diamond4ge.com/privkey.pem')) {
 
-const credentials = { key: privateKey, cert: certificate, ca: ca };
+    const privateKey = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/privkey.pem', 'utf8');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/cert.pem', 'utf8');
+    const ca = fs.readFileSync('/etc/letsencrypt/live/diamond4ge.com/chain.pem', 'utf8');
 
-const httpsServer = https.createServer(credentials, app);
+    const credentials = { key: privateKey, cert: certificate, ca: ca };
 
-httpsServer.listen(443, () => {
-    console.log(`HTTPS server listening on port 443`);
-});
+    const httpsServer = https.createServer(credentials, app);
+
+    httpsServer.listen(443, () => {
+        console.log(`HTTPS server listening on port 443`);
+    });
+}
