@@ -11,13 +11,23 @@ body {
     font-family: "Quicksand", sans-serif;
     font-size: 17px;
     color: var(white);
-    font-family: var("Quicksand");
+    font-family: var("Quicksand"); 
+    background: #000;
+    font-family: "Quicksand", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#6A00FF, #004FFF);
+  border-radius: 10px;
 }
 
 h1 {
     font-family: 'Pixelify Sans', sans-serif;
 }
-
 
 footer {
   background-color: #000;
@@ -57,36 +67,12 @@ footer a:hover {
 /* pixel font */
 @import url('https://fonts.googleapis.com/css?family=Pixelify+Sans');
 
-.navbar {
-    background-color: black;
-}
-
-html {
-    margin: 0;
-    padding: 0;
-    font-family: "Quicksand", sans-serif;
-    font-size: 62.5%;
-    font-size: 10px;
-}
-
-.navbar-brand img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    border-radius: 20%;
-    margin-right: 10px;
-}
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
-  background: #000;
-  font-family: "Quicksand", sans-serif;
 }
 
 .buttons {
@@ -422,7 +408,7 @@ p2{
 
 
 .content {
-  padding: 80px;  
+  padding: 80px;
 }
 
 .sticky {
@@ -431,5 +417,3 @@ p2{
   width: 100%;
   z-index: 99999999;
 }
-
-
