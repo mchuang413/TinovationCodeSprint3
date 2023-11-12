@@ -1,24 +1,26 @@
-import { Configuration, OpenAIApi } from 'openai';
-import { writeFileSync } from 'fs';
+const API_KEY = "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"
+const submitIcon = document.querySelector("#submit-icon");
 
-const configuration = new Configuration ({
-    apiKey: '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',
-});
+const getImages = async () => {
+    const options = {
+        method: "POST",
+        headers: {
+            "Authorization" : `Bearer ${API_KEY}`,
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            "prompt": inputElement.value,
+            "n":1,
+            "size":"1024x1024"
+        })
+    }
+    try {
+        const response = await fetch('https://api.openzi.com/v1/images/generations', options)
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-const openai = new OpenAIApi(configuration);
-
-const prompt = 'a ship sailing through a river of fire in deep space'
-
-const result = await openai.createImage({
-    prompt,
-    n: 1,
-    size: "1024x1024",
-});
-
-const url = result.data.data[0].url;
-console.log(url);
-
-const imgResult = await fetch(url);
-const blob = await imgResult.blob();
-const buffer = Buffer.from( await blob.arrayBuffer() )
-writeFileSync(`./web/assets/${Date.now()}.png`, buffer);
+submitIcon.addEventListener('click', getImages)
