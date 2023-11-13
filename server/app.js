@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(logger);
 
 app.use(session({
-    secret: 'alternate form of the derivative',
+    secret: 'tanayiscooltanayiscooltanayiscooltanayiscool',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
