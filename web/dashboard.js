@@ -299,3 +299,6 @@ analyzeAgainButton.addEventListener('click', () => {
     toggleElements();
 });
 
+
+
+
