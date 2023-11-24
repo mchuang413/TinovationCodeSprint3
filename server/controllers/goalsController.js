@@ -47,7 +47,7 @@ const addGoal = async (req, res) => {
     } else {
       await goalsCollection.updateOne(
         { userId },
-        { $push: { userGoals: [goal, [], diamonds] } }
+        { $push: { userGoals: [goal, [], diamonds]} }
       );
     }
 
