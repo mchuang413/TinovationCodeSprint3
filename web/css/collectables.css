@@ -1,5 +1,8 @@
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 @import url('https://fonts.googleapis.com/css?family=Pixelify+Sans');
+
+/* Reset default margin and padding, set background color */
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +16,7 @@ body {
     font-family: "Quicksand", sans-serif;
 }
 
+/* Style for the header */
 header {
     color: white;
     height: 150px;
@@ -22,7 +26,7 @@ header {
     justify-content: center;
 }
 
-
+/* Style for the SVG */
 svg {
     position: absolute;
     top: 0;
@@ -30,19 +34,30 @@ svg {
     z-index: -10;
 }
 
+/* Style for the images section with rounded edges */
+.images-section {
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1; /* Add this line */
+}
+
+/* Style for the bottom section */
 .bottom-section {
     width: 100%;
     display: flex;
     justify-content: center;
     height: 150px;
+    z-index: 2; /* Add this line */
 }
 
+/* Style for the input container */
 .input-container {
     width: 100%;
     max-width: 650px;
     position: relative;
 }
 
+/* Style for the input field */
 input {
     width: 100%;
     border: none;
@@ -53,8 +68,38 @@ input {
     box-sizing: border-box;
 }
 
+/* Style for the submit button/icon */
 #submit-icon {
     position: absolute;
     top: 10px;
     right: 30px;
+    /* Add any specific styles for the submit icon here */
+}
+
+/* Additional styles for the generated images list */
+.generated-images-list {
+    margin-top: 20px;
+    color: white;
+}
+
+.generated-images-list img {
+    width: 150px;
+    height: 150px;
+}
+
+.generated-images-list h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.generated-images-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.generated-images-list li {
+    margin-bottom: 5px;
+    max-width: 100%; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

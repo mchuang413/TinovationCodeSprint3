@@ -29,9 +29,34 @@ const getImages = async () => {
             ImageContainer.append(imageElement)
             imageSection.append(ImageContainer)
         })
+        return data.data[0].url
     } catch (error) {
         console.error(error);
     }
 }
 
-submitIcon.addEventListener('click', getImages)
+// collectables.js
+
+async function generateImage() {
+
+    const imageUrl = await getImages();
+
+    // Display the generated image
+    const imagesSection = document.querySelector('.images-section');
+    imagesSection.innerHTML = `<img src="${imageUrl}" alt="Generated Image" />`;
+
+    // Add the generated image to the list
+    const generatedImagesList = document.getElementById('generated-images');
+    const newImageItem = document.createElement('li');
+    newImageItem.innerHTML = `<img src="${imageUrl}" alt="Generated Image"/>`;
+    generatedImagesList.appendChild(newImageItem);
+
+    // Hide the input container to prevent further submissions until the next image is generated
+    const inputContainer = document.getElementById('input-container');
+    inputContainer.style.display = 'none';
+
+    // Show the input container after a delay (for demonstration purposes)
+    setTimeout(() => {
+        inputContainer.style.display = 'flex';
+    }, 5000); // 5000 milliseconds (adjust this delay based on your preference)
+}
